@@ -51,7 +51,7 @@ class ManifestSerializer < ActiveModel::Serializer
   end
 
   def theme_color
-    '#a6e819'
+    '#BEDBBB'
   end
 
   def background_color
