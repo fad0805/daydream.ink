@@ -23,42 +23,46 @@ services:
     volumes:
       - ./redis:/data
 
-  # es:
-  #   restart: always
-  #   image: qdon/elasticsearch-nori:8.8.1
-  #   build:
-  #     dockerfile: es.Dockerfile
-  #   environment:
-  #     - "ES_JAVA_OPTS=-Xms512m -Xmx512m -Des.enforce.bootstrap.checks=true"
-  #     - "xpack.license.self_generated.type=basic"
-  #     - "xpack.security.enabled=false"
-  #     - "xpack.watcher.enabled=false"
-  #     - "xpack.graph.enabled=false"
-  #     - "xpack.ml.enabled=false"
-  #     - "bootstrap.memory_lock=true"
-  #     - "cluster.name=es-mastodon"
-  #     - "discovery.type=single-node"
-  #     - "thread_pool.write.queue_size=1000"
-  #   networks:
-  #      - external_network
-  #      - internal_network
-  #   healthcheck:
-  #      test: ["CMD-SHELL", "curl --silent --fail localhost:9200/_cluster/health || exit 1"]
-  #   volumes:
-  #      - ./elasticsearch:/usr/share/elasticsearch/data
-  #   ulimits:
-  #     memlock:
-  #       soft: -1
-  #       hard: -1
-  #     nofile:
-  #       soft: 65536
-  #       hard: 65536
-  #   ports:
-  #     - '127.0.0.1:9200:9200'
+  es:
+    restart: always
+    image: elastic-nori:latest
+    build: es-nori
+    environment:
+      - 'ES_JAVA_OPTS=-Xms512m -Xmx512m -Des.enforce.bootstrap.checks=true'
+      - 'xpack.license.self_generated.type=basic'
+      - 'xpack.security.enabled=false'
+      - 'xpack.watcher.enabled=false'
+      - 'xpack.graph.enabled=false'
+      - 'xpack.ml.enabled=false'
+      - 'bootstrap.memory_lock=true'
+      - 'cluster.name=es-mastodon'
+      - 'discovery.type=single-node'
+      - 'thread_pool.write.queue_size=1000'
+    networks:
+      - external_network
+      - internal_network
+    healthcheck:
+      test:
+        [
+          'CMD-SHELL',
+          'curl --silent --fail localhost:9200/_cluster/health || exit 1',
+        ]
+    volumes:
+      - ./elasticsearch:/usr/share/elasticsearch/data
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+    ports:
+      - '127.0.0.1:9200:9200'
 
   web:
     build: .
-    image: qdon/glitch:brandless
+    #image: qdon/glitch:brandless
+    image: ghcr.io/fad0805/mastodon:latest
     restart: always
     env_file: .env.production
     command: bash -c "rm -f /mastodon/tmp/pids/server.pid; bundle exec rails s -p 3000"
@@ -73,13 +77,14 @@ services:
     depends_on:
       - db
       - redis
-      # - es
+      - es
     volumes:
       - ./public/system:/mastodon/public/system
 
   streaming:
     build: .
-    image: qdon/glitch:brandless
+    #image: qdon/glitch:brandless
+    image: ghcr.io/fad0805/mastodon:latest
     restart: always
     env_file: .env.production
     command: node ./streaming
@@ -97,13 +102,15 @@ services:
 
   sidekiq:
     build: .
-    image: qdon/glitch:brandless
+    #image: qdon/glitch:brandless
+    image: ghcr.io/fad0805/mastodon:latest
     restart: always
     env_file: .env.production
     command: bundle exec sidekiq
     depends_on:
       - db
       - redis
+      - es
     networks:
       - external_network
       - internal_network
