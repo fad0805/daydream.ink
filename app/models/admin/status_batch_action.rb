@@ -22,7 +22,7 @@ class Admin::StatusBatchAction
   private
 
   def statuses
-    Status.with_discarded.where(id: status_ids)
+    Status.with_discarded.where(id: status_ids).reorder(nil)
   end
 
   def process_action!
@@ -66,7 +66,7 @@ class Admin::StatusBatchAction
     end
 
     UserMailer.warning(target_account.user, @warning).deliver_later! if warnable?
-    RemovalWorker.push_bulk(status_ids) { |status_id| [status_id, { 'preserve' => target_account.local?, 'immediate' => !target_account.local? }] }
+    RemovalWorker.push_bulk(status_ids) { |status_id| [status_id, { 'preserve' => true }] }
   end
 
   def handle_mark_as_sensitive!
@@ -140,6 +140,6 @@ class Admin::StatusBatchAction
   end
 
   def allowed_status_ids
-    AccountStatusesFilter.new(@report.target_account, current_account).results.with_discarded.where(id: status_ids).pluck(:id)
+    Admin::AccountStatusesFilter.new(@report.target_account, current_account).results.with_discarded.where(id: status_ids).pluck(:id)
   end
 end
