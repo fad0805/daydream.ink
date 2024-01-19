@@ -82,7 +82,9 @@ services:
       - ./public/system:/mastodon/public/system
 
   streaming:
-    build: .
+    build:
+      context: .
+      dockerfile: streamin:/Dockerfile
     #image: qdon/glitch:brandless
     image: ghcr.io/fad0805/mastodon:latest
     restart: always
