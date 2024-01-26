@@ -86,7 +86,7 @@ services:
       context: .
       dockerfile: streaming/Dockerfile
     #image: qdon/glitch:brandless
-    image: ghcr.io/fad0805/mastodon:latest
+    image: fad0805/streaming
     restart: always
     env_file: .env.production
     command: node ./streaming
