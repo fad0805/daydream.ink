@@ -13,6 +13,9 @@ import { connect } from 'react-redux';
 
 import { debounce } from 'lodash';
 
+import DeleteForeverIcon from '@/material-icons/400-24px/delete_forever.svg?react';
+import DoneAllIcon from '@/material-icons/400-24px/done_all.svg?react';
+import NotificationsIcon from '@/material-icons/400-24px/notifications-fill.svg?react';
 import { compareId } from 'flavours/glitch/compare_id';
 import { Icon }  from 'flavours/glitch/components/icon';
 import { NotSignedInIndicator } from 'flavours/glitch/components/not_signed_in_indicator';
@@ -293,7 +296,7 @@ class Notifications extends PureComponent {
           onClick={this.handleMarkAsRead}
           className='column-header__button'
         >
-          <Icon id='check' />
+          <Icon id='done-all' icon={DoneAllIcon} />
         </button>,
       );
     }
@@ -317,7 +320,7 @@ class Notifications extends PureComponent {
         onClick={this.onEnterCleaningMode}
         className={notifCleaningButtonClassName}
       >
-        <Icon id='eraser' />
+        <Icon id='eraser' icon={DeleteForeverIcon} />
       </button>,
     );
 
@@ -338,6 +341,7 @@ class Notifications extends PureComponent {
       >
         <ColumnHeader
           icon='bell'
+          iconComponent={NotificationsIcon}
           active={isUnread}
           title={intl.formatMessage(messages.title)}
           onPin={this.handlePin}

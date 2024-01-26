@@ -8,9 +8,9 @@ import classNames from 'classnames';
 import { is } from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
-import { ReactComponent as VisibilityOffIcon } from '@material-symbols/svg-600/outlined/visibility_off.svg';
 import { debounce } from 'lodash';
 
+import VisibilityOffIcon from '@/material-icons/400-24px/visibility_off.svg?react';
 import { Blurhash } from 'mastodon/components/blurhash';
 
 import { autoPlayGif, displayMedia, useBlurhash } from '../initial_state';
@@ -22,7 +22,7 @@ const messages = defineMessages({
 });
 
 const colCount = function(size) {
-  return Math.max(Math.floor(Math.sqrt(size)), 2);
+  return Math.max(Math.ceil(Math.sqrt(size)), 2);
 };
 
 const rowCount = function(size) {
@@ -115,7 +115,7 @@ class Item extends PureComponent {
     }
 
     if (attachment.get('description')?.length > 0) {
-      badges.push(<span key='alt' className='media-gallery__gifv__label'>ALT</span>);
+      badges.push(<span key='alt' className='media-gallery__alt__label'>ALT</span>);
     }
 
     const description = attachment.getIn(['translation', 'description']) || attachment.get('description');
