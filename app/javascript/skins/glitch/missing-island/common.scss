@@ -5,18 +5,20 @@
 .simple_form button,
 .notification__filter-bar button.active::before,
 .account__section-headline a.active::before,
-.poll__chart.leading {
+.poll__chart.leading,
+.icon-button.active {
   background-color: #34842d;
 }
 
 .button:disabled,
 .poll__chart,
-.glitch.local-settings__navigation__item.active {
+.glitch.local-settings__navigation__item.active,
+.muted .poll__chart.leading {
   background-color: #bedbbb;
 }
 
 .muted .poll__chart {
-  background-color: rgba(220, 248, 216, 0.7);
+  background-color: rgba(220, 248, 216, 70%);
 }
 
 .button:hover,
@@ -30,6 +32,10 @@
 
 .admin-wrapper .sidebar ul .simple-navigation-active-leaf a {
   background-color: #3d8f35;
+}
+
+.icon-button:active, .icon-button:focus, .icon-button:hover {
+  background-color: #526f51;
 }
 
 .status__content a,
