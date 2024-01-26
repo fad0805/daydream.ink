@@ -4,11 +4,14 @@
 .button,
 .simple_form button,
 .notification__filter-bar button.active::before,
-.account__section-headline a.active::before {
+.account__section-headline a.active::before,
+.poll__chart.leading {
   background-color: #34842d;
 }
 
-.button:disabled {
+.button:disabled,
+.poll__chart,
+.glitch.local-settings__navigation__item.active {
   background-color: #bedbbb;
 }
 
@@ -27,6 +30,10 @@
 
 .status__content a,
 .status__content__translate-button,
-.column-header__back-button, .column-link--transparent.active {
+.column-header__back-button,
+.column-link--transparent.active,
+.icon-button.active:active, .icon-button.active:focus,
+.icon-button.active:hover,
+.notification__message .icon {
   color: #34842d;
 }
