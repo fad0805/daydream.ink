@@ -84,7 +84,7 @@ services:
   streaming:
     build:
       context: .
-      dockerfile: streamin:/Dockerfile
+      dockerfile: streaming/Dockerfile
     #image: qdon/glitch:brandless
     image: ghcr.io/fad0805/mastodon:latest
     restart: always
