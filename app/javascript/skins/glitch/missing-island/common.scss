@@ -1,0 +1,10 @@
+@import 'flavours/glitch/styles/mastodon-light';
+@import 'styles/qdon-big-diff';
+
+.button {
+  background-color: #34842d;
+}
+
+.button:disabled {
+  background-color: #bedbbb;
+}
