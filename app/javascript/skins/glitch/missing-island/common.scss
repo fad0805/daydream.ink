@@ -1,10 +1,15 @@
 @import 'flavours/glitch/styles/mastodon-light';
 @import 'styles/qdon-big-diff';
 
-.button {
+.button, .simple_form button {
   background-color: #34842d;
 }
 
 .button:disabled {
   background-color: #bedbbb;
+}
+
+.button:hover, .button:active, .button:focus, .simple_form button:hover,
+.simple_form button:active, .simple_form button:focus {
+  background-color: #2e7927;
 }
