@@ -1,7 +1,10 @@
 @import 'flavours/glitch/styles/mastodon-light';
 @import 'styles/qdon-big-diff';
 
-.button, .simple_form button {
+.button,
+.simple_form button,
+.notification__filter-bar button.active::before,
+.account__section-headline a.active::before {
   background-color: #34842d;
 }
 
@@ -9,16 +12,21 @@
   background-color: #bedbbb;
 }
 
-.button:hover, .button:active, .button:focus, .simple_form button:hover,
-.simple_form button:active, .simple_form button:focus {
+.button:hover,
+.button:active,
+.button:focus,
+.simple_form button:hover,
+.simple_form button:active,
+.simple_form button:focus {
   background-color: #2e7927;
 }
 
-.notification__filter-bar button.active::before {
-  background-color: #34842d;
-}
-
-
 .admin-wrapper .sidebar ul .simple-navigation-active-leaf a {
   background-color: #3d8f35;
+}
+
+.status__content a,
+.status__content__translate-button,
+.column-header__back-button {
+  color: #34842d;
 }
