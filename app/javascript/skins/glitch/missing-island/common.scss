@@ -1,6 +1,10 @@
 @import 'flavours/glitch/styles/mastodon-light';
 @import 'styles/qdon-big-diff';
 
+a, button, button::before {
+  color: #34842d;
+}
+
 .button, .simple_form button {
   background-color: #34842d;
 }
@@ -18,9 +22,6 @@
   background-color: #34842d;
 }
 
-.status__content a {
-  color: #34842d;
-}
 
 .admin-wrapper .sidebar ul .simple-navigation-active-leaf a {
   background-color: #3d8f35;
