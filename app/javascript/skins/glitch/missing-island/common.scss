@@ -13,3 +13,11 @@
 .simple_form button:active, .simple_form button:focus {
   background-color: #2e7927;
 }
+
+.notification__filter-bar button.active::before {
+  background-color: #34842d;
+}
+
+.status__content a {
+  color: #34842d;
+}
