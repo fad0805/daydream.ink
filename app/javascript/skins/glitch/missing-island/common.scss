@@ -122,6 +122,12 @@ a.active::before, .notification.unread::before {
   color: #4c5d44;
 }
 
+.load-more:hover {
+  background-color: #cfe1d1;
+}
+
+
+
 .dismissable-banner, .warning-banner {
   background-color: rgba(173, 202, 167, 0.15);
   border: 1px solid #60a638;
@@ -146,6 +152,10 @@ a.active::before, .notification.unread::before {
 .search__input, .setting-text, .report-dialog-modal__textarea, .audio-player,
 .column-back-button, .column-header {
   border: 1px solid hsl(108deg, 24.8%, 80.2%);
+}
+
+.load-gap {
+  border-bottom: 1px solid #c0d9c0;
 }
 
 .column > .scrollable, .getting-started, .column-inline-form,
@@ -214,6 +224,10 @@ body .muted-hint a, .admin-wrapper .content .muted-hint a,
 
 .switch-to-advanced .switch-to-advanced__toggle {
   color: #34842d;
+}
+
+.load-more {
+  color: #445d48;
 }
 
 @media screen and (max-width: 1174px) {
