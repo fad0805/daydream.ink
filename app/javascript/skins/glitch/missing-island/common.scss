@@ -6,14 +6,14 @@ html {
 }
 
 body {
-  background: hsl(100, 15.8%, 96.3%);
+  background: hsl(100deg, 15.8%, 96.3%);
 }
 
 :root {
-  --dropdown-border-color: hsl(106, 24.6%, 76.1%);
-  --dropdown-background-color: hsl(114, 24.4%, 83.9%);
-  --modal-background-color: hsl(120, 25%, 92.2%);
-  --modal-border-color: hsl(111, 24.4%, 83.9%);
+  --dropdown-border-color: hsl(106deg, 24.6%, 76.1%);
+  --dropdown-background-color: hsl(114deg, 24.4%, 83.9%);
+  --modal-background-color: hsl(120deg, 25%, 92.2%);
+  --modal-border-color: hsl(111deg, 24.4%, 83.9%);
 }
 
 .button,
@@ -41,13 +41,13 @@ button:hover, .simple_form .button:active, .simple_form .button:focus,
   background-color: #bedbbb;
 }
 
-.button:disabled, .poll__chart, .muted .poll__chart.leading, .search__input,
+.search__input,
 .notification__filter-bar, .account__section-headline {
   background-color: #d1e1cf;
 }
 
 .muted .poll__chart,
-a.active::before, .poll__chart.leading, .notification.unread::before, .status.unread::before {
+a.active::before, .notification.unread::before, .status.unread::before {
   background-color: rgba(220, 248, 216, 70%);
 }
 
@@ -69,11 +69,11 @@ a.active::before, .poll__chart.leading, .notification.unread::before, .status.un
 }
 
 .compose-form .compose-form__buttons-wrapper {
-  background-color: hsl(112.5, 26.7%, 94.1%);
+  background-color: hsl(112.5deg, 26.7%, 94.1%);
 }
 
 .react-toggle:hover:not(.react-toggle--disabled) .react-toggle-track {
-  background-color: hsl(125, 16.4%, 28.6%);
+  background-color: hsl(125deg, 16.4%, 28.6%);
 }
 
 .react-toggle-thumb {
@@ -81,7 +81,7 @@ a.active::before, .poll__chart.leading, .notification.unread::before, .status.un
 }
 
 .pillbar-button:not([disabled]):hover, .pillbar-button:not([disabled]):focus {
-  background-color: hsl(105, 16.4%, 28.6%);
+  background-color: hsl(105deg, 16.4%, 28.6%);
 }
 
 .getting-started .column-link:hover, .getting-started .column-link:active,
@@ -91,16 +91,16 @@ a.active::before, .poll__chart.leading, .notification.unread::before, .status.un
 }
 
 .column-subheading {
-  background: hsl(126, 25%, 92.2%);
-  border-bottom: 1px solid hsl(110.4, 24.8%, 80.2%);
+  background: hsl(126deg, 25%, 92.2%);
+  border-bottom: 1px solid hsl(110.4deg, 24.8%, 80.2%);
 }
 
 .getting-started .column-link, .scrollable .column-link {
-  border-bottom: 1px solid hsl(108, 24.8%, 80.2%);
+  border-bottom: 1px solid hsl(108deg, 24.8%, 80.2%);
 }
 
 .notification__filter-bar {
-  border: 1px solid hsl(117.6, 24.8%, 80.2%);
+  border: 1px solid hsl(117.6deg, 24.8%, 80.2%);
 }
 
 .drawer__header, .drawer__inner,
@@ -108,17 +108,17 @@ a.active::before, .poll__chart.leading, .notification.unread::before, .status.un
 .compose-form .spoiler-input__input, .compose-form__poll-wrapper select,
 .search__input, .setting-text, .report-dialog-modal__textarea, .audio-player,
 .column-back-button, .column-header {
-  border: 1px solid hsl(108, 24.8%, 80.2%);
+  border: 1px solid hsl(108deg, 24.8%, 80.2%);
 }
 
 .column > .scrollable, .getting-started, .column-inline-form,
 .regeneration-indicator {
-  border: 1px solid hsl(108, 24.8%, 80.2%);
+  border: 1px solid hsl(108deg, 24.8%, 80.2%);
   border-top: 0;
 }
 
 .status {
-  border-bottom: 1px solid hsl(115.2, 24.8%, 80.2%);
+  border-bottom: 1px solid hsl(115.2deg, 24.8%, 80.2%);
 }
 
 .react-toggle--checked .react-toggle-thumb,
