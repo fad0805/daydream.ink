@@ -41,8 +41,13 @@ button:hover, .simple_form .button:active, .simple_form .button:focus,
   background-color: #bedbbb;
 }
 
+.account__header__account-note textarea {
+  background-color: #c4d7c2;
+}
+
 .search__input,
-.notification__filter-bar, .account__section-headline {
+.notification__filter-bar, .account__section-headline,
+.account__header__bar {
   background-color: #d1e1cf;
 }
 
@@ -124,6 +129,10 @@ a.active::before, .notification.unread::before {
 
 .status {
   border-bottom: 1px solid hsl(115.2deg, 24.8%, 80.2%);
+}
+
+.account__action-bar__tab.active {
+  border-bottom: 4px solid #34842d;
 }
 
 .react-toggle--checked .react-toggle-thumb,
