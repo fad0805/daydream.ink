@@ -25,7 +25,13 @@ body {
 .notification.unread::before, .status.unread::before,
 .pillbar-button:not([disabled]).active,
 .react-toggle.react-toggle--checked:hover:not(.react-toggle--disabled) .react-toggle-track,
-.react-toggle--checked .react-toggle-track {
+.react-toggle--checked .react-toggle-track,
+.upload-progress__tracker,
+.privacy-dropdown__option:hover, .privacy-dropdown__option.active,
+.admin-wrapper .content__heading__tabs a.selected,
+.simple_form button:active, .simple_form button:focus, .simple_form
+button:hover, .simple_form .button:active, .simple_form .button:focus,
+.simple_form button, .simple_form .button, .simple_form .block-button {
   background-color: #34842d;
 }
 
@@ -51,7 +57,10 @@ a.active::before, .poll__chart.leading, .notification.unread::before, .status.un
 .simple_form button:hover,
 .simple_form button:active,
 .simple_form button:focus,
-.pillbar-button:not([disabled]).active:hover, .pillbar-button:not([disabled]).active:focus {
+.pillbar-button:not([disabled]).active:hover,
+.pillbar-button:not([disabled]).active:focus,
+.simple_form .button:hover, .simple_form .block-button:active, .simple_form
+.block-button:focus, .simple_form .block-button:hover {
   background-color: #2e7927;
 }
 
@@ -78,20 +87,7 @@ a.active::before, .poll__chart.leading, .notification.unread::before, .status.un
 .getting-started .column-link:hover, .getting-started .column-link:active,
 .getting-started .column-link:focus, .scrollable .column-link:hover, .scrollable
 .column-link:active, .scrollable .column-link:focus {
-  background-color: #e6eee4;
-}
-
-.status__content a,
-.status__content__translate-button,
-.column-header__back-button,
-.column-link--transparent.active,
-.icon-button.active:active, .icon-button.active:focus,
-.icon-button.active:hover,
-.notification__message .icon,
-.icon-button.star-icon.active,
-.status__content a.unhandled-link,
-.column-header__button.active:hover, .column-header__button.active:active, .column-header__button.active:focus {
-  color: #34842d;
+  background-color: #cddbc9;
 }
 
 .column-subheading {
@@ -125,6 +121,42 @@ a.active::before, .poll__chart.leading, .notification.unread::before, .status.un
   border-bottom: 1px solid hsl(115.2, 24.8%, 80.2%);
 }
 
-.react-toggle--checked .react-toggle-thumb {
+.react-toggle--checked .react-toggle-thumb,
+.poll__option input[type="text"]:focus,
+.compose-form__poll-wrapper .poll__footer button:focus, .compose-form__poll-wrapper .poll__footer select:focus {
   border-color: #34842d;
+}
+
+.filters .filter-subset a.selected {
+  color: #34842d;
+  border-bottom: 2px solid #6bbf7c;
+}
+
+.status__content a,
+.status__content__translate-button,
+.column-header__back-button,
+.column-link--transparent.active,
+.icon-button.active,
+.icon-button.active:active, .icon-button.active:focus,
+.icon-button.active:hover,
+.notification__message .icon,
+.icon-button.star-icon.active,
+.status__content a.unhandled-link,
+.column-header__button.active:hover, .column-header__button.active:active,
+.column-header__button.active:focus,
+body .muted-hint a, .admin-wrapper .content .muted-hint a {
+  color: #34842d;
+}
+
+.notification-bar-action {
+  color: #479d3f;
+}
+
+.link-footer p,
+.link-footer p a,
+.status__relative-time,
+.status__display-name,
+.status__info__icons,
+.icon-button {
+  color: #4c644b;
 }
