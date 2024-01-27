@@ -22,7 +22,7 @@ body {
 .account__section-headline a.active::before,
 .poll__chart.leading,
 .glitch.local-settings__navigation__item.active,
-.notification.unread::before, .status.unread::before,
+.notification.unread::before,
 .pillbar-button:not([disabled]).active,
 .react-toggle.react-toggle--checked:hover:not(.react-toggle--disabled) .react-toggle-track,
 .react-toggle--checked .react-toggle-track,
@@ -47,8 +47,13 @@ button:hover, .simple_form .button:active, .simple_form .button:focus,
 }
 
 .muted .poll__chart,
-a.active::before, .notification.unread::before, .status.unread::before {
+a.active::before, .notification.unread::before {
   background-color: rgba(220, 248, 216, 70%);
+}
+
+.status.unread::before {
+  background-color: rgba(220, 248, 216, 43%);
+  border-inline-start: 4px solid #34842d;
 }
 
 .button:hover,
