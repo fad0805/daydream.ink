@@ -16,6 +16,10 @@ body {
   --modal-border-color: hsl(111deg, 24.4%, 83.9%);
 }
 
+body.lighter {
+  background-color: #e1eae0;
+}
+
 .button,
 .simple_form button,
 .notification__filter-bar button.active::before,
@@ -162,6 +166,18 @@ a.active::before, .notification.unread::before {
 .regeneration-indicator {
   border: 1px solid hsl(108deg, 24.8%, 80.2%);
   border-top: 0;
+}
+
+.simple_form input[type="datetime-local"]:active, .simple_form
+input[type="datetime-local"]:focus, .simple_form input[type="email"]:active,
+.simple_form input[type="email"]:focus, .simple_form
+input[type="number"]:active, .simple_form input[type="number"]:focus,
+.simple_form input[type="password"]:active, .simple_form
+input[type="password"]:focus, .simple_form input[type="text"]:active,
+.simple_form input[type="text"]:focus, .simple_form input[type="url"]:active,
+.simple_form input[type="url"]:focus, .simple_form textarea:active, .simple_form
+textarea:focus {
+  border-color: #3cbf31;
 }
 
 .status {
