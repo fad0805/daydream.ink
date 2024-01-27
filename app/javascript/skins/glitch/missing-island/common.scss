@@ -113,6 +113,15 @@ a.active::before, .notification.unread::before {
   background-color: #2e7927;
 }
 
+.icon-with-badge__badge {
+  background-color: #3cb332;
+}
+
+.switch-to-advanced {
+  background-color: #dae8d9;
+  color: #4c5d44;
+}
+
 .dismissable-banner, .warning-banner {
   background-color: rgba(173, 202, 167, 0.15);
   border: 1px solid #60a638;
@@ -159,6 +168,10 @@ a.active::before, .notification.unread::before {
   border-color: #34842d;
 }
 
+.setting-text:active, .setting-text:focus {
+  border-bottom-color: #4cbb43;
+}
+
 .button.button-tertiary {
   border: 1px solid #3fa636;
   color: #3fa636;
@@ -197,6 +210,10 @@ body .muted-hint a, .admin-wrapper .content .muted-hint a,
 .status__info__icons,
 .icon-button {
   color: #4c644b;
+}
+
+.switch-to-advanced .switch-to-advanced__toggle {
+  color: #34842d;
 }
 
 @media screen and (max-width: 1174px) {
