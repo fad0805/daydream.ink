@@ -256,8 +256,6 @@ textarea:focus {
 .status__content__translate-button,
 .column-header__back-button,
 .column-link--transparent.active,
-.icon-button.active:active, .icon-button.active:focus,
-.icon-button.active:hover,
 .notification__message .icon,
 .icon-button.star-icon.active,
 .status__content a.unhandled-link,
@@ -266,12 +264,12 @@ textarea:focus {
 body .muted-hint a, .admin-wrapper .content .muted-hint a,
 .dismissable-banner__action .icon-button, .warning-banner__action .icon-button,
 .simple_form .input.boolean label a,
-.about__section__title,
-.text-icon-button.active:active, .text-icon-button.active:focus,
-.text-icon-button.active:hover {
+.about__section__title {
   color: #34842d;
 }
 
+.icon-button.active:active, .icon-button.active:focus,
+.icon-button.active:hover,
 .icon-button.active {
   color: #3bc62e;
 }
