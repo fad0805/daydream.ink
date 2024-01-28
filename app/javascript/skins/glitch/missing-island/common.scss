@@ -307,6 +307,11 @@ body .muted-hint a, .admin-wrapper .content .muted-hint a,
   outline: 2px solid #5bb054;
 }
 
+.compose-form__highlightable.active {
+  box-shadow: 0 0 0 6px #34842d;
+}
+
+
 @media screen and (max-width: 1174px) {
   .layout-single-column .ui__header {
     background-color: #dbe8d9;
