@@ -53,6 +53,10 @@ li:not(:empty) a:hover, .actions-modal ul li:not(:empty) a:hover button {
   background-color: #bedbbb;
 }
 
+.status.collapsed .status__content::after {
+  background-color: linear-gradient(rgba(217,225,232,0),#e8f0e7);
+}
+
 .account__header__account-note textarea {
   background-color: #c4d7c2;
 }
