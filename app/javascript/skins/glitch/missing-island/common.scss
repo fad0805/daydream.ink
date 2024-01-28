@@ -240,6 +240,10 @@ textarea:focus {
   border-color: #3cbf31;
 }
 
+.radio-button__input {
+  border: 1px solid #b1ed9b;
+}
+
 .status {
   border-bottom: 1px solid hsl(115.2deg, 24.8%, 80.2%);
 }
@@ -285,7 +289,11 @@ textarea:focus {
 body .muted-hint a, .admin-wrapper .content .muted-hint a,
 .dismissable-banner__action .icon-button, .warning-banner__action .icon-button,
 .simple_form .input.boolean label a,
-.about__section__title {
+.about__section__title,
+.switch-to-advanced .switch-to-advanced__toggle,
+.empty-column-indicator a, .follow_requests-unlocked_explanation a,
+.reply-indicator__content a, .status__content a,
+.column-header__button.active {
   color: #34842d;
 }
 
@@ -318,12 +326,6 @@ body .muted-hint a, .admin-wrapper .content .muted-hint a,
   color: #4c644b;
 }
 
-.switch-to-advanced .switch-to-advanced__toggle,
-.empty-column-indicator a, .follow_requests-unlocked_explanation a,
-.reply-indicator__content a, .status__content a {
-  color: #34842d;
-}
-
 .load-more {
   color: #445d48;
 }
@@ -341,10 +343,6 @@ body .muted-hint a, .admin-wrapper .content .muted-hint a,
 }
 
 .button:focus {
-  outline: 2px solid #5bb054;
-}
-
-.react-toggle-track:focus-visible {
   outline: 2px solid #5bb054;
 }
 
