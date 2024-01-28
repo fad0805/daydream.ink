@@ -36,7 +36,9 @@ body.lighter {
 .simple_form button:active, .simple_form button:focus, .simple_form
 button:hover, .simple_form .button:active, .simple_form .button:focus,
 .simple_form button, .simple_form .button, .simple_form .block-button,
-.rules-list li::before {
+.rules-list li::before,
+.progress-tracker .separator.completed,
+.progress-tracker .active .circle::before {
   background-color: #34842d;
 }
 
@@ -64,6 +66,10 @@ a.active::before, .notification.unread::before {
 .status.unread::before {
   background-color: rgba(220, 248, 216, 43%);
   border-inline-start: 4px solid #34842d;
+}
+
+.progress-tracker .separator {
+  background-color: #b4cfb0;
 }
 
 .button:hover,
@@ -131,16 +137,23 @@ a.active::before, .notification.unread::before {
   background-color: #cfe1d1;
 }
 
-
-
 .dismissable-banner, .warning-banner {
   background-color: rgba(173, 202, 167, 0.15);
   border: 1px solid #60a638;
 }
 
+.progress-tracker .completed .circle {
+  background: #34842d;
+  border-color: #34842d;
+}
+
 .column-subheading {
   background-color: hsl(126deg, 25%, 92.2%);
   border-bottom: 1px solid hsl(110.4deg, 24.8%, 80.2%);
+}
+
+.progress-tracker .active .circle {
+  border-color: #34842d;
 }
 
 .getting-started .column-link, .scrollable .column-link {
@@ -199,6 +212,11 @@ textarea:focus {
   border-bottom-color: #4cbb43;
 }
 
+.progress-tracker .circle,
+.about__meta, .about__section__title, .interaction-modal {
+  border: 2px solid #b4cfb0;
+}
+
 .button.button-tertiary {
   border: 1px solid #3fa636;
   color: #3fa636;
@@ -222,7 +240,9 @@ textarea:focus {
 .column-header__button.active:hover, .column-header__button.active:active,
 .column-header__button.active:focus,
 body .muted-hint a, .admin-wrapper .content .muted-hint a,
-.dismissable-banner__action .icon-button, .warning-banner__action .icon-button {
+.dismissable-banner__action .icon-button, .warning-banner__action .icon-button,
+.simple_form .input.boolean label a,
+.about__section__title {
   color: #34842d;
 }
 
