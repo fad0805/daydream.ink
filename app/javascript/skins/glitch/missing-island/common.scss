@@ -152,6 +152,10 @@ a.active::before, .notification.unread::before {
   background-color: #cfe1d1;
 }
 
+.column-header__wrapper.active::before {
+  background-color: radial-gradient(ellipse,rgba(35, 153, 24, 0.23) 0,rgba(99,100,255,0) 60%);
+}
+
 .dismissable-banner, .warning-banner {
   background-color: rgba(173, 202, 167, 0.15);
   border: 1px solid #60a638;
@@ -266,6 +270,11 @@ body .muted-hint a, .admin-wrapper .content .muted-hint a,
 .simple_form .input.boolean label a,
 .about__section__title {
   color: #34842d;
+}
+
+.column-header.active .column-header__icon {
+  color: #34832d;
+  text-shadow: 0 0 10px rgba(104, 255, 99, 0.4);
 }
 
 .icon-button.active:active, .icon-button.active:focus,
