@@ -127,7 +127,7 @@ a.active::before, .notification.unread::before {
 }
 
 .column-header__wrapper.active::before {
-  background-color: radial-gradient(ellipse,rgba(9, 111, 0, 0.23) 0,rgba(124, 168, 118, 0) 60%);
+  background: radial-gradient(ellipse,rgba(9, 111, 0, 0.23) 0,rgba(124, 168, 118, 0) 60%);
 }
 
 .explore__search-header {
@@ -150,10 +150,6 @@ a.active::before, .notification.unread::before {
 
 .load-more:hover {
   background-color: #cfe1d1;
-}
-
-.column-header__wrapper.active::before {
-  background-color: radial-gradient(ellipse,rgba(35, 153, 24, 0.23) 0,rgba(99,100,255,0) 60%);
 }
 
 .dismissable-banner, .warning-banner {
