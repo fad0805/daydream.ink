@@ -208,9 +208,12 @@ a.active::before, .notification.unread::before {
   border: 1px solid hsl(108deg, 24.8%, 80.2%);
 }
 
-.load-gap,
-.about__section__body {
+.load-gap {
   border-bottom: 1px solid #c0d9c0;
+}
+
+.about__section__body {
+  border: 1px solid #c0d9c0;
 }
 
 .account__action-bar__tab {
