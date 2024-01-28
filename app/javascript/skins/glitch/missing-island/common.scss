@@ -343,11 +343,9 @@ body .muted-hint a, .admin-wrapper .content .muted-hint a,
   color: #485d44;
 }
 
-.text-icon-button:focus {
-  outline: 2px solid #5bb054;
-}
-
-.button:focus {
+.text-icon-button:focus,
+.button:focus,
+.react-toggle--focus {
   outline: 2px solid #5bb054;
 }
 
