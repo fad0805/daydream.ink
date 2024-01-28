@@ -56,6 +56,7 @@ button:hover, .simple_form .button:active, .simple_form .button:focus,
 .notification__filter-bar, .account__section-headline,
 .account__header__bar {
   background-color: #d1e1cf;
+  border-bottom: 1px solid #b7d1b3;
 }
 
 .muted .poll__chart,
@@ -172,8 +173,18 @@ a.active::before, .notification.unread::before {
   border: 1px solid hsl(108deg, 24.8%, 80.2%);
 }
 
-.load-gap {
+.load-gap,
+.about__section__body {
   border-bottom: 1px solid #c0d9c0;
+}
+
+.account__action-bar__tab {
+  border-inline-start: 1px solid #c4d9c0;
+}
+
+.account__header__account-note {
+  border-bottom: 1px solid #b7d1b3;
+  border-top: 1px solid #b7d1b3;
 }
 
 .column > .scrollable, .getting-started, .column-inline-form,
