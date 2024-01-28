@@ -303,6 +303,10 @@ body .muted-hint a, .admin-wrapper .content .muted-hint a,
   color: #485d44;
 }
 
+.text-icon-button:focus {
+  outline: 2px solid #5bb054;
+}
+
 @media screen and (max-width: 1174px) {
   .layout-single-column .ui__header {
     background-color: #dbe8d9;
