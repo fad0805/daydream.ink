@@ -51,7 +51,7 @@ button.active::before, .notification__filter-bar a.active::before,
   background-color: #34842d;
 }
 
-.button:disabled,
+.button:disabled, .button:disabled:hover,
 .poll__chart,
 .muted .poll__chart.leading {
   background-color: #bedbbb;
