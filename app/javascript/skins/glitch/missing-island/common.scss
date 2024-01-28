@@ -52,6 +52,10 @@ button:hover, .simple_form .button:active, .simple_form .button:focus,
   background-color: #c4d7c2;
 }
 
+.follow_requests-unlocked_explanation {
+  background-color: #e7f0e6;
+}
+
 .search__input,
 .notification__filter-bar, .account__section-headline,
 .account__header__bar {
@@ -270,7 +274,8 @@ body .muted-hint a, .admin-wrapper .content .muted-hint a,
   color: #4c644b;
 }
 
-.switch-to-advanced .switch-to-advanced__toggle {
+.switch-to-advanced .switch-to-advanced__toggle,
+.empty-column-indicator a, .follow_requests-unlocked_explanation a {
   color: #34842d;
 }
 
@@ -280,6 +285,10 @@ body .muted-hint a, .admin-wrapper .content .muted-hint a,
 
 .simple_form .button.button-tertiary {
   color: #fff;
+}
+
+.empty-column-indicator, .follow_requests-unlocked_explanation {
+  color: #485d44;
 }
 
 @media screen and (max-width: 1174px) {
