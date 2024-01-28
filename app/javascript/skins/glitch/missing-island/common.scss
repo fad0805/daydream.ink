@@ -256,7 +256,6 @@ textarea:focus {
 .status__content__translate-button,
 .column-header__back-button,
 .column-link--transparent.active,
-.icon-button.active,
 .icon-button.active:active, .icon-button.active:focus,
 .icon-button.active:hover,
 .notification__message .icon,
@@ -273,7 +272,8 @@ body .muted-hint a, .admin-wrapper .content .muted-hint a,
   color: #34842d;
 }
 
-.notification-bar-action {
+.icon-button.active,
+.notification-bar-action  {
   color: #479d3f;
 }
 
