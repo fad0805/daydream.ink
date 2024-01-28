@@ -266,7 +266,9 @@ textarea:focus {
 body .muted-hint a, .admin-wrapper .content .muted-hint a,
 .dismissable-banner__action .icon-button, .warning-banner__action .icon-button,
 .simple_form .input.boolean label a,
-.about__section__title {
+.about__section__title,
+.text-icon-button.active:active, .text-icon-button.active:focus,
+.text-icon-button.active:hover {
   color: #34842d;
 }
 
