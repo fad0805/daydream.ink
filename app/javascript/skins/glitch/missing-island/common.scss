@@ -272,7 +272,10 @@ body .muted-hint a, .admin-wrapper .content .muted-hint a,
   color: #34842d;
 }
 
-.icon-button.active,
+.icon-button.active {
+  color: #3bc62e;
+}
+
 .notification-bar-action  {
   color: #479d3f;
 }
