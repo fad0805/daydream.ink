@@ -35,7 +35,8 @@ body.lighter {
 .admin-wrapper .content__heading__tabs a.selected,
 .simple_form button:active, .simple_form button:focus, .simple_form
 button:hover, .simple_form .button:active, .simple_form .button:focus,
-.simple_form button, .simple_form .button, .simple_form .block-button {
+.simple_form button, .simple_form .button, .simple_form .block-button,
+.rules-list li::before {
   background-color: #34842d;
 }
 
@@ -244,6 +245,10 @@ body .muted-hint a, .admin-wrapper .content .muted-hint a,
 
 .load-more {
   color: #445d48;
+}
+
+.simple_form .button.button-tertiary {
+  color: #fff;
 }
 
 @media screen and (max-width: 1174px) {
