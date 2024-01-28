@@ -38,7 +38,12 @@ button:hover, .simple_form .button:active, .simple_form .button:focus,
 .simple_form button, .simple_form .button, .simple_form .block-button,
 .rules-list li::before,
 .progress-tracker .separator.completed,
-.progress-tracker .active .circle::before {
+.progress-tracker .active .circle::before,
+.actions-modal ul li:not(:empty) a.active, .actions-modal ul li:not(:empty)
+a.active button, .actions-modal ul li:not(:empty) a:active, .actions-modal ul
+li:not(:empty) a:active button, .actions-modal ul li:not(:empty) a:focus,
+.actions-modal ul li:not(:empty) a:focus button, .actions-modal ul
+li:not(:empty) a:hover, .actions-modal ul li:not(:empty) a:hover button {
   background-color: #34842d;
 }
 
