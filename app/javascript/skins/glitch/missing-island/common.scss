@@ -282,7 +282,6 @@ textarea:focus {
 .column-header__back-button,
 .column-link--transparent.active,
 .notification__message .icon,
-.icon-button.star-icon.active,
 .status__content a.unhandled-link,
 .column-header__button.active:hover, .column-header__button.active:active,
 .column-header__button.active:focus,
@@ -348,6 +347,14 @@ body .muted-hint a, .admin-wrapper .content .muted-hint a,
 
 .compose-form__highlightable.active {
   box-shadow: 0 0 0 6px #60a638;
+}
+
+.icon-button.star-icon.active {
+  color: #ca8f04;
+}
+
+.icon-button.bookmark-icon.active {
+  color: #ff5050;
 }
 
 
