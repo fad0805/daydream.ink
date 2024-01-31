@@ -48,7 +48,9 @@ li:not(:empty) a:hover, .actions-modal ul li:not(:empty) a:hover button,
 .account__section-headline a.active::before, .account__section-headline
 button.active::before, .notification__filter-bar a.active::before,
 .notification__filter-bar button.active::before,
-.privacy-dropdown__option.active:hover {
+.privacy-dropdown__option.active:hover,
+.search__popout__menu__item.selected, .search__popout__menu__item:active,
+.search__popout__menu__item:focus, .search__popout__menu__item:hover {
   background-color: #34842d;
 }
 
