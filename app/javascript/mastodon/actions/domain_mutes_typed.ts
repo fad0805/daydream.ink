@@ -6,10 +6,9 @@ export const muteDomainSuccess = createAction<{
   domain: string;
   accounts: Account[];
   excludeHomeTl: boolean;
-}>('domain_mutes/muteSuccess');
+}>('domain_mutes/mute/SUCCESS');
 
 export const unmuteDomainSuccess = createAction<{
   domain: string;
   accounts: Account[];
-  excludeHomeTl: boolean;
-}>('domain_mutes/unmuteSuccess');
+}>('domain_mutes/unmute/SUCCESS');
