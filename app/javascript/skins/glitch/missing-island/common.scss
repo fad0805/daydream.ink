@@ -26,7 +26,6 @@ body.lighter {
 .account__section-headline a.active::before,
 .poll__chart.leading,
 .glitch.local-settings__navigation__item.active,
-.notification.unread::before,
 .pillbar-button:not([disabled]).active,
 .react-toggle.react-toggle--checked:hover:not(.react-toggle--disabled) .react-toggle-track,
 .react-toggle--checked .react-toggle-track,
@@ -88,11 +87,11 @@ button.active::before, .notification__filter-bar a.active::before,
 }
 
 .muted .poll__chart,
-a.active::before, .notification.unread::before {
+a.active::before {
   background-color: rgba(220, 248, 216, 70%);
 }
 
-.status.unread::before {
+.status.unread::before, .notification.unread::before {
   border-inline-start: 4px solid #34842d;
 }
 
