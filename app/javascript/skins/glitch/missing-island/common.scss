@@ -73,7 +73,8 @@ button.active::before, .notification__filter-bar a.active::before,
 
 .search__input,
 .notification__filter-bar, .account__section-headline,
-.account__header__bar {
+.account__header__bar,
+.status.status-direct {
   background-color: #d1e1cf;
   border-bottom: 1px solid #b7d1b3;
 }
