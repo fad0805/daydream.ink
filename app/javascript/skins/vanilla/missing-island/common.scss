@@ -133,6 +133,10 @@ a.active::before {
   background-color: #ffffff;
 }
 
+.status.collapsed.status-direct > .status__content::after {
+  background: linear-gradient(rgba(211,219,233,0), #d3e9d5);
+}
+
 .pillbar-button:not([disabled]):hover, .pillbar-button:not([disabled]):focus {
   background-color: hsl(105deg, 16.4%, 28.6%);
 }
