@@ -62,8 +62,7 @@ body.lighter {
 .search__popout__menu__item.selected,
 .search__popout__menu__item:active,
 .search__popout__menu__item:focus,
-.search__popout__menu__item:hover,
-.simple_form .lead a {
+.search__popout__menu__item:hover {
   background-color: #34842d;
 }
 
@@ -366,7 +365,8 @@ body .muted-hint a,
 .follow_requests-unlocked_explanation a,
 .reply-indicator__content a,
 .status__content a,
-.column-header__button.active {
+.column-header__button.active,
+.simple_form .lead a, a {
   color: #34842d;
 }
 
