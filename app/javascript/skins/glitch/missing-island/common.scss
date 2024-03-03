@@ -111,7 +111,7 @@ a.active::before {
   background-color: rgba(220, 248, 216, 70%);
 }
 
-.status.unread::before,
+.status__wrapper.unread::before,
 .notification.unread::before {
   border-inline-start: 4px solid #34842d;
 }
