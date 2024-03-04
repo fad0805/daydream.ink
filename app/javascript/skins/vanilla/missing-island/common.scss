@@ -366,7 +366,11 @@ body .muted-hint a,
 .reply-indicator__content a,
 .status__content a,
 .column-header__button.active,
-.simple_form .lead a, a {
+.simple_form .lead a, a,
+.column-header > .column-header__back-button,
+.status-card a:hover .status-card__title,
+.status-card a:hover .status-card__host,
+.status-card a:hover .status-card__author {
   color: #34842d;
 }
 
