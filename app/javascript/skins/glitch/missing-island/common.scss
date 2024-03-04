@@ -1,4 +1,4 @@
-@import 'flavours/glitch/styles/mastodon-light';
+@import 'styles/mastodon-light';
 @import 'styles/qdon-big-diff';
 
 html {
@@ -335,7 +335,8 @@ a.active::before {
   border: 2px solid #b4cfb0;
 }
 
-.button.button-tertiary {
+.button.button-tertiary,
+.dropdown-button {
   border: 1px solid #3fa636;
   color: #3fa636;
 }
@@ -370,7 +371,9 @@ body .muted-hint a,
 .column-header > .column-header__back-button,
 .status-card a:hover .status-card__title,
 .status-card a:hover .status-card__host,
-.status-card a:hover .status-card__author {
+.status-card a:hover .status-card__author,
+.compose-form__actions .icon-button,
+.compose-form__actions .icon-button:hover {
   color: #34842d;
 }
 
