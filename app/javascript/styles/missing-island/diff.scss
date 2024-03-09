@@ -59,14 +59,19 @@ body.lighter {
 .search__popout__menu__item.selected,
 .search__popout__menu__item:active,
 .search__popout__menu__item:focus,
-.search__popout__menu__item:hover {
+.search__popout__menu__item:hover,
+.inline-follow-suggestions__body__scroll-button__icon,
+.inline-follow-suggestions__body__scroll-button:hover .inline-follow-suggestions__body__scroll-button__icon,
+.inline-follow-suggestions__body__scroll-button:focus .inline-follow-suggestions__body__scroll-button__icon,
+.inline-follow-suggestions__body__scroll-button:active .inline-follow-suggestions__body__scroll-button__icon {
   background-color: #34842d;
 }
 
 .button:disabled,
 .button:disabled:hover,
 .poll__chart,
-.muted .poll__chart.leading {
+.muted .poll__chart.leading,
+.compose-form__actions .icon-button.active {
   background-color: #bedbbb;
 }
 
@@ -95,7 +100,8 @@ body.lighter {
   border-bottom-color: #bad1b3;
 }
 
-.search__input:focus {
+.search__input:focus,
+.compose-form .spoiler-input__input {
   background-color: #d1e1cf;
 }
 
@@ -203,9 +209,20 @@ a.active::before {
   border: 1px solid #60a638;
 }
 
-.progress-tracker .completed .circle {
+.progress-tracker .completed .circle,
+.dropdown-button.active {
   background: #34842d;
   border-color: #34842d;
+}
+
+.language-dropdown__dropdown .emoji-mart-search input {
+  background: #dde8d9;
+  border: 1px solid hsl(103.2, 24.8%, 80.2%);
+}
+
+.inline-follow-suggestions {
+  background-color: rgba(143, 255, 102, 0.1);
+  border-bottom-color: rgba(107, 255, 102, 0.3);
 }
 
 .column-subheading {
@@ -370,7 +387,10 @@ body .muted-hint a,
 .status-card a:hover .status-card__host,
 .status-card a:hover .status-card__author,
 .compose-form__actions .icon-button,
-.compose-form__actions .icon-button:hover {
+.compose-form__actions .icon-button:hover,
+.compose-form__actions .icon-button:focus,
+.compose-form__actions .icon-button:active,
+.link-button {
   color: #34842d;
 }
 
@@ -382,11 +402,14 @@ body .muted-hint a,
 .icon-button.active:active,
 .icon-button.active:focus,
 .icon-button.active:hover,
-.icon-button.active {
+.icon-button.active,
+.compose-form__actions .icon-button.disabled {
   color: #3bc62e;
 }
 
-.notification-bar-action {
+.notification-bar-action,
+.compose-form .spoiler-input__input,
+.compose-form__poll__select__value {
   color: #479d3f;
 }
 
