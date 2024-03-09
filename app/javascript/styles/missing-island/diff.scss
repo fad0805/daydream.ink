@@ -60,6 +60,7 @@ body.lighter {
 .search__popout__menu__item:active,
 .search__popout__menu__item:focus,
 .search__popout__menu__item:hover,
+.emoji-mart-anchor-bar,
 .inline-follow-suggestions__body__scroll-button__icon,
 .inline-follow-suggestions__body__scroll-button:hover .inline-follow-suggestions__body__scroll-button__icon,
 .inline-follow-suggestions__body__scroll-button:focus .inline-follow-suggestions__body__scroll-button__icon,
@@ -390,6 +391,8 @@ body .muted-hint a,
 .compose-form__actions .icon-button:hover,
 .compose-form__actions .icon-button:focus,
 .compose-form__actions .icon-button:active,
+.emoji-mart-anchor-selected,
+.emoji-mart-anchor-selected:hover,
 .link-button {
   color: #34842d;
 }
