@@ -1,4 +1,5 @@
 @import '../mastodon-light/diff';
+@import '../qdon-big-diff';
 
 html {
   scrollbar-color: #dee8d9 rgba(222, 232, 217, 25%);
@@ -67,7 +68,7 @@ body.lighter {
 .inline-follow-suggestions__body__scroll-button:hover .inline-follow-suggestions__body__scroll-button__icon,
 .inline-follow-suggestions__body__scroll-button:focus .inline-follow-suggestions__body__scroll-button__icon,
 .inline-follow-suggestions__body__scroll-button:active .inline-follow-suggestions__body__scroll-button__icon {
-  background-color: #34842d;
+  background-color: $basegreen;
 }
 
 .button:disabled,
@@ -396,11 +397,11 @@ body .muted-hint a,
 .emoji-mart-anchor-selected,
 .emoji-mart-anchor-selected:hover,
 .link-button {
-  color: #34842d;
+  color: $basegreen;
 }
 
 .column-header.active .column-header__icon {
-  color: #34832d;
+  color: $basegreen;
   text-shadow: 0 0 10px rgba(104, 255, 99, 40%);
 }
 
@@ -482,3 +483,6 @@ body .muted-hint a,
   }
 }
 
+.status__content .status__content__text {
+  display: initial;
+}
