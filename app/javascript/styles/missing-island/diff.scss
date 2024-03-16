@@ -1,6 +1,3 @@
-@import '../mastodon-light/diff';
-@import '../qdon-big-diff';
-
 html {
   scrollbar-color: #dee8d9 rgba(222, 232, 217, 25%);
 }
@@ -481,8 +478,4 @@ body .muted-hint a,
     background-color: #dbe8d9;
     border-inline-start: 1px solid #c2d9c0;
   }
-}
-
-.status__content .status__content__text {
-  display: initial;
 }
