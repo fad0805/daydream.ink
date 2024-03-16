@@ -1,3 +1,5 @@
+@import '../mastodon-light/variables';
+
 $basegreen: #34842d;
 $hovergreen: #2e7927;
 $activeicon: #3bc62e;
@@ -7,8 +9,7 @@ $menuitembackgroundcolor: #d1e1cf;
 $menuitembordercolor: #c1d9c0;
 
 $skyblue: $hovergreen;
+$classic-highlight-color: $basegreen;
 $ui-primary-color: $menuitembackgroundcolor;
 $ui-secondary-color: $basegreen;
 $ui-highlight-color: darken($basegreen, 10%);
-
-@import '../mastodon-light/variables';
