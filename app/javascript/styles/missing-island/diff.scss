@@ -65,7 +65,7 @@ body.lighter {
 .inline-follow-suggestions__body__scroll-button:hover .inline-follow-suggestions__body__scroll-button__icon,
 .inline-follow-suggestions__body__scroll-button:focus .inline-follow-suggestions__body__scroll-button__icon,
 .inline-follow-suggestions__body__scroll-button:active .inline-follow-suggestions__body__scroll-button__icon {
-  background-color: $basegreen;
+  background-color: $green;
 }
 
 .button:disabled,
@@ -394,11 +394,11 @@ body .muted-hint a,
 .emoji-mart-anchor-selected,
 .emoji-mart-anchor-selected:hover,
 .link-button {
-  color: $basegreen;
+  color: $green;
 }
 
 .column-header.active .column-header__icon {
-  color: $basegreen;
+  color: $green;
   text-shadow: 0 0 10px rgba(104, 255, 99, 40%);
 }
 
