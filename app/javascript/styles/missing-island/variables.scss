@@ -6,7 +6,8 @@ $settingbackgroundcolor: #e6f0e7;
 $menuitembackgroundcolor: #d1e1cf;
 $menuitembordercolor: #c1d9c0;
 
+$ui-primary-color: $menuitembackgroundcolor;
 $ui-secondary-color: $basegreen;
 $ui-highlight-color: darken($basegreen, 10%);
 
-@import '../mastodon/variables';
+@import '../mastodon-light/variables';
