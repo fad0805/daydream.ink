@@ -1,3 +1,6 @@
+$black: #000000;
+$white: #ffffff;
+
 $default: #bedbbb;
 $green: #34842d;
 $hovergreen: #2e7927;
@@ -7,9 +10,12 @@ $background-important-green: #d1e1cf;
 $background-green: #e6f0e7;
 $basegreen: #c1d9c0;
 
+$blurple-500: $green;
+$blurple-300: $hovergreen;
+
 $skyblue: $hovergreen;
+$classic-base-color: #28382a;
 $classic-highlight-color: $green;
-$classic-highlight-color: $hovergreen;
 $ui-primary-color: $green;
 $ui-secondary-color: $hovergreen;
 $ui-highlight-color: darken($green, 10%);
@@ -17,8 +23,25 @@ $ui-highlight-color: darken($green, 10%);
 $ui-base-color: $green !default;
 $ui-base-lighter-color: $background-green !default;
 $ui-primary-color: $border-green !default;
-$ui-secondary-color: $classic-base-color !default;
-$ui-highlight-color: $classic-highlight-color !default;
+$ui-secondary-color: $basegreen !default;
 
 $ui-button-tertiary-color: $green !default;
-$ui-button-tertiary-border-color: $e!default;
+$ui-button-tertiary-border-color: $basegreen !default;
+
+$primary-text-color: $black !default;
+$darker-text-color: $classic-base-color !default;
+$highlight-text-color: $ui-highlight-color !default;
+$dark-text-color: #435b48;
+$action-button-color: #608464;
+
+$inverted-text-color: $black !default;
+$lighter-text-color: $classic-base-color !default;
+$light-text-color: #435b45;
+
+// Newly added colors
+$account-background-color: $white !default;
+
+.theme-mastodon-light {
+  --dropdown-border-color: #dae8da;
+  --dropdown-background-color: #fff;
+}

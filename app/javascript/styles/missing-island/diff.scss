@@ -64,7 +64,11 @@ body.lighter {
 .inline-follow-suggestions__body__scroll-button__icon,
 .inline-follow-suggestions__body__scroll-button:hover .inline-follow-suggestions__body__scroll-button__icon,
 .inline-follow-suggestions__body__scroll-button:focus .inline-follow-suggestions__body__scroll-button__icon,
-.inline-follow-suggestions__body__scroll-button:active .inline-follow-suggestions__body__scroll-button__icon {
+.inline-follow-suggestions__body__scroll-button:active
+.inline-follow-suggestions__body__scroll-button__icon,
+.autosuggest-textarea,
+.autosuggest-textarea__suggestions__item.selected,
+.autosuggest-textarea__suggestions__item:hover {
   background-color: $green;
 }
 
@@ -99,6 +103,10 @@ body.lighter {
 .status.status-direct {
   background-color: #d9e9d3;
   border-bottom-color: #bad1b3;
+}
+
+.autosuggest-textarea__suggestions__item {
+  background: #dee8d9;
 }
 
 .search__input:focus,
@@ -406,8 +414,15 @@ body .muted-hint a,
 .icon-button.active:focus,
 .icon-button.active:hover,
 .icon-button.active,
-.compose-form__actions .icon-button.disabled {
+.compose-form__actions .icon-button.disabled,
+.status__content a:hover {
   color: #3bc62e;
+}
+
+a.status-card:hover .status-card__title,
+a.status-card:hover .status-card__host,
+a.status-card:hover .status-card__description {
+  color: $hovergreen;
 }
 
 .notification-bar-action,
