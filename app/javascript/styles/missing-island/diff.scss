@@ -11,6 +11,11 @@ body {
   --dropdown-background-color: hsl(114deg, 24.4%, 83.9%);
   --modal-background-color: hsl(120deg, 25%, 92.2%);
   --modal-border-color: hsl(111deg, 24.4%, 83.9%);
+  --modal-background-variant-color: rgba(225, 232, 217, 0.7);
+  --background-border-color: #d6e0cc;
+  --background-color: #f4f7f2;
+  --background-color-tint: rgba(245, 247, 242, 0.9);
+  --surface-background-color: #e9f0e6;
 }
 
 body.lighter {
@@ -359,7 +364,8 @@ a.active::before {
 }
 
 .button.button-tertiary,
-.dropdown-button {
+.dropdown-button,
+.button.button-secondary {
   border: 1px solid #3fa636;
   color: #3fa636;
 }
