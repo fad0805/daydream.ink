@@ -444,6 +444,10 @@ body.admin {
     padding-left: 4px;
 }
 
+.column-settings h3 {
+  color:black;
+}
+
 .column-settings__section {
   color:black;
   font-weight:bold;
@@ -479,6 +483,17 @@ body.admin {
   line-height:13px;
 }
 
+.app-form__toggle__label {
+
+  strong {
+    color:black;
+  }
+
+  .hint {
+    color:$win95-mid-grey;
+  }
+}
+
 .react-toggle .react-toggle-track {
   border-radius:0px;
   background-color:white;
@@ -495,6 +510,10 @@ body.admin {
 .react-toggle .react-toggle-track-check {
   left:2px;
   transition:unset;
+}
+
+.react-toggle.react-toggle--checked .react-toggle-track-check {
+  display: initial;
 }
 
 .react-toggle .react-toggle-track-check svg path {
@@ -580,6 +599,8 @@ body.admin {
     align-self: end;
     @include win95-tab();
 
+    height: 40px;
+
     &.active {
       color: black;
       top: 2px;
@@ -647,10 +668,10 @@ body.admin {
 .status__action-bar {
   box-sizing:border-box;
   position:absolute;
-  bottom:-1px;
-  left:-1px;
+  bottom:0;
+  left:2px;
   background:$win95-bg;
-  width:calc(100% + 2px);
+  width:calc(100% - 2px);
   padding-left:10px;
   padding: 4px 2px;
   padding-bottom:4px;
@@ -750,14 +771,7 @@ body.admin {
 }
 
 .status__action-bar > .icon-button {
-  padding:0px 15px 0px 0px;
   min-width:25px;
-}
-
-.icon-button.star-icon,
-.icon-button.star-icon:active {
-  background:transparent;
-  border:none;
 }
 
 .icon-button.star-icon.active {
@@ -831,7 +845,8 @@ body.admin {
  color:black;
 }
 
-.account__display-name strong, .status__display-name strong {
+.account__display-name strong, .status__display-name strong,
+.status__display-name .display-name strong {
   color:black;
   font-weight:bold;
 }
@@ -1041,7 +1056,13 @@ body.admin {
 .compose-form .autosuggest-textarea__textarea,
 .compose-form .spoiler-input__input {
   border-radius:0px;
+  background: white;
+  color: black;
   @include win95-border-slight-inset();
+}
+
+.character-counter {
+  color: black;
 }
 
 .compose-form .autosuggest-textarea__textarea {
@@ -1057,6 +1078,10 @@ body.admin {
 .compose-form__upload-wrapper {
   border-left:1px inset $win95-bg;
   border-right:1px inset $win95-bg;
+}
+
+.compose-form__highlightable {
+  background-color: $win95-bg;
 }
 
 .compose-form .compose-form__buttons-wrapper {
@@ -1329,7 +1354,6 @@ body.admin {
     background-size:32px 32px;
     background-repeat:no-repeat;
     background-position: 36px 50%;
-    padding-left:45px;
 
     &:hover {
       background-size:32px 32px;
@@ -1383,6 +1407,12 @@ body.admin {
 
   .getting-started__wrapper::before {
     display:none;
+  }
+}
+
+@media screen and (max-width: 889px) {
+  .column-link {
+    // padding: 13px;
   }
 }
 
@@ -1748,7 +1778,6 @@ body.admin {
     /* i don't know what's going on with the inline
        styles someone should look at the react code */
     height: 25px !important;
-    width: 28px !important;
     box-sizing: border-box;
 }
 
@@ -2641,6 +2670,29 @@ body {
   border: 1px solid black;
   background: $win95-tooltip-yellow;
   color:black;
+}
+
+.switch-to-advanced {
+  background: $win95-bg;
+  color: black;
+  border: 1px solid black;
+  border-radius: 0px;
+  padding: 2px;
+
+  & &__toggle {
+    color: $win95-blue;
+  }
+}
+
+.dismissable-banner {
+  background: $win95-bg;
+  @include win95-border-groove();
+  &__message {
+    color: black;
+  }
+  &__action .icon-button {
+    color: black;
+  }
 }
 
 .layout-single-column .compose-panel {
