@@ -25,14 +25,24 @@ jobs:
         mode:
           - production
           - test
+        branding:
+          - qdon
+          - brandless
     env:
       RAILS_ENV: ${{ matrix.mode }}
       BUNDLE_WITH: ${{ matrix.mode }}
+      ACTIVE_RECORD_ENCRYPTION_DETERMINISTIC_KEY: precompile_placeholder
+      ACTIVE_RECORD_ENCRYPTION_KEY_DERIVATION_SALT: precompile_placeholder
+      ACTIVE_RECORD_ENCRYPTION_PRIMARY_KEY: precompile_placeholder
       OTP_SECRET: precompile_placeholder
       SECRET_KEY_BASE: precompile_placeholder
 
     steps:
       - uses: actions/checkout@v4
+
+      - name: Apply brandless patch
+        run: git apply .github/brandless.patch
+        if: matrix.branding == 'brandless'
 
       - name: Set up Ruby environment
         uses: ./.github/actions/setup-ruby
@@ -57,7 +67,7 @@ jobs:
         with:
           path: |-
             ./artifacts.tar.gz
-          name: ${{ github.sha }}
+          name: ${{ github.sha }}-${{ matrix.branding }}
           retention-days: 0
 
   test:
@@ -111,17 +121,19 @@ jobs:
       fail-fast: false
       matrix:
         ruby-version:
-          # - '3.0'
           - '3.1'
+          - '3.2'
           - '.ruby-version'
-          - '3.3'
+        branding:
+          - qdon
+          - brandless
     steps:
       - uses: actions/checkout@v4
 
       - uses: actions/download-artifact@v4
         with:
           path: './'
-          name: ${{ github.sha }}
+          name: ${{ github.sha }}-${{ matrix.branding }}
 
       - name: Expand archived asset artifacts
         run: |
@@ -139,10 +151,12 @@ jobs:
       - run: bin/rspec
 
       - name: Upload coverage reports to Codecov
-        if: matrix.ruby-version == '.ruby-version'
+        if: matrix.ruby-version == '.ruby-version' && matrix.branding == 'qdon'
         uses: codecov/codecov-action@v4
         with:
           files: coverage/lcov/mastodon.lcov
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
   test-e2e:
     name: End to End testing
@@ -182,15 +196,16 @@ jobs:
       DISABLE_SIMPLECOV: true
       RAILS_ENV: test
       BUNDLE_WITH: test
+      LOCAL_DOMAIN: localhost:3000
+      LOCAL_HTTPS: false
 
     strategy:
       fail-fast: false
       matrix:
         ruby-version:
-          - '3.0'
           - '3.1'
+          - '3.2'
           - '.ruby-version'
-          - '3.3'
 
     steps:
       - uses: actions/checkout@v4
@@ -198,7 +213,7 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           path: './public'
-          name: ${{ github.sha }}
+          name: ${{ github.sha }}-qdon
 
       - name: Set up Ruby environment
         uses: ./.github/actions/setup-ruby
@@ -212,7 +227,7 @@ jobs:
       - name: Load database schema
         run: './bin/rails db:create db:schema:load db:seed'
 
-      - run: bundle exec rake spec:system
+      - run: bin/rspec spec/system --tag streaming --tag js
 
       - name: Archive logs
         uses: actions/upload-artifact@v4
@@ -287,10 +302,9 @@ jobs:
       fail-fast: false
       matrix:
         ruby-version:
-          - '3.0'
           - '3.1'
+          - '3.2'
           - '.ruby-version'
-          - '3.3'
         search-image:
           - qdon/elasticsearch-nori:8.8.1
         # include:
@@ -303,7 +317,7 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           path: './public'
-          name: ${{ github.sha }}
+          name: ${{ github.sha }}-qdon
 
       - name: Set up Ruby environment
         uses: ./.github/actions/setup-ruby
