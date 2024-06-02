@@ -85,6 +85,10 @@ body.lighter {
   background-color: #bedbbb;
 }
 
+.focusable:focus {
+  background-color: #dfe8de;
+}
+
 .status.collapsed .status__content::after {
   background-color: linear-gradient(rgba(217, 225, 232, 0%), #e8f0e7);
 }
