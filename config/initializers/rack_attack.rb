@@ -30,11 +30,15 @@ class Rack::Attack
     end
 
     def authenticated_user_id
-      authenticated_token&.resource_owner_id || session.dig('warden.user.user.key', 0, 0)
+      authenticated_token&.resource_owner_id
     end
 
     def authenticated_token_id
       authenticated_token&.id
+    end
+
+    def warden_user_id
+      @env['warden']&.user&.id
     end
 
     def unauthenticated?
@@ -58,10 +62,6 @@ class Rack::Attack
     end
   end
 
-  Rack::Attack.safelist('allow from localhost') do |req|
-    req.remote_ip == '127.0.0.1' || req.remote_ip == '::1'
-  end
-
   Rack::Attack.blocklist('deny from blocklist') do |req|
     IpBlock.blocked?(req.remote_ip)
   end
@@ -82,12 +82,8 @@ class Rack::Attack
     req.authenticated_user_id if req.post? && req.path.match?(%r{\A/api/v\d+/media\z}i)
   end
 
-  throttle('throttle_authenticated_media_proxy', limit: 100, period: 10.minutes) do |req|
-    req.authenticated_user_id if req.path.start_with?('/media_proxy')
-  end
-
-  throttle('throttle_unauthenticated_media_proxy', limit: 30, period: 10.minutes) do |req|
-    req.throttleable_remote_ip if req.path.start_with?('/media_proxy') && req.unauthenticated?
+  throttle('throttle_media_proxy', limit: 30, period: 10.minutes) do |req|
+    req.throttleable_remote_ip if req.path.start_with?('/media_proxy')
   end
 
   throttle('throttle_api_sign_up', limit: 5, period: 30.minutes) do |req|
@@ -107,6 +103,10 @@ class Rack::Attack
 
   throttle('throttle_api_delete', limit: 30, period: 30.minutes) do |req|
     req.authenticated_user_id if (req.post? && req.path.match?(API_DELETE_REBLOG_REGEX)) || (req.delete? && req.path.match?(API_DELETE_STATUS_REGEX))
+  end
+
+  throttle('throttle_oauth_application_registrations/ip', limit: 5, period: 10.minutes) do |req|
+    req.throttleable_remote_ip if req.post? && req.path == '/api/v1/apps'
   end
 
   throttle('throttle_sign_up_attempts/ip', limit: 25, period: 5.minutes) do |req|
@@ -139,6 +139,10 @@ class Rack::Attack
 
   throttle('throttle_login_attempts/email', limit: 25, period: 1.hour) do |req|
     req.session[:attempt_user_id] || req.params.dig('user', 'email').presence if req.post? && req.path_matches?('/auth/sign_in')
+  end
+
+  throttle('throttle_password_change/account', limit: 10, period: 10.minutes) do |req|
+    req.warden_user_id if req.put? || (req.patch? && req.path_matches?('/auth'))
   end
 
   self.throttled_responder = lambda do |request|

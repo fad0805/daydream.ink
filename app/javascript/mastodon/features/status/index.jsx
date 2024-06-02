@@ -20,6 +20,7 @@ import { Icon }  from 'mastodon/components/icon';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import ScrollContainer from 'mastodon/containers/scroll_container';
 import BundleColumnError from 'mastodon/features/ui/components/bundle_column_error';
+import { identityContextPropShape, withIdentity } from 'mastodon/identity_context';
 import { WithRouterPropTypes } from 'mastodon/utils/react_router';
 
 import {
@@ -193,12 +194,8 @@ const titleFromStatus = (intl, status) => {
 };
 
 class Status extends ImmutablePureComponent {
-
-  static contextTypes = {
-    identity: PropTypes.object,
-  };
-
   static propTypes = {
+    identity: identityContextPropShape,
     params: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
     status: ImmutablePropTypes.map,
@@ -248,7 +245,7 @@ class Status extends ImmutablePureComponent {
 
   handleFavouriteClick = (status) => {
     const { dispatch } = this.props;
-    const { signedIn } = this.context.identity;
+    const { signedIn } = this.props.identity;
 
     if (signedIn) {
       if (status.get('favourited')) {
@@ -278,7 +275,7 @@ class Status extends ImmutablePureComponent {
 
   handleReplyClick = (status) => {
     const { askReplyConfirmation, dispatch, intl } = this.props;
-    const { signedIn } = this.context.identity;
+    const { signedIn } = this.props.identity;
 
     if (signedIn) {
       if (askReplyConfirmation) {
@@ -306,16 +303,16 @@ class Status extends ImmutablePureComponent {
   };
 
   handleModalReblog = (status, privacy) => {
-    this.props.dispatch(reblog(status, privacy));
+    this.props.dispatch(reblog({ statusId: status.get('id'), visibility: privacy }));
   };
 
   handleReblogClick = (status, e) => {
     const { dispatch } = this.props;
-    const { signedIn } = this.context.identity;
+    const { signedIn } = this.props.identity;
 
     if (signedIn) {
       if (status.get('reblogged')) {
-        dispatch(unreblog(status));
+        dispatch(unreblog({ statusId: status.get('id') }));
       } else {
         if ((e && e.shiftKey) || !boostModal) {
           this.handleModalReblog(status);
@@ -759,4 +756,4 @@ class Status extends ImmutablePureComponent {
 
 }
 
-export default withRouter(injectIntl(connect(makeMapStateToProps)(Status)));
+export default withRouter(injectIntl(connect(makeMapStateToProps)(withIdentity(Status))));
