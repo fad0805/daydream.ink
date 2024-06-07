@@ -77,6 +77,12 @@ body.lighter {
   background-color: $green;
 }
 
+.detailed-status__wrapper-direct .detailed-status,
+.detailed-status__wrapper-direct .detailed-status__action-bar {
+  background-color: #d9e9d3;
+}
+
+
 .button:disabled,
 .button:disabled:hover,
 .poll__chart,
