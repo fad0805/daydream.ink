@@ -82,11 +82,16 @@ body.lighter {
 }
 
 .flash-message {
-  background-color:#45e439;
+  background-color: #45e439;
 }
 
 .admin-wrapper .sidebar ul ul {
   background-color: #e6ebf070;
+}
+
+.detailed-status__wrapper-direct .detailed-status,
+.detailed-status__wrapper-direct .detailed-status__action-bar {
+  background-color: #d9e9d3;
 }
 
 .button:disabled,
