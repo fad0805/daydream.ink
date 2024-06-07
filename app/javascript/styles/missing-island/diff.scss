@@ -416,9 +416,9 @@ body .muted-hint a,
   color: $green;
 }
 
-.status-card a:active .status-card__title,
-.status-card a:active .status-card__host,
-.status-card a:active .status-card__author{
+a.status-card a:active .status-card__title,
+a.status-card a:active .status-card__host,
+a.status-card a:active .status-card__author{
   color: #46a63e;
 }
 
