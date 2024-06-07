@@ -416,6 +416,12 @@ body .muted-hint a,
   color: $green;
 }
 
+.status-card a:active .status-card__title,
+.status-card a:active .status-card__host,
+.status-card a:active .status-card__author{
+  color: #46a63e;
+}
+
 .column-header.active .column-header__icon {
   color: $green;
   text-shadow: 0 0 10px rgba(104, 255, 99, 40%);
