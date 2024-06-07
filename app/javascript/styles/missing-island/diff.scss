@@ -77,6 +77,18 @@ body.lighter {
   background-color: $green;
 }
 
+.admin-wrapper {
+  background-color: #b1ed9b;
+}
+
+.flash-message {
+  background-color:#45e439;
+}
+
+.admin-wrapper .sidebar ul ul {
+  background-color: #e6ebf070;
+}
+
 .button:disabled,
 .button:disabled:hover,
 .poll__chart,
