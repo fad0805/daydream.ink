@@ -418,7 +418,10 @@ body .muted-hint a,
 
 a.status-card:active .status-card__title,
 a.status-card:active .status-card__host,
-a.status-card:active .status-card__description {
+a.status-card:active .status-card__description,
+a.status-card:focus .status-card__title,
+a.status-card:focus .status-card__host,
+a.status-card:focus .status-card__description {
   color: #46a63e;
 }
 
