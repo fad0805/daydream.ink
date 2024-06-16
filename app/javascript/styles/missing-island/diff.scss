@@ -77,11 +77,37 @@ body.lighter {
   background-color: $green;
 }
 
+.prose a,
+.account__header__bio .account__header__fields a,
+.status__wraper-direct .status__prepend {
+  color: #34842d;
+}
+
+.prose a:active,
+.prose a:focus,
+.prose a:hover,
+.account__header__bio .account__header__fields a:active,
+.account__header__bio .account__header__fields a:focus,
+.account__header__bio .account__header__fields a:hover {
+  color: #3bc62b;
+}
+
+.admin-wrapper {
+  background-color: #b1ed9b;
+}
+
+.flash-message {
+  background-color: #45e439;
+}
+
+.admin-wrapper .sidebar ul ul {
+  background-color: #e6ebf070;
+}
+
 .detailed-status__wrapper-direct .detailed-status,
 .detailed-status__wrapper-direct .detailed-status__action-bar {
   background-color: #d9e9d3;
 }
-
 
 .button:disabled,
 .button:disabled:hover,
@@ -222,6 +248,20 @@ a.active::before {
 .switch-to-advanced {
   background-color: #dae8d9;
   color: #4c5d44;
+}
+
+.column-back-button {
+  color: #41891f;
+}
+
+.account__domain-pill {
+  background: rgba(36,105,39,.2);
+  color: #2d7f3c;
+}
+
+.check-box__input.checked:before,
+.radio-button__input.checked:before {
+  background: #3dbf3b;
 }
 
 .load-more:hover {
