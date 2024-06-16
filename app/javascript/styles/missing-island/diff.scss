@@ -92,21 +92,119 @@ body.lighter {
   color: #3bc62b;
 }
 
+body.admin {
+  background-color: hsl(102, 25%, 92.2%);
+}
+
 .admin-wrapper {
-  background-color: #b1ed9b;
+  background-color: #f5f5f5;
 }
 
 .flash-message {
-  background-color: #45e439;
+  background-color: #3d8f35;
 }
 
 .admin-wrapper .sidebar ul ul {
-  background-color: #e6ebf070;
+  background-color: #f5f5f5;
+}
+
+.admin-wrapper .sidebar-wrapper__inner {
+  background-color: #cbdbce;
+}
+
+.table th, .table td {
+  border-top: 1px solid #d9e8da;
+  background-color: hsl(132, 25%, 92.2%);
+}
+
+.table > tbody > tr:nth-child(2n+1) > th, .table > tbody > tr:nth-child(2n+1) > td {
+  background-color: #c3dac2;
+}
+
+.batch-table__toolbar, .batch-table__row, .batch-table .nothing-here {
+  border: 1px solid hsl(108, 23.8%, 95.9%);
+}
+
+.batch-table__toolbar {
+  border: 1px solid hsl(120, 25%, 84.3%);
+  background-color: #dce8d9;
+}
+
+.batch-table__row {
+  background-color: hsl(120, 100%, 99.6%);
+}
+
+.admin-wrapper .sidebar ul a:hover {
+  background-color: hsl(108, 14.3%, 93.1%);
+}
+
+.sparkline {
+  background: hsl(116, 19%, 84.5%);
+}
+
+.sparkline__graph path:first-child {
+  fill: rgba(95, 191, 61, 0.25) !important;
+}
+
+.sparkline__graph path:last-child {
+  stroke: hsl(115.3, 51.4%, 43.5%) !important;
+}
+
+a.sparkline:hover, a.sparkline:focus, a.sparkline:active {
+  background: hsl(109.1, 23.9%, 82%);
+}
+
+.dashboard__quick-access {
+  background-color: #28972f;
+}
+
+.dashboard__quick-access:hover {
+  background-color: #accc3a;
+}
+
+.retention__table__box {
+  background: #68ff63;
+}
+
+.retention__table__box--0 {
+  background-color: rgba(78, 211, 73, 0.1);
+}
+
+.retention__table__box--20 {
+  background-color: rgba(78, 211, 73, 0.2);
+}
+
+.retention__table__box--30 {
+  background-color: rgba(78, 211, 73, 0.3);
+}
+
+.retention__table__box--100 {
+  background-color: rgba(78, 211, 73, 1);
+}
+
+.dimension__item__indicator {
+  background: #32c82d;
+}
+
+.dimension__item__indicator--0 {
+  background: rgba(99, 255, 123, 0.1);
+}
+
+.dimension__item__indicator--20 {
+  background: rgba(99, 255, 123, 0.2);
+}
+
+.announcements-list__item, .filters-list__item {
+  background: #cde1c1;
 }
 
 .detailed-status__wrapper-direct .detailed-status,
 .detailed-status__wrapper-direct .detailed-status__action-bar {
   background-color: #d9e9d3;
+}
+
+.announcements__item__unread {
+  background: #5edd53;
 }
 
 .button:disabled,
