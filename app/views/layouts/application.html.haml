@@ -20,7 +20,7 @@
       %link{ rel: 'apple-touch-icon', sizes: "#{size}x#{size}", href: app_icon_path(size.to_i) || frontend_asset_path("icons/apple-touch-icon-#{size}x#{size}.png") }/
 
     - if use_mask_icon?
-    %link{ rel: 'mask-icon', href: asset_pack_path('media/images/logo-symbol-icon.svg'), color: '#bedbbb' }/
+      %link{ rel: 'mask-icon', href: asset_pack_path('media/images/logo-symbol-icon.svg'), color: '#bedbbb' }/
     %link{ rel: 'manifest', href: manifest_path(format: :json) }/
     %meta{ name: 'theme-color', content: '#bedbbb' }/
     %meta{ name: 'apple-mobile-web-app-capable', content: 'yes' }/
