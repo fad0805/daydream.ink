@@ -19,6 +19,7 @@
     - SiteUpload::APPLE_ICON_SIZES.each do |size|
       %link{ rel: 'apple-touch-icon', sizes: "#{size}x#{size}", href: app_icon_path(size.to_i) || frontend_asset_path("icons/apple-touch-icon-#{size}x#{size}.png") }/
 
+    - if use_mask_icon?
     %link{ rel: 'mask-icon', href: asset_pack_path('media/images/logo-symbol-icon.svg'), color: '#bedbbb' }/
     %link{ rel: 'manifest', href: manifest_path(format: :json) }/
     %meta{ name: 'theme-color', content: '#bedbbb' }/
@@ -30,7 +31,7 @@
     = theme_style_tags current_theme
 
     -# Needed for the wicg-inert polyfill. It needs to be on it's own <style> tag, with this `id`
-    = flavoured_stylesheet_pack_tag 'inert', media: 'all', id: 'inert-style'
+    = flavoured_stylesheet_pack_tag 'inert', media: 'all', crossorigin: 'anonymous', id: 'inert-style'
 
     = javascript_pack_tag 'common', crossorigin: 'anonymous'
     = preload_locale_pack
