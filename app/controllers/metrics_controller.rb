@@ -95,20 +95,11 @@ class MetricsController < ApplicationController
   end
 
   def media_size
-    MediaMetric.refresh
-    {
-      { type: 'media_attachments', by: 'remote' } => MediaMetric.find_by(category: :media_attachments, local: false)&.file_size || 0,
-      { type: 'media_attachments', by: 'local' } => MediaMetric.find_by(category: :media_attachments, local: true)&.file_size || 0,
-      { type: 'custom_emojis', by: 'remote' } => MediaMetric.find_by(category: :custom_emojis, local: false)&.file_size || 0,
-      { type: 'custom_emojis', by: 'local' } => MediaMetric.find_by(category: :custom_emojis, local: true)&.file_size || 0,
-      { type: 'avatars', by: 'remote' } => MediaMetric.find_by(category: :avatars, local: false)&.file_size || 0,
-      { type: 'avatars', by: 'local' } => MediaMetric.find_by(category: :avatars, local: true)&.file_size || 0,
-      { type: 'headers', by: 'remote' } => MediaMetric.find_by(category: :headers, local: false)&.file_size || 0,
-      { type: 'headers', by: 'local' } => MediaMetric.find_by(category: :headers, local: true)&.file_size || 0,
-      { type: 'preview_cards', by: 'local' } => MediaMetric.find_by(category: :preview_cards, local: true)&.file_size || 0,
-      { type: 'backups', by: 'local' } => MediaMetric.find_by(category: :backups, local: true)&.file_size || 0,
-      { type: 'imports', by: 'local' } => MediaMetric.find_by(category: :imports, local: true)&.file_size || 0,
-      { type: 'settings', by: 'local' } => MediaMetric.find_by(category: :settings, local: true)&.file_size || 0,
-    }
+    Rails.cache.fetch('metrics/media_size', expires_in: 5.minutes) do
+      MediaMetric.refresh
+      MediaMetric.all.to_h do |metric|
+        [{ type: metric.category, by: metric.local ? 'local' : 'remote' }, metric.file_size || 0]
+      end
+    end
   end
 end
