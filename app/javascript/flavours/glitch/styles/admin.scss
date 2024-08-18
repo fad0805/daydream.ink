@@ -1,6 +1,6 @@
 @use 'sass:math';
 
-$no-columns-breakpoint: 600px;
+$no-columns-breakpoint: 890px;
 $sidebar-width: 300px;
 $content-width: 840px;
 
@@ -9,6 +9,13 @@ $content-width: 840px;
   justify-content: center;
   width: 100%;
   min-height: 100vh;
+
+  .icon {
+    width: 16px;
+    height: 16px;
+    vertical-align: top;
+    margin: 0 2px;
+  }
 
   .sidebar-wrapper {
     min-height: 100vh;
@@ -58,16 +65,16 @@ $content-width: 840px;
           background: $ui-base-color;
         }
 
-        .fa-times {
+        .material-close {
           display: none;
         }
 
         &.active {
-          .fa-times {
+          .material-close {
             display: block;
           }
 
-          .fa-bars {
+          .material-menu {
             display: none;
           }
         }
@@ -711,7 +718,7 @@ body,
     top: 15px;
 
     .avatar {
-      border-radius: 4px;
+      border-radius: var(--avatar-border-radius);
       width: 40px;
       height: 40px;
     }
@@ -762,7 +769,7 @@ body,
     top: 15px;
 
     .avatar {
-      border-radius: 4px;
+      border-radius: var(--avatar-border-radius);
       width: 40px;
       height: 40px;
     }
@@ -886,6 +893,7 @@ a.name-tag,
 
     .account {
       padding: 0;
+      border: none;
 
       &__avatar-wrapper {
         margin-inline-start: 0;
@@ -1609,7 +1617,7 @@ a.sparkline {
       position: absolute;
       inset-inline-start: 15px;
       top: 15px;
-      border-radius: 4px;
+      border-radius: var(--avatar-border-radius);
       width: 40px;
       height: 40px;
     }
