@@ -9,24 +9,31 @@ $border-green: #c4d9c0;
 $background-important-green: #d1e1cf;
 $background-green: #e6f0e7;
 $basegreen: #c1d9c0;
+$red-600: #b7253d !default; // Deep Carmine
+$red-500: #df405a !default; // Cerise
 
-$blurple-500: $green;
-$blurple-300: $hovergreen;
-
-$skyblue: $hovergreen;
 $classic-base-color: #28382a;
 $classic-highlight-color: $green;
-$ui-primary-color: $green;
-$ui-secondary-color: $hovergreen;
-$ui-highlight-color: darken($green, 10%);
+$classic-secondary-color: $border-green;
+$classic-highlight-color: $activeicon-green;
+$error-red: $red-500 !default;
+
+$success-green: lighten($green, 8%);
+$base-overlay-background: $white !default;
+$valid-value-color: $success-green !default;
 
 $ui-base-color: $green !default;
 $ui-base-lighter-color: $background-green !default;
+$ui-highlight-color: darken($green, 10%);
 $ui-primary-color: $border-green !default;
-$ui-secondary-color: $basegreen !default;
+$ui-secondary-color: $classic-secondary-color !default;
+
+$simple-background-color: $ui-base-color !default;
 
 $ui-button-tertiary-color: $green !default;
 $ui-button-tertiary-border-color: $basegreen !default;
+$base-overlay-background: $white !default;
+$valid-value-color: $success-green !default;
 
 $primary-text-color: $black !default;
 $darker-text-color: $classic-base-color !default;
@@ -38,10 +45,16 @@ $inverted-text-color: $black !default;
 $lighter-text-color: $classic-base-color !default;
 $light-text-color: #435b45;
 
+$ui-button-color: $white !default;
+$ui-button-background-color: $green !default;
+$ui-button-focus-background-color: $hovergreen !default;
+$ui-button-focus-outline-color: $default !default;
+$ui-button-focus-outline: solid 2px $ui-button-focus-outline-color !default;
+
+$no-gap-breakpoint: 1175px;
+$gold-star: #ca8f04 !default; // Dark Goldenrod
+$passive-text-color: $gold-star !default;
+
 // Newly added colors
 $account-background-color: $white !default;
 
-.theme-mastodon-light {
-  --dropdown-border-color: #dae8da;
-  --dropdown-background-color: #fff;
-}
