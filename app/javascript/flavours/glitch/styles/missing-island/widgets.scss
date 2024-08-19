@@ -4,10 +4,6 @@
   margin-bottom: 10px;
   box-shadow: 0 0 15px rgba($base-shadow-color, 0.2);
 
-  &:last-child {
-    margin-bottom: 0;
-  }
-
   &__img {
     width: 100%;
     position: relative;
@@ -39,8 +35,6 @@
       width: 20px;
       height: 20px;
       margin: -3px 0 0;
-      margin-inline-start: 0.075em;
-      margin-inline-end: 0.075em;
     }
 
     p {
@@ -268,8 +262,7 @@
     &.active h4 {
       &,
       .fa,
-      small,
-      .trends__item__current {
+      small {
         color: $primary-text-color;
       }
     }
@@ -281,10 +274,6 @@
 
     &.active .avatar-stack .account__avatar {
       border-color: $ui-highlight-color;
-    }
-
-    .trends__item__current {
-      padding-inline-end: 0;
     }
   }
 }
@@ -361,9 +350,8 @@
     vertical-align: initial !important;
   }
 
-  tbody td.accounts-table__interrelationships {
+  &__interrelationships {
     width: 21px;
-    padding-inline-end: 16px;
   }
 
   .fa {

@@ -105,7 +105,8 @@ code {
 
       .overridden,
       .recommended,
-      .not_recommended {
+      .not_recommended,
+      .glitch_only {
         position: absolute;
         margin: 0 4px;
         margin-top: -2px;
@@ -611,10 +612,9 @@ code {
       font-family: inherit;
       pointer-events: none;
       cursor: default;
-      max-width: 50%;
+      max-width: 140px;
       white-space: nowrap;
       overflow: hidden;
-      text-overflow: ellipsis;
 
       &::after {
         content: '';
@@ -733,7 +733,7 @@ code {
     }
   }
 
-  @media screen and (440px < width <= 740px) {
+  @media screen and (width <= 740px) and (width >= 441px) {
     margin-top: 40px;
   }
 
@@ -877,7 +877,8 @@ code {
   flex: 0 0 auto;
   background: $simple-background-color;
   padding: 4px;
-  margin: 0 10px 20px 0;
+  margin-inline-end: 10px;
+  margin-bottom: 20px;
   box-shadow: 0 0 15px rgba($base-shadow-color, 0.2);
   display: inline-block;
 

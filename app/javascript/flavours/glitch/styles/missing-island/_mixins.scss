@@ -1,4 +1,14 @@
-@mixin search-input {
+@mixin fullwidth-gallery {
+  &.full-width {
+    margin-left: -14px;
+    margin-right: -14px;
+    width: inherit;
+    max-width: none;
+    border-radius: 0;
+  }
+}
+
+@mixin search-input() {
   outline: 0;
   box-sizing: border-box;
   width: 100%;
@@ -13,7 +23,7 @@
   margin: 0;
 }
 
-@mixin search-popout {
+@mixin search-popout() {
   background: $simple-background-color;
   border-radius: 4px;
   padding: 10px 14px;
