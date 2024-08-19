@@ -1,7 +1,5 @@
 @import 'missing-island/variables';
 @import 'fonts/qdon';
-@import 'qdon-big-diff';
-@import 'application';
 @import 'missing-island/about';
 @import 'missing-island/basics';
 @import 'missing-island/dashboard';
@@ -23,4 +21,6 @@
 @import 'missing-island/forms';
 @import 'missing-island/_mixins';
 @import 'missing-island/rich_text';
+@import 'application';
 @import 'missing-island/diff';
+@import 'qdon-big-diff';
