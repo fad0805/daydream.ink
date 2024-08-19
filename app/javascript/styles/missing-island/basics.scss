@@ -7,7 +7,7 @@
 }
 
 body {
-  font-family: $qdon-font-sans-serif, sans-serif;
+  font-family: $font-sans-serif, sans-serif;
   background: var(--background-color);
   font-size: 13px;
   line-height: 18px;
@@ -42,7 +42,7 @@ body {
       'Fira Sans',
       'Droid Sans',
       'Helvetica Neue',
-      $qdon-font-sans-serif,
+      $font-sans-serif,
       sans-serif;
   }
 
