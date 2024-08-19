@@ -1,5 +1,8 @@
 @import 'missing-island/variables';
 @import 'fonts/qdon';
+@import 'missing-island/_mixins';
+@import 'missing-island/admin';
+@import 'missing-island/forms';
 @import 'missing-island/about';
 @import 'missing-island/basics';
 @import 'missing-island/dashboard';
@@ -16,10 +19,7 @@
 @import 'missing-island/emoji_picker';
 @import 'missing-island/reset';
 @import 'missing-island/tables';
-@import 'missing-island/admin';
 @import 'missing-island/containers';
-@import 'missing-island/forms';
-@import 'missing-island/_mixins';
 @import 'missing-island/rich_text';
 @import 'application';
 @import 'missing-island/diff';
