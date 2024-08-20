@@ -1,5 +1,6 @@
 $dark-green: #3d4734;
-$black: $dark-green;
+$deep-green: #1f2d24;
+$black: $deep-green;
 $white: #ffffff;
 
 $default: #bedbbb;
@@ -20,9 +21,9 @@ $red-bookmark: $warning-red;
 
 // Values from the classic Mastodon UI
 $classic-base-color: $dark-green;
-$classic-primary-color: $default;
+$classic-primary-color: $green;
 $classic-secondary-color: $background-green;
-$classic-highlight-color: $success-green;
+$classic-highlight-color: $green;
 
 // Variables for defaults in UI
 $base-shadow-color: $black;
