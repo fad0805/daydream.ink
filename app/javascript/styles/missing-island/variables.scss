@@ -7,8 +7,8 @@ $default: #bedbbb;
 $green: #34842d;
 $hovergreen: #2e7927;
 $border-green: #c4d9c0;
-$background-green: #d1e1cf;
-$basegreen: #c1d9c0;
+$background-green: #eef7e8;
+$basegreen: #d1e1cf;
 $red-600: #b7253d; // Deep Carmine
 $red-500: #df405a; // Cerise
 
@@ -125,8 +125,7 @@ body {
   --modal-border-color: #bad1ba;
   --modal-background-color: var(--background-color-tint);
   --background-border-color: #c7e0c3;
-  --background-color: #{$background-green};
+  --background-color: #{$white};
   --background-color-tint: rgba(239, 252, 227, 80%);
   --background-filter: blur(10px);
 }
-
