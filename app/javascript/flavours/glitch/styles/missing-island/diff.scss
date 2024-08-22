@@ -561,3 +561,32 @@ a.sparkline {
     color: $dark-text-color;
   }
 }
+
+.glitch.local-settings {
+  background: $ui-base-color;
+  border: 1px solid lighten($ui-base-color, 8%);
+}
+
+.glitch.local-settings__navigation {
+  background: darken($ui-base-color, 8%);
+}
+
+.glitch.local-settings__navigation__item {
+  background: darken($ui-base-color, 8%);
+  border-bottom: 1px lighten($ui-base-color, 8%) solid;
+
+  &:hover {
+    background: $ui-base-color;
+  }
+
+  &.active {
+    background: $ui-highlight-color;
+    color: $white;
+  }
+
+  &.close,
+  &.close:hover {
+    background: $error-value-color;
+    color: $primary-text-color;
+  }
+}
