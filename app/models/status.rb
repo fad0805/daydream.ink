@@ -430,7 +430,7 @@ class Status < ApplicationRecord
   end
 
   def local_only_emoji
-    '👁'
+    ':missingshoot:'
   end
 
   def status_stat
