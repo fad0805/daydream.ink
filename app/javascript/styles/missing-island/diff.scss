@@ -565,3 +565,14 @@ a.sparkline {
 .notification-bar-action {
   color: $green;
 }
+
+// poll chart colors
+.poll {
+  &__chart {
+    background: lighten($ui-primary-color, 5%);
+
+    &.leading {
+      background: $ui-highlight-color;
+    }
+  }
+}
