@@ -569,7 +569,7 @@ a.sparkline {
 // poll chart colors
 .poll {
   &__chart {
-    background: lighten($ui-primary-color, 20%);
+    background: darken($ui-primary-color, 20%);
 
     &.leading {
       background: $ui-highlight-color;
