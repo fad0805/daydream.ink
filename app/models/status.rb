@@ -430,7 +430,7 @@ class Status < ApplicationRecord
   end
 
   def local_only_emoji
-    ENV.get('DEFAULT_LOCAL_ONLY_EMOJI', '👁')
+    [':missingshoot:', '👁']
   end
 
   def status_stat
