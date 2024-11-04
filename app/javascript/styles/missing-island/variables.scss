@@ -128,4 +128,6 @@ body {
   --background-color: #{$white};
   --background-color-tint: rgba(239, 252, 227, 80%);
   --background-filter: blur(10px);
+  --rich-text-text-color: hsla(114deg, 19%, 34%, 100%);
+  --rich-text-decorations-color: hsla(114deg, 30.8%, 79.6%, 100%);
 }
