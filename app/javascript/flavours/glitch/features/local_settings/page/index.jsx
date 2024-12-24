@@ -24,9 +24,9 @@ const messages = defineMessages({
   regexp: { id: 'settings.content_warnings.regexp', defaultMessage: 'Regular expression' },
   rewrite_mentions_no: { id: 'settings.rewrite_mentions_no', defaultMessage: 'Do not rewrite mentions' },
   rewrite_mentions_acct: { id: 'settings.rewrite_mentions_acct', defaultMessage: 'Rewrite with username and domain (when the account is remote)' },
-  rewrite_mentions_username: { id: 'settings.rewrite_mentions_username', defaultMessage:  'Rewrite with username' },
+  rewrite_mentions_username: { id: 'settings.rewrite_mentions_username', defaultMessage: 'Rewrite with username' },
   pop_in_left: { id: 'settings.pop_in_left', defaultMessage: 'Left' },
-  pop_in_right: { id: 'settings.pop_in_right', defaultMessage:  'Right' },
+  pop_in_right: { id: 'settings.pop_in_right', defaultMessage: 'Right' },
   public: { id: 'privacy.public.short', defaultMessage: 'Public' },
   unlisted: { id: 'privacy.unlisted.short', defaultMessage: 'Quiet public' },
   private: { id: 'privacy.private.short', defaultMessage: 'Followers' },
@@ -36,10 +36,10 @@ const messages = defineMessages({
 class LocalSettingsPage extends PureComponent {
 
   static propTypes = {
-    index    : PropTypes.number,
-    intl     : PropTypes.object.isRequired,
-    onChange : PropTypes.func.isRequired,
-    settings : ImmutablePropTypes.map.isRequired,
+    index: PropTypes.number,
+    intl: PropTypes.object.isRequired,
+    onChange: PropTypes.func.isRequired,
+    settings: ImmutablePropTypes.map.isRequired,
   };
 
   pages = [
@@ -321,125 +321,6 @@ class LocalSettingsPage extends PureComponent {
         </section>
       </div>
     ),
-    ({ onChange, settings }) => (
-      <div className='glitch local-settings__page collapsed'>
-        <h1><FormattedMessage id='settings.collapsed_statuses' defaultMessage='Collapsed toots' /></h1>
-        <LocalSettingsPageItem
-          settings={settings}
-          item={['collapsed', 'enabled']}
-          id='mastodon-settings--collapsed-enabled'
-          onChange={onChange}
-        >
-          <FormattedMessage id='settings.enable_collapsed' defaultMessage='Enable collapsed toots' />
-          <span className='hint'><FormattedMessage id='settings.enable_collapsed_hint' defaultMessage='Collapsed posts have parts of their contents hidden to take up less screen space. This is distinct from the Content Warning feature' /></span>
-        </LocalSettingsPageItem>
-        <LocalSettingsPageItem
-          settings={settings}
-          item={['collapsed', 'show_action_bar']}
-          id='mastodon-settings--collapsed-show-action-bar'
-          onChange={onChange}
-          dependsOn={[['collapsed', 'enabled']]}
-        >
-          <FormattedMessage id='settings.show_action_bar' defaultMessage='Show action buttons in collapsed toots' />
-        </LocalSettingsPageItem>
-        <section>
-          <h2><FormattedMessage id='settings.auto_collapse' defaultMessage='Automatic collapsing' /></h2>
-          <LocalSettingsPageItem
-            settings={settings}
-            item={['collapsed', 'auto', 'all']}
-            id='mastodon-settings--collapsed-auto-all'
-            onChange={onChange}
-            dependsOn={[['collapsed', 'enabled']]}
-          >
-            <FormattedMessage id='settings.auto_collapse_all' defaultMessage='Everything' />
-          </LocalSettingsPageItem>
-          <LocalSettingsPageItem
-            settings={settings}
-            item={['collapsed', 'auto', 'notifications']}
-            id='mastodon-settings--collapsed-auto-notifications'
-            onChange={onChange}
-            dependsOn={[['collapsed', 'enabled']]}
-            dependsOnNot={[['collapsed', 'auto', 'all']]}
-          >
-            <FormattedMessage id='settings.auto_collapse_notifications' defaultMessage='Notifications' />
-          </LocalSettingsPageItem>
-          <LocalSettingsPageItem
-            settings={settings}
-            item={['collapsed', 'auto', 'lengthy']}
-            id='mastodon-settings--collapsed-auto-lengthy'
-            onChange={onChange}
-            dependsOn={[['collapsed', 'enabled']]}
-            dependsOnNot={[['collapsed', 'auto', 'all']]}
-          >
-            <FormattedMessage id='settings.auto_collapse_lengthy' defaultMessage='Lengthy toots' />
-          </LocalSettingsPageItem>
-          <LocalSettingsPageItem
-            settings={settings}
-            item={['collapsed', 'auto', 'reblogs']}
-            id='mastodon-settings--collapsed-auto-reblogs'
-            onChange={onChange}
-            dependsOn={[['collapsed', 'enabled']]}
-            dependsOnNot={[['collapsed', 'auto', 'all']]}
-          >
-            <FormattedMessage id='settings.auto_collapse_reblogs' defaultMessage='Boosts' />
-          </LocalSettingsPageItem>
-          <LocalSettingsPageItem
-            settings={settings}
-            item={['collapsed', 'auto', 'replies']}
-            id='mastodon-settings--collapsed-auto-replies'
-            onChange={onChange}
-            dependsOn={[['collapsed', 'enabled']]}
-            dependsOnNot={[['collapsed', 'auto', 'all']]}
-          >
-            <FormattedMessage id='settings.auto_collapse_replies' defaultMessage='Replies' />
-          </LocalSettingsPageItem>
-          <LocalSettingsPageItem
-            settings={settings}
-            item={['collapsed', 'auto', 'media']}
-            id='mastodon-settings--collapsed-auto-media'
-            onChange={onChange}
-            dependsOn={[['collapsed', 'enabled']]}
-            dependsOnNot={[['collapsed', 'auto', 'all']]}
-          >
-            <FormattedMessage id='settings.auto_collapse_media' defaultMessage='Toots with media' />
-          </LocalSettingsPageItem>
-          <LocalSettingsPageItem
-            settings={settings}
-            item={['collapsed', 'auto', 'height']}
-            id='mastodon-settings--collapsed-auto-height'
-            placeholder='800'
-            onChange={onChange}
-            dependsOn={[['collapsed', 'enabled']]}
-            dependsOnNot={[['collapsed', 'auto', 'all']]}
-            inputProps={{ type: 'number', min: '200', max: '999' }}
-          >
-            <FormattedMessage id='settings.auto_collapse_height' defaultMessage='Height (in pixels) for a toot to be considered lengthy' />
-          </LocalSettingsPageItem>
-        </section>
-        <section>
-          <h2><FormattedMessage id='settings.image_backgrounds' defaultMessage='Image backgrounds' /></h2>
-          <LocalSettingsPageItem
-            settings={settings}
-            item={['collapsed', 'backgrounds', 'user_backgrounds']}
-            id='mastodon-settings--collapsed-user-backgrouns'
-            onChange={onChange}
-            dependsOn={[['collapsed', 'enabled']]}
-          >
-            <FormattedMessage id='settings.image_backgrounds_users' defaultMessage='Give collapsed toots an image background' />
-          </LocalSettingsPageItem>
-          <LocalSettingsPageItem
-            settings={settings}
-            item={['collapsed', 'backgrounds', 'preview_images']}
-            id='mastodon-settings--collapsed-preview-images'
-            onChange={onChange}
-            dependsOn={[['collapsed', 'enabled']]}
-          >
-            <FormattedMessage id='settings.image_backgrounds_media' defaultMessage='Preview collapsed toot media' />
-            <span className='hint'><FormattedMessage id='settings.image_backgrounds_media_hint' defaultMessage='If the post has any media attachment, use the first one as a background' /></span>
-          </LocalSettingsPageItem>
-        </section>
-      </div>
-    ),
     ({ intl, onChange, settings }) => (
       <div className='glitch local-settings__page media'>
         <h1><FormattedMessage id='settings.media' defaultMessage='Media' /></h1>
@@ -501,7 +382,7 @@ class LocalSettingsPage extends PureComponent {
     ),
   ];
 
-  render () {
+  render() {
     const { pages } = this;
     const { index, intl, onChange, settings } = this.props;
     const CurrentPage = pages[index] || pages[0];
