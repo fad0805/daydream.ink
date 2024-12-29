@@ -576,3 +576,10 @@ a.sparkline {
     }
   }
 }
+
+.notification-group--annual-report {
+  .notification-group__icon,
+  .notification-group__main .link-button {
+    color: $ui-button-focus-background-color;
+  }
+}
