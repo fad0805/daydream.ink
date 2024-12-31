@@ -37,6 +37,7 @@ import {
   ConfirmUnfollowModal,
   ConfirmClearNotificationsModal,
   ConfirmLogOutModal,
+  ConfirmFollowToListModal,
 } from './confirmation_modals';
 import DeprecatedSettingsModal from './deprecated_settings_modal';
 import DoodleModal from './doodle_modal';
@@ -63,6 +64,7 @@ export const MODAL_COMPONENTS = {
   'CONFIRM_UNFOLLOW': () => Promise.resolve({ default: ConfirmUnfollowModal }),
   'CONFIRM_CLEAR_NOTIFICATIONS': () => Promise.resolve({ default: ConfirmClearNotificationsModal }),
   'CONFIRM_LOG_OUT': () => Promise.resolve({ default: ConfirmLogOutModal }),
+  'CONFIRM_FOLLOW_TO_LIST': () => Promise.resolve({ default: ConfirmFollowToListModal }),
   'DOMAIN_MUTE': DomainMuteModal,
   'MUTE': MuteModal,
   'BLOCK': BlockModal,
@@ -96,7 +98,7 @@ export default class ModalRoot extends PureComponent {
     backgroundColor: null,
   };
 
-  componentDidUpdate () {
+  componentDidUpdate() {
     if (this.props.type) {
       document.body.classList.add('with-modals--active');
       document.documentElement.style.marginRight = `${getScrollbarWidth()}px`;
@@ -133,9 +135,9 @@ export default class ModalRoot extends PureComponent {
   };
 
   // prevent closing of modal when clicking the overlay
-  noop = () => {};
+  noop = () => { };
 
-  render () {
+  render() {
     const { type, props, ignoreFocus } = this.props;
     const { backgroundColor } = this.state;
     const visible = !!type;
