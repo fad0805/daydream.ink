@@ -23,7 +23,7 @@ jobs:
         latest=${{ startsWith(github.ref, 'refs/tags/v4.3.') }}
       tags: |
         type=ref,event=branch
-        type=raw,value=latest,enable={{is_default_branch}}
+        type=raw,value=latest,enable={{ is_default_branch }}
     secrets: inherit
 
   build-image-streaming:
@@ -42,6 +42,5 @@ jobs:
         latest=${{ startsWith(github.ref, 'refs/tags/v4.3.') }}
       tags: |
         type=ref,event=branch
-        type=raw,value=latest,enable={{is_default_branch}}
-        type=raw,value=beta,enable=${{ github.ref == format('refs/heads/{0}', 'qdon-glitch-beta') }}
+        type=raw,value=latest,enable={{ is_default_branch }}
     secrets: inherit

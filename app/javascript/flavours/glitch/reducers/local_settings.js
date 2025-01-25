@@ -21,21 +21,16 @@ const initialState = ImmutableMap({
   show_content_type_choice: false,
   tag_misleading_links: true,
   rewrite_mentions: 'no',
-  content_warnings: ImmutableMap({
-    filter: null,
-    media_outside: false,
-    shared_state: false,
+  content_warnings : ImmutableMap({
+    filter       : null,
+    shared_state : false,
   }),
-  media: ImmutableMap({
-    letterbox: true,
-    fullwidth: true,
-    reveal_behind_cw: false,
-    pop_in_player: true,
-    pop_in_position: 'right',
-  }),
-  notifications: ImmutableMap({
-    favicon_badge: false,
-    tab_badge: true,
+  media     : ImmutableMap({
+    letterbox        : true,
+    fullwidth        : true,
+    reveal_behind_cw : false,
+    pop_in_player    : true,
+    pop_in_position  : 'right',
   }),
   status_icons: ImmutableMap({
     language: true,
