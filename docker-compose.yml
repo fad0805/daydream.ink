@@ -108,7 +108,7 @@ services:
   sidekiq:
     #build: .
     #image: qdon/glitch:brandless
-    image: ghcr.io/fad0805/mastodon:v4.3.3
+    image: ghcr.io/fad0805/mastodon:latest
     restart: always
     env_file: .env.production
     command: bundle exec sidekiq
