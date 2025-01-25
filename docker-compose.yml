@@ -106,7 +106,7 @@ services:
       - redis
 
   sidekiq:
-    build: .
+    #build: .
     #image: qdon/glitch:brandless
     image: ghcr.io/fad0805/mastodon:v4.3.3
     restart: always
