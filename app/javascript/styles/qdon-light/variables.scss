@@ -1,76 +1,70 @@
-// Qdon colors
+@use 'sass:color';
+
+@use '../mastodon/functions' as * with (
+  $darken-multiplier: 1,
+  $lighten-multiplier: -1
+);
+
 $skyblue: hsl(212deg, 100%, 65%);
 $dark-blue: hsl(212deg, 100%, 50%);
 $pink: hsl(304deg, 100%, 80%);
-$grey: #282c37;
-$text-shadow-color: #888;
+$grey: #282c37 !default;
+$dark-pink: darken($pink, 10%) !default;
 
-$qdon-mention-color: $dark-blue;
+$mention-color: $skyblue !default;
 
-// Dependent colors
-$black: #000000;
-$white: #ffffff;
+$black: #000000; // Black
+$white: #ffffff; // White
+$blurple-500: #6364ff; // Brand purple
+$grey-600: hsl(240deg, 8%, 33%); // Trout
+$grey-100: hsl(240deg, 51%, 90%); // Topaz
 
-$classic-base-color: #282c37;
-$classic-primary-color: #9baec8;
-$classic-secondary-color: #d9e1e8;
-$classic-highlight-color: #6364ff;
+$classic-base-color: hsl(240deg, 16%, 19%);
+$classic-secondary-color: hsl(255deg, 25%, 88%);
+$classic-highlight-color: $blurple-500;
 
-$grey-600: #4e4c5a; // Trout
-$grey-100: #dadaf3; // Topaz
+@use '../mastodon/variables' with (
+  $ui-primary-color: $skyblue,
+  $ui-secondary-color: $pink,
+  // $primary-text-color: #000,
+  $secondary-text-color: $classic-base-color,
+  $ui-highlight-color: $dark-pink,
+  $ui-button-background-color: $dark-blue,
+  $ui-button-focus-background-color: darken($dark-blue, 15%),
+  $ui-button-tertiary-color: $dark-blue,
+  $ui-button-tertiary-border-color: $dark-blue,
+  $ui-button-tertiary-focus-background-color: darken($dark-blue, 15%),
+  $font-sans-serif: (
+    'mastodon-font-sans-serif',
+    'qdon-font-sans-serif',
+  ),
 
-// Differences
-$success-green: lighten(#3c754d, 8%);
+  // From mastodon-light/variables
+  $success-green: color.adjust(
+      hsl(138deg, 32%, 35%),
+      $lightness: 8%,
+      $space: hsl
+    ),
+  $base-overlay-background: $white,
 
-$base-overlay-background: $white !default;
-$valid-value-color: $success-green !default;
+  $ui-base-color: $classic-secondary-color,
+  $ui-base-lighter-color: hsl(250deg, 24%, 75%),
+  // $ui-secondary-color: $classic-base-color,
+  $highlight-text-color: $dark-pink,
 
-$ui-base-color: $classic-secondary-color !default;
-$ui-base-lighter-color: #b0c0cf;
-$ui-primary-color: $skyblue;
-$ui-secondary-color: $pink;
-$ui-highlight-color: darken($pink, 10%);
+  $ui-button-secondary-color: $grey-600,
+  $ui-button-secondary-border-color: $grey-600,
+  $ui-button-secondary-focus-color: $white,
+  // $ui-button-tertiary-color: $blurple-500,
+  // $ui-button-tertiary-border-color: $blurple-500,
+  $primary-text-color: $black,
+  $darker-text-color: $classic-base-color,
+  $lighter-text-color: $classic-base-color,
+  // $highlight-text-color: $classic-highlight-color,
+  $dark-text-color: hsl(240deg, 16%, 32%),
+  $light-text-color: hsl(240deg, 16%, 32%),
+  $inverted-text-color: $black,
 
-$ui-button-color: $white !default;
-$ui-button-background-color: $dark-blue !default;
-$ui-button-focus-background-color: darken($dark-blue, 15%) !default;
-
-$ui-button-secondary-color: $grey-600 !default;
-$ui-button-secondary-border-color: $grey-600 !default;
-$ui-button-secondary-focus-color: $white !default;
-
-$ui-button-tertiary-color: $dark-blue !default;
-$ui-button-tertiary-border-color: $dark-blue !default;
-$ui-button-tertiary-focus-background-color: darken($dark-blue, 15%) !default;
-$ui-button-tertiary-focus-color: $white !default;
-
-$primary-text-color: $black;
-$secondary-text-color: $grey-600;
-$darker-text-color: $classic-base-color !default;
-$highlight-text-color: darken($ui-highlight-color, 8%) !default;
-$dark-text-color: #444b5d;
-$action-button-color: #606984;
-
-$inverted-text-color: $black !default;
-$lighter-text-color: $classic-base-color !default;
-$light-text-color: #444b5d;
-
-// Newly added colors
-$account-background-color: $white !default;
-
-// Invert darkened and lightened colors
-@function darken($color, $amount) {
-  @return hsl(hue($color), saturation($color), lightness($color) + $amount);
-}
-
-@function lighten($color, $amount) {
-  @return hsl(hue($color), saturation($color), lightness($color) - $amount);
-}
-
-$emojis-requiring-inversion: 'chains';
-
-body {
-  --rich-text-container-color: #efefef;
-  --rich-text-text-color: #181818;
-  --rich-text-decorations-color: hsla(212deg, 100%, 65%, 100%);
-}
+  $action-button-color: hsl(240deg, 16%, 45%),
+  $emojis-requiring-inversion: 'chains'
+);

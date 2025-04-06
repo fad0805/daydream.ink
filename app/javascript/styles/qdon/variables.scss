@@ -1,37 +1,27 @@
+@use '../mastodon/functions' as *;
+
 $skyblue: hsl(212deg, 100%, 80%);
 $dark-blue: hsl(212deg, 72%, 63%);
 $pink: hsl(304deg, 100%, 80%);
 $grey: #282c37;
-$text-shadow-color: #888;
-$ui-base-color: $grey;
-$ui-primary-color: $skyblue;
+$dark-pink: darken($pink, 10%);
 
-// $ui-secondary-color: $pink;
-$primary-text-color: #fff;
-$secondary-text-color: #d9e1e8;
-$ui-highlight-color: darken($pink, 10%);
+$mention-color: $skyblue;
 
-$qdon-mention-color: $skyblue;
-
-$white: #fff;
-
-$ui-button-color: $white !default;
-$ui-button-background-color: $dark-blue !default;
-$ui-button-focus-background-color: darken($dark-blue, 15%) !default;
-
-$ui-button-tertiary-color: $dark-blue !default;
-$ui-button-tertiary-border-color: $dark-blue !default;
-$ui-button-tertiary-focus-background-color: darken($dark-blue, 15%) !default;
-$ui-button-tertiary-focus-color: $white !default;
-
-$font-sans-serif: 'mastodon-font-sans-serif', 'qdon-font-sans-serif' !default;
-$font-display: 'mastodon-font-display' !default;
-$font-monospace: 'mastodon-font-monospace' !default;
-
-@import '../mastodon/variables';
-
-body {
-  --rich-text-container-color: #181818;
-  --rich-text-text-color: #efefef;
-  --rich-text-decorations-color: hsla(212deg, 90%, 80%, 100%);
-}
+@use '../mastodon/variables' with (
+  $ui-base-color: $grey,
+  $ui-primary-color: $skyblue,
+  $ui-secondary-color: $pink,
+  $primary-text-color: #fff,
+  $secondary-text-color: #d9e1e8,
+  $ui-highlight-color: $dark-pink,
+  $ui-button-background-color: $dark-blue,
+  $ui-button-focus-background-color: darken($dark-blue, 15%),
+  $ui-button-tertiary-color: $dark-blue,
+  $ui-button-tertiary-border-color: $dark-blue,
+  $ui-button-tertiary-focus-background-color: darken($dark-blue, 15%),
+  $font-sans-serif: (
+    'mastodon-font-sans-serif',
+    'qdon-font-sans-serif',
+  )
+);
