@@ -12,7 +12,7 @@ $basegreen: #d1e1cf;
 $red-600: #b7253d; // Deep Carmine
 $red-500: #df405a; // Cerise
 
-$success-green: lighten(#3c754d, 8%);
+$success-green: color.adjust(#3c754d, $lightness: 8%);
 $error-red: $red-500;
 $warning-red: #ff5050; // Sunset Orange
 $gold-star: #ca8f04; // Dark Goldenrod
@@ -69,7 +69,10 @@ $dark-text-color: $ui-base-lighter-color;
 $secondary-text-color: $ui-secondary-color;
 $highlight-text-color: $ui-highlight-color;
 $action-button-color: $ui-base-lighter-color;
-$action-button-focus-color: lighten($ui-base-lighter-color, 4%);
+$action-button-focus-color: color.adjust(
+  $ui-base-lighter-color,
+  $lightness: 4%
+);
 $passive-text-color: $gold-star;
 
 $active-passive-text-color: $success-green;
@@ -102,7 +105,7 @@ $account-background-color: $white;
   --dropdown-shadow: 0 20px 25px -5px #{rgba($base-shadow-color, 0.25)},
     0 8px 10px -6px #{rgba($base-shadow-color, 0.25)};
   --modal-background-variant-color: #{rgba($ui-base-color, 0.7)};
-  --surface-background-color: #{darken($ui-base-color, 4%)};
+  --surface-background-color: #{color.adjust($ui-base-color, $lightness: -4%)};
   --surface-variant-background-color: #{$ui-base-color};
   --surface-variant-active-background-color: #{color.adjust(
       $color,
