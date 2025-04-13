@@ -1,3 +1,6 @@
+@use 'sass:color';
+@use '../mastodon-light/variables';
+
 $dark-green: #3d4734;
 $deep-green: #1f2d24;
 $black: $deep-green;
@@ -108,7 +111,7 @@ $account-background-color: $white;
   --surface-background-color: #{color.adjust($ui-base-color, $lightness: -4%)};
   --surface-variant-background-color: #{$ui-base-color};
   --surface-variant-active-background-color: #{color.adjust(
-      $color,
+      $ui-primary-color,
       $lightness: 4%
     )};
   --avatar-border-radius: 8px;
