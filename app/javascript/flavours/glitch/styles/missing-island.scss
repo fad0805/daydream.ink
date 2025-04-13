@@ -1,7 +1,5 @@
-@import 'styles/fonts/qdon';
-@import 'mastodon-light/variables';
-@import 'styles/missing-island/variables';
-@import 'application';
-@import 'mastodon-light/diff';
-@import 'styles/missing-island/diff';
-@import 'styles/qdon-big-diff';
+@use 'styles/fonts/qdon';
+@use 'styles/missing-island/variables';
+@use 'application';
+@use 'styles/missing-island/diff';
+@use 'styles/qdon-big-diff';
