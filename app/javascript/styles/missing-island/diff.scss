@@ -8,6 +8,53 @@ html {
   scrollbar-color: $ui-base-color rgba($ui-base-color, 0.25);
 }
 
+body {
+  color: color.adjust($ui-primary-color, $saturation: -20%);
+}
+
+.admin-wrapper {
+  & .content {
+    & h2 {
+      color: color.adjust($ui-primary-color, $lightness: -5%);
+    }
+
+    & h3,
+    h4 {
+      color: color.adjust($ui-primary-color, $saturation: -20%);
+    }
+
+    & > p {
+      color: color.adjust($default, $lightness: -25%, $saturation: -20%);
+    }
+  }
+
+  & .content__heading__tabs {
+    & a {
+      color: color.adjust(
+        $ui-primary-color,
+        $lightness: 20%,
+        $saturation: -20%
+      );
+
+      &.selected {
+        background: $ui-primary-color;
+      }
+    }
+  }
+
+  & .announcements-list {
+    &__item {
+      &__meta {
+        color: color.adjust($ui-primary-color, $lightness: -5%);
+      }
+
+      &__title {
+        color: color.adjust($ui-primary-color, $lightness: -5%);
+      }
+    }
+  }
+}
+
 .button {
   background: $ui-primary-color;
 
@@ -18,20 +65,139 @@ html {
   }
 }
 
-.admin-wrapper {
-  & .content h2 {
-    color: color.adjust($ui-primary-color, $lightness: -5%);
+.filters {
+  & .filter-subset a {
+    color: color.adjust($default, $lightness: -15%, $saturation: -15%);
+    border-bottom: 2px solid
+      color.adjust($default, $lightness: -10%, $saturation: -15%);
+
+    &.selected {
+      color: $ui-primary-color;
+      border-bottom: 2px solid $ui-primary-color;
+
+      &:hover,
+      &:active,
+      &:focus {
+        color: color.adjust($ui-primary-color, $lightness: 10%);
+        border-bottom: 2px solid
+          color.adjust($ui-primary-color, $lightness: 10%);
+      }
+    }
+
+    &:hover,
+    &:active,
+    &:focus {
+      color: $ui-primary-color;
+      border-bottom: 2px solid color.adjust($ui-primary-color, $lightness: 5%);
+    }
   }
 }
 
-.status-card__actions button,
-.status-card__actions a {
-  color: rgba($white, 0.8);
+.nothing-here {
+  color: color.adjust($default, $lightness: -15%, $saturation: -15%) !important;
+}
 
-  &:hover,
+.muted-hint {
+  color: color.adjust($default, $lightness: -25%, $saturation: -20%) !important;
+
+  & a {
+    color: color.adjust(
+      $default,
+      $lightness: -25%,
+      $saturation: -5%
+    ) !important;
+  }
+}
+
+.permissions-list {
+  &__item {
+    color: color.adjust($default, $lightness: -45%);
+
+    &__text__type {
+      color: color.adjust($default, $lightness: -35%);
+    }
+  }
+}
+
+.simple_form {
+  color: $ui-primary-color;
+
+  & input[type='text'],
+  & input[type='number'],
+  & input[type='email'],
+  & input[type='password'],
+  & input[type='url'],
+  & input[type='datetime-local'],
+  & textarea {
+    background: $ui-base-color;
+    color: $ui-primary-color;
+  }
+
+  select {
+    color: color.adjust($ui-primary-color, $saturation: -15%);
+    background: color.adjust($ui-base-color)
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14.933 18.467' height='19.698' width='15.929'><path d='M3.467 14.967l-3.393-3.5H14.86l-3.392 3.5c-1.866 1.925-3.666 3.5-4 3.5-.335 0-2.135-1.575-4-3.5zm.266-11.234L7.467 0 11.2 3.733l3.733 3.734H0l3.733-3.734z' fill='#{hex-color(lighten($ui-base-color, 12%))}'/></svg>")
+      no-repeat right 8px center / auto 14px;
+  }
+
+  &.recommended {
+    border-color: $ui-highlight-color;
+    color: $ui-highlight-color;
+    background-color: rgba($ui-highlight-color, 0.1);
+  }
+
+  &.warning {
+    box-shadow: none;
+    background: rgba($error-red, 0.5);
+    text-shadow: none;
+  }
+
+  & .button.button-tertiary {
+    color: $highlight-text-color;
+  }
+
+  & .block-button,
+  & .button,
+  & button {
+    background: $ui-primary-color !important;
+    color: $white;
+  }
+
+  & .hint,
+  p.hint {
+    color: color.adjust($default, $lightness: -25%, $saturation: -20%);
+  }
+
+  & .lead {
+    color: color.adjust($default, $lightness: -25%, $saturation: -20%);
+  }
+
+  & label {
+    color: color.adjust($dark-green, $lightness: 10%) !important;
+  }
+}
+
+.status-card__actions {
+  & button,
+  a {
+    color: rgba($white, 0.8);
+
+    &:hover,
+    &:active,
+    &:focus {
+      color: $white;
+    }
+  }
+}
+
+a.table-action-link,
+button.table-action-link {
+  color: color.adjust($default, $lightness: -15%, $saturation: -15%);
+
+  &.hover,
   &:active,
   &:focus {
-    color: $white;
+    color: color.adjust($default, $lightness: -10%, $saturation: -15%);
   }
 }
 
@@ -397,49 +563,6 @@ html {
     .account__header__content {
       color: $primary-text-color;
     }
-  }
-}
-
-.simple_form {
-  color: $ui-primary-color;
-
-  .warning {
-    box-shadow: none;
-    background: rgba($error-red, 0.5);
-    text-shadow: none;
-  }
-
-  .recommended {
-    border-color: $ui-highlight-color;
-    color: $ui-highlight-color;
-    background-color: rgba($ui-highlight-color, 0.1);
-  }
-
-  input[type='text'],
-  input[type='number'],
-  input[type='email'],
-  input[type='password'],
-  input[type='url'],
-  input[type='datetime-local'],
-  textarea {
-    background: color.adjust($ui-base-color, $lightness: -10%);
-  }
-
-  select {
-    color: color.adjust($ui-primary-color, $lightness: 10%, $saturation: -15%);
-    background: color.adjust($ui-base-color)
-      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14.933 18.467' height='19.698' width='15.929'><path d='M3.467 14.967l-3.393-3.5H14.86l-3.392 3.5c-1.866 1.925-3.666 3.5-4 3.5-.335 0-2.135-1.575-4-3.5zm.266-11.234L7.467 0 11.2 3.733l3.733 3.734H0l3.733-3.734z' fill='#{hex-color(lighten($ui-base-color, 12%))}'/></svg>")
-      no-repeat right 8px center / auto 14px;
-  }
-
-  & .button.button-tertiary {
-    color: $highlight-text-color;
-  }
-
-  & .block-button,
-  & .button,
-  & button {
-    color: $white;
   }
 }
 
