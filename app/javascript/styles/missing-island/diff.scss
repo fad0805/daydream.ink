@@ -1,3 +1,4 @@
+@use 'sass:math';
 @use 'sass:color';
 @use 'variables' as *;
 
@@ -10,6 +11,28 @@ html {
 
 body {
   color: color.adjust($ui-primary-color, $saturation: -20%);
+}
+
+.accounts-table {
+  &__count {
+    color: color.adjust($ui-primary-color, $saturation: -20%);
+
+    & small {
+      color: color.adjust($default, $lightness: -20%, $saturation: -20%);
+    }
+  }
+
+  & .account__display-name {
+    color: color.adjust($default, $lightness: -20%, $saturation: -20%);
+
+    & .display-name strong {
+      color: color.adjust($ui-primary-color, $saturation: -20%);
+    }
+  }
+
+  & tbody td.accounts-table__extra {
+    color: color.adjust($default, $lightness: -20%, $saturation: -20%);
+  }
 }
 
 .admin-wrapper {
@@ -65,6 +88,39 @@ body {
   }
 }
 
+.dashboard {
+  &__quick-access {
+    background: $ui-primary-color;
+
+    &:hover,
+    &:active,
+    &:focus {
+      background: color.adjust($ui-primary-color, $lightness: -10%);
+    }
+  }
+}
+
+.dimension {
+  &__item {
+    &__indicator {
+      background-color: $ui-highlight-color;
+
+      @for $i from 0 through 10 {
+        &--#{10 * $i} {
+          background-color: rgba(
+            $ui-highlight-color,
+            1 * (math.div(max(1, $i), 10))
+          );
+        }
+      }
+    }
+
+    &__value {
+      color: color.adjust($ui-base-color, $lightness: -20%);
+    }
+  }
+}
+
 .filters {
   & .filter-subset a {
     color: color.adjust($default, $lightness: -15%, $saturation: -15%);
@@ -93,6 +149,28 @@ body {
   }
 }
 
+.flash-message {
+  border: 1px solid color.adjust($ui-base-color, $lightness: -16%);
+
+  &.translation-prompt {
+    color: color.adjust($ui-primary-color, $lightness: 20%, $saturation: -20%);
+
+    a {
+      color: color.adjust($ui-primary-color, $saturation: 10%);
+
+      &:hover,
+      &:focus,
+      &:active {
+        color: color.adjust(
+          $ui-primary-color,
+          $lightness: 5%,
+          $saturation: 20%
+        );
+      }
+    }
+  }
+}
+
 .nothing-here {
   color: color.adjust($default, $lightness: -15%, $saturation: -15%) !important;
 }
@@ -115,6 +193,29 @@ body {
 
     &__text__type {
       color: color.adjust($default, $lightness: -35%);
+    }
+  }
+}
+
+.retention {
+  &__table {
+    &__box {
+      @for $i from 0 through 10 {
+        &--#{10 * $i} {
+          background-color: rgba(
+            $ui-highlight-color,
+            1 * (math.div(max(1, $i), 10))
+          );
+        }
+      }
+    }
+
+    &__label {
+      color: color.adjust(
+        $ui-primary-color,
+        $lightness: 30%,
+        $saturation: -30%
+      );
     }
   }
 }
@@ -174,6 +275,22 @@ body {
 
   & label {
     color: color.adjust($dark-green, $lightness: 10%) !important;
+  }
+}
+
+.sparkline {
+  &__graph path:first-child {
+    fill: $ui-base-color !important;
+  }
+
+  &__graph path:last-child {
+    stroke: color.adjust($ui-base-color, $lightness: -20%) !important;
+  }
+
+  &__label,
+  &__value__total,
+  &__value__change {
+    color: color.adjust($ui-primary-color, $lightness: 20%, $saturation: -20%);
   }
 }
 
@@ -396,32 +513,6 @@ button.table-action-link {
 .dashboard__quick-access,
 .focal-point__preview strong {
   color: $white;
-}
-
-.flash-message {
-  border: 1px solid color.adjust($ui-base-color, $lightness: -16%);
-
-  &.translation-prompt {
-    color: color.adjust($ui-primary-color, $lightness: 20%, $saturation: -20%);
-
-    a {
-      color: color.adjust($ui-primary-color, $saturation: 10%);
-
-      &:hover,
-      &:focus,
-      &:active {
-        color: color.adjust(
-          $ui-primary-color,
-          $lightness: 5%,
-          $saturation: 20%
-        );
-      }
-    }
-  }
-
-  &.warning {
-    color: color.adjust($gold-star, $lightness: 16%);
-  }
 }
 
 .boost-modal__action-bar,
