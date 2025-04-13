@@ -36,7 +36,25 @@ body {
 }
 
 .admin-wrapper {
+  & .announcements-list {
+    &__item {
+      &__meta {
+        color: color.adjust($ui-primary-color, $lightness: -5%);
+      }
+
+      &__title {
+        color: color.adjust($ui-primary-color, $lightness: -5%);
+      }
+    }
+  }
+
   & .content {
+    &__heading {
+      &__tabs a:hover {
+        background: $ui-primary-color;
+      }
+    }
+
     & h2 {
       color: color.adjust($ui-primary-color, $lightness: -5%);
     }
@@ -65,14 +83,33 @@ body {
     }
   }
 
-  & .announcements-list {
-    &__item {
-      &__meta {
-        color: color.adjust($ui-primary-color, $lightness: -5%);
+  & .sidebar {
+    & ul {
+      & a {
+        color: color.adjust(
+          $ui-base-color,
+          $lightness: -40%,
+          $saturation: -20%
+        );
+
+        &:hover,
+        &:active,
+        &:focus {
+          background: $ui-primary-color;
+          color: $white;
+        }
       }
 
-      &__title {
-        color: color.adjust($ui-primary-color, $lightness: -5%);
+      & .selected {
+        background: $ui-base-color;
+
+        & ul {
+          background: $ui-base-color;
+        }
+
+        & .simple-navigation-active-leaf a {
+          color: color.adjust($ui-primary-color, $lightness: -5%);
+        }
       }
     }
   }
@@ -85,6 +122,18 @@ body {
   &:active,
   &:focus {
     background: color.adjust($ui-primary-color, $lightness: 5%);
+  }
+
+  &.button-secondary {
+    color: color.adjust($ui-primary-color, $lightness: 5%);
+    border: 1px solid color.adjust($ui-primary-color, $lightness: 5%);
+
+    &:hover,
+    &:active,
+    &:focus {
+      color: color.adjust($ui-primary-color, $lightness: 15%);
+      border: 1px solid color.adjust($ui-primary-color, $lightness: 15%);
+    }
   }
 }
 
@@ -151,6 +200,7 @@ body {
 
 .flash-message {
   border: 1px solid color.adjust($ui-base-color, $lightness: -16%);
+  color: color.adjust($ui-primary-color, $lightness: 5%);
 
   &.translation-prompt {
     color: color.adjust($ui-primary-color, $lightness: 20%, $saturation: -20%);
@@ -265,12 +315,16 @@ body {
   }
 
   & .hint,
-  p.hint {
-    color: color.adjust($default, $lightness: -25%, $saturation: -20%);
+  & p.hint {
+    color: color.adjust($ui-base-color, $lightness: -25%, $saturation: -20%);
+  }
+
+  & .hint a {
+    color: color.adjust($ui-base-color, $lightness: -35%, $saturation: -5%);
   }
 
   & .lead {
-    color: color.adjust($default, $lightness: -25%, $saturation: -20%);
+    color: color.adjust($ui-base-color, $lightness: -25%, $saturation: -20%);
   }
 
   & label {
@@ -311,10 +365,10 @@ a.table-action-link,
 button.table-action-link {
   color: color.adjust($default, $lightness: -15%, $saturation: -15%);
 
-  &.hover,
+  &:hover,
   &:active,
   &:focus {
-    color: color.adjust($default, $lightness: -10%, $saturation: -15%);
+    color: color.adjust($default, $lightness: -5%, $saturation: -5%);
   }
 }
 
