@@ -337,6 +337,16 @@ a {
   }
 }
 
+.detailed-status {
+  &__display-name {
+    color: color.adjust($ui-base-color, $lightness: -40%, $saturation: -40%);
+
+    & strong {
+      color: $ui-primary-color;
+    }
+  }
+}
+
 .dimension {
   &__item {
     &__indicator {
