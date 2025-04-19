@@ -222,6 +222,14 @@ a {
     background: color.adjust($ui-primary-color, $lightness: 5%);
   }
 
+  &:disabled {
+    background: color.adjust(
+      $ui-primary-color,
+      $lightness: 10%,
+      $saturation: -10%
+    );
+  }
+
   &.button-secondary {
     color: color.adjust($ui-primary-color, $lightness: 5%);
     border: 1px solid color.adjust($ui-primary-color, $lightness: 5%);
