@@ -12,6 +12,17 @@ body {
 }
 
 a {
+  &.table-action-link,
+  button.table-action-link {
+    color: color.adjust($default, $lightness: -15%, $saturation: -15%);
+
+    &:hover,
+    &:active,
+    &:focus {
+      color: color.adjust($default, $lightness: -5%, $saturation: -5%);
+    }
+  }
+
   &.status-card {
     &__description,
     &__host,
@@ -22,22 +33,11 @@ a {
     &:hover,
     &:active,
     &:focus {
-      &__description,
-      &__host,
-      &__title {
+      & .status-card__description,
+      & .status-card__host,
+      & .status-card__title {
         color: color.adjust($ui-primary-color, $lightness: 5%);
       }
-    }
-  }
-
-  &.table-action-link,
-  button.table-action-link {
-    color: color.adjust($default, $lightness: -15%, $saturation: -15%);
-
-    &:hover,
-    &:active,
-    &:focus {
-      color: color.adjust($default, $lightness: -5%, $saturation: -5%);
     }
   }
 }
@@ -791,16 +791,30 @@ a {
 }
 
 .status {
-  &-card__actions {
-    & button,
-    a {
-      color: rgba($white, 0.8);
+  &-card {
+    color: color.adjust($ui-base-color, $lightness: -40%, $saturation: -40%);
 
-      &:hover,
-      &:active,
-      &:focus {
-        color: $white;
+    &__description,
+    &__host,
+    &__title {
+      color: $ui-primary-color;
+    }
+
+    &__actions {
+      & button,
+      a {
+        color: rgba($white, 0.8);
+
+        &:hover,
+        &:active,
+        &:focus {
+          color: $white;
+        }
       }
+    }
+
+    &__image {
+      background: color.adjust($ui-base-color, $lightness: -10%);
     }
   }
 
@@ -816,7 +830,7 @@ a {
         color: color.adjust(
           $ui-primary-color,
           $lightness: 10%,
-          $saturation: -40%
+          $saturation: -20%
         );
       }
     }
