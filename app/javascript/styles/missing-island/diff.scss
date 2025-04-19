@@ -8,7 +8,7 @@ html {
 }
 
 body {
-  color: color.adjust($ui-primary-color, $saturation: -20%);
+  color: color.adjust($ui-primary-color, $saturation: -40%);
 }
 
 a {
@@ -57,7 +57,7 @@ a {
 .account {
   &__display-name {
     & .display-name {
-      color: color.adjust($ui-base-color, $lightness: -30%);
+      color: color.adjust($ui-base-color, $lightness: -30%, $saturation: -40%);
 
       & strong {
         color: $ui-primary-color;
@@ -92,23 +92,23 @@ a {
 
 .accounts-table {
   &__count {
-    color: color.adjust($ui-primary-color, $saturation: -20%);
+    color: color.adjust($ui-primary-color, $saturation: -40%);
 
     & small {
-      color: color.adjust($default, $lightness: -20%, $saturation: -20%);
+      color: color.adjust($default, $lightness: -20%, $saturation: -40%);
     }
   }
 
   & .account__display-name {
-    color: color.adjust($default, $lightness: -20%, $saturation: -20%);
+    color: color.adjust($default, $lightness: -20%, $saturation: -40%);
 
     & .display-name strong {
-      color: color.adjust($ui-primary-color, $saturation: -20%);
+      color: color.adjust($ui-primary-color, $saturation: -40%);
     }
   }
 
   & tbody td.accounts-table__extra {
-    color: color.adjust($default, $lightness: -20%, $saturation: -20%);
+    color: color.adjust($default, $lightness: -20%, $saturation: -40%);
   }
 }
 
@@ -138,11 +138,11 @@ a {
 
     & h3,
     h4 {
-      color: color.adjust($ui-primary-color, $saturation: -20%);
+      color: color.adjust($ui-primary-color, $saturation: -40%);
     }
 
     & > p {
-      color: color.adjust($default, $lightness: -25%, $saturation: -20%);
+      color: color.adjust($default, $lightness: -25%, $saturation: -40%);
     }
   }
 
@@ -151,7 +151,7 @@ a {
       color: color.adjust(
         $ui-primary-color,
         $lightness: 20%,
-        $saturation: -20%
+        $saturation: -40%
       );
 
       &.selected {
@@ -166,7 +166,7 @@ a {
         color: color.adjust(
           $ui-base-color,
           $lightness: -40%,
-          $saturation: -20%
+          $saturation: -40%
         );
 
         &:hover,
@@ -218,7 +218,7 @@ a {
     }
 
     & .hint {
-      color: color.adjust($ui-primary-color, $lightness: 5%, $saturation: -20%);
+      color: color.adjust($ui-primary-color, $lightness: 5%, $saturation: -40%);
     }
   }
 }
@@ -246,7 +246,7 @@ a {
 }
 
 .character-counter {
-  color: color.adjust($ui-base-color, $lightness: -20%, $saturation: -20%);
+  color: color.adjust($ui-base-color, $lightness: -20%, $saturation: -40%);
 }
 
 .column {
@@ -273,12 +273,12 @@ a {
 
     &__collapsible,
     & &__back-button.compact {
-      color: color.adjust($ui-primary-color, $lightness: 5%, $saturation: -20%);
+      color: color.adjust($ui-primary-color, $lightness: 5%, $saturation: -40%);
     }
   }
 
   &-link {
-    color: color.adjust($ui-primary-color, $saturation: -20%);
+    color: color.adjust($ui-primary-color, $saturation: -40%);
 
     &:hover,
     &:active,
@@ -435,7 +435,7 @@ a {
   color: color.adjust($ui-primary-color, $lightness: 5%);
 
   &.translation-prompt {
-    color: color.adjust($ui-primary-color, $lightness: 20%, $saturation: -20%);
+    color: color.adjust($ui-primary-color, $lightness: 20%, $saturation: -40%);
 
     a {
       color: color.adjust($ui-primary-color, $saturation: 10%);
@@ -467,7 +467,7 @@ a {
 }
 
 .icon-button {
-  color: color.adjust($ui-primary-color, $lightness: 10%, $saturation: -20%);
+  color: color.adjust($ui-primary-color, $lightness: 10%, $saturation: -40%);
 
   &:disabled {
     color: color.adjust($action-button-color, $lightness: -25%);
@@ -504,7 +504,7 @@ a {
 }
 
 .load-more {
-  color: color.adjust($ui-primary-color, $lightness: 20%, $saturation: -20%);
+  color: color.adjust($ui-primary-color, $lightness: 20%, $saturation: -40%);
 
   &:hover,
   &:active,
@@ -546,18 +546,20 @@ a {
   &-group {
     &__embedded-status {
       &__account {
-        color: color.adjust(
-          $ui-base-color,
-          $lightness: -40%,
-          $saturation: -20%
-        );
+        & bdi {
+          color: color.adjust(
+            $ui-base-color,
+            $lightness: -40%,
+            $saturation: -40%
+          );
+        }
       }
 
       &__content {
         color: color.adjust(
           $ui-base-color,
           $lightness: -40%,
-          $saturation: -20%
+          $saturation: -40%
         );
       }
     }
@@ -568,7 +570,7 @@ a {
           color: color.adjust(
             $ui-base-color,
             $lightness: -40%,
-            $saturation: -20%
+            $saturation: -40%
           );
 
           & bdi {
@@ -587,7 +589,7 @@ a {
 }
 
 .muted-hint {
-  color: color.adjust($default, $lightness: -25%, $saturation: -20%) !important;
+  color: color.adjust($default, $lightness: -25%, $saturation: -40%) !important;
 
   & a {
     color: color.adjust(
@@ -701,7 +703,7 @@ a {
 
   & .hint,
   & p.hint {
-    color: color.adjust($ui-primary-color, $lightness: 25%, $saturation: -20%);
+    color: color.adjust($ui-primary-color, $lightness: 25%, $saturation: -40%);
   }
 
   & .hint a {
@@ -709,7 +711,7 @@ a {
   }
 
   & .lead {
-    color: color.adjust($ui-base-color, $lightness: -25%, $saturation: -20%);
+    color: color.adjust($ui-base-color, $lightness: -25%, $saturation: -40%);
   }
 
   & label {
@@ -729,14 +731,14 @@ a {
   &__label,
   &__value__total,
   &__value__change {
-    color: color.adjust($ui-primary-color, $lightness: 20%, $saturation: -20%);
+    color: color.adjust($ui-primary-color, $lightness: 20%, $saturation: -40%);
   }
 }
 
 .search__input {
   background: $ui-base-color;
   border: 1px solid var(--background-border-color);
-  color: color.adjust($ui-primary-color, $lightness: 15%, $saturation: -20%);
+  color: color.adjust($ui-primary-color, $lightness: 15%, $saturation: -40%);
 
   @media screen and (max-width: $no-gap-breakpoint) {
     border-top: 0;
@@ -750,7 +752,7 @@ a {
       color: color.adjust(
         $ui-primary-color,
         $lightness: 20%,
-        $saturation: -20%
+        $saturation: -40%
       );
     }
   }
@@ -774,7 +776,7 @@ a {
     color: $primary-text-color;
 
     &__translate-button {
-      color: color.adjust($ui-base-color, $lightness: -40%, $saturation: -20%);
+      color: color.adjust($ui-base-color, $lightness: -40%, $saturation: -40%);
     }
 
     & a {
@@ -782,14 +784,14 @@ a {
         color: color.adjust(
           $ui-primary-color,
           $lightness: 10%,
-          $saturation: -20%
+          $saturation: -40%
         );
       }
     }
   }
 
   &__display-name {
-    color: color.adjust($ui-base-color, $lightness: -40%, $saturation: -20%);
+    color: color.adjust($ui-base-color, $lightness: -40%, $saturation: -40%);
 
     & .display-name {
       & strong {
@@ -800,19 +802,19 @@ a {
 
   &__info {
     &__icons {
-      color: color.adjust($ui-base-color, $lightness: -40%, $saturation: -20%);
+      color: color.adjust($ui-base-color, $lightness: -40%, $saturation: -40%);
     }
   }
 
   &__relative-time {
-    color: color.adjust($ui-base-color, $lightness: -50%, $saturation: -20%);
+    color: color.adjust($ui-base-color, $lightness: -50%, $saturation: -40%);
   }
 }
 
 input.glitch-setting-text {
-  color: color.adjust($ui-base-color, $lightness: -40%, $saturation: -20%);
+  color: color.adjust($ui-base-color, $lightness: -40%, $saturation: -40%);
   border-bottom: 2px solid
-    color.adjust($ui-base-color, $lightness: -40%, $saturation: -20%);
+    color.adjust($ui-base-color, $lightness: -40%, $saturation: -40%);
 }
 
 // Glitch settings
@@ -1144,7 +1146,7 @@ input.glitch-setting-text {
         color: $darker-text-color;
 
         &:disabled {
-          color: color.adjust($ui-base-color, $saturation: -20%);
+          color: color.adjust($ui-base-color, $saturation: -40%);
         }
       }
     }
