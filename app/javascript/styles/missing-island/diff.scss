@@ -345,6 +345,14 @@ a {
       color: $ui-primary-color;
     }
   }
+
+  &__meta {
+    color: color.adjust($ui-base-color, $lightness: -50%, $saturation: -40%);
+
+    & .animated-number {
+      color: color.adjust($ui-base-color, $lightness: -20%, $saturation: -40%);
+    }
+  }
 }
 
 .dimension {
@@ -523,6 +531,10 @@ a {
   }
 }
 
+.link-button {
+  color: color.adjust($ui-primary-color, $lightness: 20%, $saturation: -40%);
+}
+
 .link-footer {
   & p,
   & p a {
@@ -663,6 +675,16 @@ a {
         $lightness: 30%,
         $saturation: -30%
       );
+    }
+  }
+}
+
+.safety-action-modal {
+  &__confirmation {
+    color: color.adjust($ui-primary-color, $saturation: -30%);
+
+    & h1 {
+      color: color.adjust($ui-primary-color, $saturation: -30%);
     }
   }
 }
