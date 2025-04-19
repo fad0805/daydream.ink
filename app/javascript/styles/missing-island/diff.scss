@@ -283,7 +283,11 @@ a {
     &:hover,
     &:active,
     &:focus {
-      color: color.adjust($ui-primary-color, $lightness: 15%);
+      color: color.adjust(
+        $ui-primary-color,
+        $lightness: 15%,
+        $saturation: -40%
+      );
     }
 
     &.active {
@@ -703,11 +707,11 @@ a {
 
   & .hint,
   & p.hint {
-    color: color.adjust($ui-primary-color, $lightness: 25%, $saturation: -40%);
+    color: color.adjust($ui-primary-color, $lightness: 10%, $saturation: -40%);
   }
 
   & .hint a {
-    color: color.adjust($ui-base-color, $lightness: -35%, $saturation: -5%);
+    color: color.adjust($ui-base-color, $lightness: -35%, $saturation: -30%);
   }
 
   & .lead {
