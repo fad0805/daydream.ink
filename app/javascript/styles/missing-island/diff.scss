@@ -13,19 +13,17 @@ body {
 
 a {
   &.status-card {
-    color: $ui-primary-color;
+    &__description,
+    &__host,
+    &__title {
+      color: $ui-primary-color;
+    }
 
     &:hover,
     &:active,
     &:focus {
-      &__description {
-        color: $ui-primary-color;
-      }
-
-      &__host {
-        color: color.adjust($ui-primary-color, $lightness: 5%);
-      }
-
+      &__description,
+      &__host,
       &__title {
         color: color.adjust($ui-primary-color, $lightness: 5%);
       }
