@@ -499,6 +499,48 @@ body {
       }
     }
   }
+
+  &-group {
+    &__embedded-status {
+      &__account {
+        color: color.adjust(
+          $ui-base-color,
+          $lightness: -40%,
+          $saturation: -20%
+        );
+      }
+
+      &__content {
+        color: color.adjust(
+          $ui-base-color,
+          $lightness: -40%,
+          $saturation: -20%
+        );
+      }
+    }
+
+    &__main {
+      &__header {
+        &__label {
+          color: color.adjust(
+            $ui-base-color,
+            $lightness: -40%,
+            $saturation: -20%
+          );
+
+          & bdi {
+            color: $ui-primary-color;
+          }
+        }
+      }
+    }
+
+    &__unread {
+      &::before {
+        border-inline-start: 4px solid $ui-primary-color;
+      }
+    }
+  }
 }
 
 .muted-hint {
@@ -687,10 +729,14 @@ body {
 
   &__content {
     color: $primary-text-color;
+
+    &__translate-button {
+      color: color.adjust($ui-base-color, $lightness: -40%, $saturation: -20%);
+    }
   }
 
   &__display-name {
-    color: color.adjust($ui-base-color, $lightness: -40%);
+    color: color.adjust($ui-base-color, $lightness: -40%, $saturation: -20%);
 
     & .display-name {
       & strong {
@@ -1054,6 +1100,10 @@ input.glitch-setting-text {
     .controls {
       .icon-button {
         color: $darker-text-color;
+
+        &:disabled {
+          color: color.adjust($ui-base-color, $saturation: -20%);
+        }
       }
     }
 
