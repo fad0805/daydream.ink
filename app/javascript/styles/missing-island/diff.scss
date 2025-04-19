@@ -480,7 +480,7 @@ a {
   color: color.adjust($ui-primary-color, $lightness: 10%, $saturation: -40%);
 
   &:disabled {
-    color: color.adjust($action-button-color, $lightness: -25%);
+    color: color.adjust($ui-base-color, $lightness: -25%, $saturation: -20%);
   }
 }
 
