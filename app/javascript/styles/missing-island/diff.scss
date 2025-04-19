@@ -1,9 +1,7 @@
 @use 'sass:math';
 @use 'sass:color';
 @use 'variables' as *;
-
-// Notes!
-// Sass color functions, "darken" and "lighten" are automatically replaced.
+@use '../mastodon-light/diff' as *;
 
 html {
   scrollbar-color: $ui-base-color rgba($ui-base-color, 0.25);
@@ -11,6 +9,42 @@ html {
 
 body {
   color: color.adjust($ui-primary-color, $saturation: -20%);
+}
+
+.account {
+  &__display-name {
+    & .display-name {
+      color: color.adjust($ui-base-color, $lightness: -30%);
+
+      & strong {
+        color: $ui-primary-color;
+      }
+    }
+  }
+
+  &__header {
+    background: $white;
+  }
+
+  &__section-headline {
+    & a {
+      color: color.adjust($ui-base-color, $lightness: -30%);
+
+      &:hover,
+      &:active,
+      &:focus {
+        color: color.adjust($ui-base-color, $lightness: -25%);
+      }
+
+      &.active {
+        color: $ui-primary-color;
+
+        &::before {
+          background: $ui-primary-color;
+        }
+      }
+    }
+  }
 }
 
 .accounts-table {
@@ -111,6 +145,37 @@ body {
           color: color.adjust($ui-primary-color, $lightness: -5%);
         }
       }
+
+      & .simple-navigation-active-leaf {
+        & a {
+          color: $ui-primary-color;
+        }
+      }
+    }
+  }
+}
+
+.app-form {
+  &__avatar-input,
+  &__header-input {
+    &:hover,
+    &:focus,
+    &:active {
+      background: $ui-base-lighter-color;
+    }
+
+    & .icon {
+      color: color.adjust($ui-primary-color, $lightness: -5%);
+    }
+  }
+
+  &__toggle__label {
+    & strong {
+      color: color.adjust($ui-primary-color, $lightness: 5%, $saturation: 15%);
+    }
+
+    & .hint {
+      color: color.adjust($ui-primary-color, $lightness: 5%, $saturation: -20%);
     }
   }
 }
@@ -133,6 +198,86 @@ body {
     &:focus {
       color: color.adjust($ui-primary-color, $lightness: 15%);
       border: 1px solid color.adjust($ui-primary-color, $lightness: 15%);
+    }
+  }
+}
+
+.character-counter {
+  color: color.adjust($ui-base-color, $lightness: -20%, $saturation: -20%);
+}
+
+.column {
+  &-header {
+    &__button {
+      color: $ui-primary-color;
+
+      &:hover,
+      &:active,
+      &:focus {
+        color: color.adjust($ui-primary-color, $lightness: 10%);
+      }
+
+      &.active {
+        color: $ui-highlight-color;
+
+        &:hover,
+        &:active,
+        &:focus {
+          color: color.adjust($ui-highlight-color, $lightness: 10%);
+        }
+      }
+    }
+
+    &__collapsible,
+    & &__back-button.compact {
+      color: color.adjust($ui-primary-color, $lightness: 5%, $saturation: -20%);
+    }
+  }
+
+  &-link {
+    color: color.adjust($ui-primary-color, $saturation: -20%);
+
+    &:hover,
+    &:active,
+    &:focus {
+      color: color.adjust($ui-primary-color, $lightness: 15%);
+    }
+
+    &.active {
+      color: $ui-primary-color;
+    }
+  }
+
+  &-settings h3 {
+    color: color.adjust($primary-text-color, $lightness: 10%);
+  }
+
+  &-subheading {
+    background: $ui-base-color;
+    color: $ui-primary-color;
+  }
+}
+
+.compose-form {
+  box-shadow: none;
+
+  &__actions .icon-button {
+    color: color.adjust($ui-primary-color, $lightness: 10%);
+  }
+
+  & .autosuggest-textarea__textarea,
+  &__highlightable {
+    background: $ui-base-color;
+    color: $primary-text-color;
+  }
+
+  & &__warning {
+    border-color: $ui-highlight-color;
+    background-color: rgba($ui-highlight-color, 0.1);
+
+    &,
+    a {
+      color: $ui-highlight-color;
     }
   }
 }
@@ -167,6 +312,50 @@ body {
     &__value {
       color: color.adjust($ui-base-color, $lightness: -20%);
     }
+  }
+}
+
+.dismissable-banner {
+  border: 1px solid color.adjust($ui-base-color, $lightness: -16%);
+  background: $ui-base-color;
+
+  &__action {
+    & .icon-button {
+      color: color.adjust(
+        $ui-primary-color,
+        $lightness: 20%,
+        $saturation: -15%
+      );
+    }
+  }
+
+  &__message {
+    color: color.adjust($ui-primary-color, $lightness: 20%, $saturation: -15%);
+  }
+}
+
+.drawer {
+  &__header {
+    & a {
+      color: color.adjust($ui-primary-color, $lightness: -5%);
+
+      &:hover,
+      &:active,
+      &:focus {
+        color: $ui-primary-color;
+      }
+    }
+  }
+}
+
+.dropdown-button {
+  color: color.adjust($ui-primary-color, $lightness: 10%);
+  border: 1px solid color.adjust($ui-primary-color, $lightness: 10%);
+
+  &.active {
+    color: $white;
+    background: $ui-primary-color;
+    border-color: $ui-primary-color;
   }
 }
 
@@ -221,8 +410,95 @@ body {
   }
 }
 
+.follow {
+  &_requests-unlocked {
+    &_explanation {
+      background: $ui-base-color;
+      color: color.adjust($ui-base-color, $lightness: -40%);
+
+      & a {
+        color: $ui-primary-color;
+      }
+    }
+  }
+}
+
+.icon-button {
+  color: color.adjust($ui-primary-color, $lightness: 10%, $saturation: -20%);
+
+  &:disabled {
+    color: color.adjust($action-button-color, $lightness: -25%);
+  }
+}
+
+.language {
+  &-dropdown {
+    &__dropdown {
+      & .emoji-mart-search input {
+        background: $ui-base-color;
+        color: color.adjust($ui-primary-color, $lightness: 40%);
+      }
+
+      &__results {
+        &__item {
+          color: $primary-text-color;
+
+          &__common-name {
+            color: color.adjust($ui-base-color, $lightness: -40%);
+          }
+
+          &.active {
+            background: $ui-primary-color;
+          }
+        }
+      }
+    }
+  }
+}
+
+.loading-bar {
+  background-color: $ui-primary-color;
+}
+
+.load-more {
+  color: color.adjust($ui-primary-color, $lightness: 20%, $saturation: -20%);
+
+  &:hover,
+  &:active,
+  &:focus {
+    background: $ui-base-color;
+  }
+}
+
+.link-footer {
+  & p,
+  & p a {
+    color: color.adjust($ui-primary-color, $lightness: -5%);
+  }
+}
+
 .nothing-here {
   color: color.adjust($default, $lightness: -15%, $saturation: -15%) !important;
+}
+
+.notification {
+  &__filter-bar {
+    & button {
+      color: color.adjust($ui-base-color, $lightness: -30%, $saturation: -10%);
+
+      &.active {
+        color: $ui-primary-color;
+
+        &::before {
+          background: $ui-primary-color;
+        }
+
+        &::after {
+          border-color: transparent transparent $white;
+        }
+      }
+    }
+  }
 }
 
 .muted-hint {
@@ -243,6 +519,30 @@ body {
 
     &__text__type {
       color: color.adjust($default, $lightness: -35%);
+    }
+  }
+}
+
+.pillbar {
+  &-button {
+    &:not([disabled]) {
+      background: $ui-secondary-color;
+
+      &:hover,
+      &:active,
+      &:focus {
+        background: color.adjust($ui-secondary-color, $lightness: -5%);
+      }
+
+      &.active {
+        background: $ui-primary-color;
+
+        &:hover,
+        &:active,
+        &:focus {
+          background: color.adjust($ui-primary-color, $lightness: -5%);
+        }
+      }
     }
   }
 }
@@ -291,7 +591,7 @@ body {
       no-repeat right 8px center / auto 14px;
   }
 
-  &.recommended {
+  & .recommended {
     border-color: $ui-highlight-color;
     color: $ui-highlight-color;
     background-color: rgba($ui-highlight-color, 0.1);
@@ -316,7 +616,7 @@ body {
 
   & .hint,
   & p.hint {
-    color: color.adjust($ui-base-color, $lightness: -25%, $saturation: -20%);
+    color: color.adjust($ui-primary-color, $lightness: 25%, $saturation: -20%);
   }
 
   & .hint a {
@@ -348,16 +648,65 @@ body {
   }
 }
 
-.status-card__actions {
-  & button,
-  a {
-    color: rgba($white, 0.8);
+.search__input {
+  background: $ui-base-color;
+  border: 1px solid var(--background-border-color);
+  color: color.adjust($ui-primary-color, $lightness: 15%, $saturation: -20%);
 
-    &:hover,
-    &:active,
-    &:focus {
-      color: $white;
+  @media screen and (max-width: $no-gap-breakpoint) {
+    border-top: 0;
+    border-bottom: 0;
+  }
+}
+
+.setting {
+  &-toggle {
+    &__label {
+      color: color.adjust(
+        $ui-primary-color,
+        $lightness: 20%,
+        $saturation: -20%
+      );
     }
+  }
+}
+
+.status {
+  &-card__actions {
+    & button,
+    a {
+      color: rgba($white, 0.8);
+
+      &:hover,
+      &:active,
+      &:focus {
+        color: $white;
+      }
+    }
+  }
+
+  &__content {
+    color: $primary-text-color;
+  }
+
+  &__display-name {
+    color: color.adjust($ui-base-color, $lightness: -40%);
+
+    & .display-name {
+      & strong {
+        color: $ui-primary-color;
+      }
+    }
+  }
+
+  &__info {
+    &__icons {
+      color: color.adjust($ui-base-color, $lightness: -40%, $saturation: -20%);
+    }
+  }
+
+  &__relative-time {
+    color: color.adjust($ui-base-color, $lightness: -50%, $saturation: -20%);
   }
 }
 
@@ -369,6 +718,38 @@ button.table-action-link {
   &:active,
   &:focus {
     color: color.adjust($default, $lightness: -5%, $saturation: -5%);
+  }
+}
+
+input.glitch-setting-text {
+  color: color.adjust($ui-base-color, $lightness: -40%, $saturation: -20%);
+  border-bottom: 2px solid
+    color.adjust($ui-base-color, $lightness: -40%, $saturation: -20%);
+}
+
+// Glitch settings
+.glitch {
+  &.local-settings {
+    background: $ui-base-color;
+
+    &__navigation {
+      background: $ui-base-color;
+
+      &__item {
+        background: color.adjust($ui-base-color, $lightness: 5%);
+        border-bottom: 1px solid color.adjust($ui-base-color, $lightness: -10%);
+
+        &:hover,
+        &:active,
+        &:focus {
+          background: $ui-base-color;
+        }
+
+        &.active {
+          background: $ui-primary-color;
+        }
+      }
+    }
   }
 }
 
@@ -384,24 +765,6 @@ button.table-action-link {
 
 .directory__card__img {
   background: color.adjust($ui-base-color, $lightness: 12%);
-}
-
-.account__header {
-  background: $white;
-}
-
-.column-header__button.active {
-  color: $ui-highlight-color;
-
-  &:hover,
-  &:active,
-  &:focus {
-    color: $ui-highlight-color;
-  }
-}
-
-.icon-button:disabled {
-  color: color.adjust($action-button-color, $lightness: -25%);
 }
 
 .getting-started__footer a {
@@ -431,7 +794,6 @@ button.table-action-link {
   }
 }
 
-.search__input,
 .search__popout,
 .setting-text,
 .report-dialog-modal__textarea,
@@ -441,13 +803,6 @@ button.table-action-link {
 
 .report-dialog-modal .dialog-option .poll__input {
   color: $white;
-}
-
-.search__input {
-  @media screen and (max-width: $no-gap-breakpoint) {
-    border-top: 0;
-    border-bottom: 0;
-  }
 }
 
 .list-editor .search .search__input {
@@ -601,17 +956,24 @@ button.table-action-link {
   }
 }
 
-.react-toggle-track {
-  background: $ui-primary-color;
-}
+.react-toggle {
+  &-track {
+    background: color.adjust($ui-base-color, $lightness: -30%);
+  }
 
-.react-toggle:hover:not(.react-toggle--disabled) .react-toggle-track {
-  background: color.adjust($ui-primary-color, $lightness: 10%);
-}
+  &:hover:not(&--disabled) &-track {
+    background: color.adjust($ui-base-color, $lightness: -40%);
+  }
 
-.react-toggle.react-toggle--checked:hover:not(.react-toggle--disabled)
-  .react-toggle-track {
-  background: color.adjust($ui-highlight-color, $lightness: 10%);
+  &.react-toggle--checked {
+    .react-toggle-track {
+      background: color.adjust($ui-primary-color, $lightness: 10%);
+    }
+
+    &:hover:not(&--disabled) .react-toggle-track {
+      background: $ui-primary-color;
+    }
+  }
 }
 
 // Change the default color used for the text in an empty column or on the error column
@@ -711,16 +1073,6 @@ button.table-action-link {
   }
 }
 
-.compose-form .compose-form__warning {
-  border-color: $ui-highlight-color;
-  background-color: rgba($ui-highlight-color, 0.1);
-
-  &,
-  a {
-    color: $ui-highlight-color;
-  }
-}
-
 .status__content,
 .reply-indicator__content {
   a {
@@ -728,7 +1080,6 @@ button.table-action-link {
   }
 }
 
-.notification__filter-bar button.active::after,
 .account__section-headline a.active::after {
   border-color: transparent transparent $white;
 }
@@ -741,9 +1092,7 @@ button.table-action-link {
 .directory__tag > a,
 .directory__tag > div,
 .card > a,
-.page-header,
-.compose-form,
-.compose-form__warning {
+.page-header {
   box-shadow: none;
 }
 
@@ -778,20 +1127,40 @@ button.table-action-link {
   }
 }
 
+.privacy {
+  &-dropdown {
+    &__option {
+      color: $primary-text-color;
+
+      &:hover,
+      &:active,
+      &:focus {
+        background: $ui-base-color;
+      }
+
+      & strong {
+        color: $ui-primary-color;
+      }
+
+      &.active {
+        background: $ui-primary-color;
+      }
+
+      &__additional,
+      &__content {
+        color: color.adjust($ui-base-color, $lightness: -40%);
+      }
+    }
+  }
+}
+
 .compose-form__actions .icon-button.active,
-.dropdown-button.active,
 .privacy-dropdown__option.active,
 .privacy-dropdown__option:focus,
-.language-dropdown__dropdown__results__item:focus,
-.language-dropdown__dropdown__results__item.active,
 .privacy-dropdown__option:focus .privacy-dropdown__option__content,
 .privacy-dropdown__option:focus .privacy-dropdown__option__content strong,
 .privacy-dropdown__option.active .privacy-dropdown__option__content,
-.privacy-dropdown__option.active .privacy-dropdown__option__content strong,
-.language-dropdown__dropdown__results__item:focus
-  .language-dropdown__dropdown__results__item__common-name,
-.language-dropdown__dropdown__results__item.active
-  .language-dropdown__dropdown__results__item__common-name {
+.privacy-dropdown__option.active .privacy-dropdown__option__content strong {
   color: $white;
 }
 
@@ -799,10 +1168,7 @@ button.table-action-link {
   color: color.adjust($ui-highlight-color, $lightness: 8%);
 }
 
-.compose-form .autosuggest-textarea__textarea,
-.compose-form__highlightable,
 .autosuggest-textarea__suggestions,
-.search__input,
 .search__popout,
 .emoji-mart-search input,
 .language-dropdown__dropdown .emoji-mart-search input,
