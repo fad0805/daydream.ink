@@ -11,6 +11,49 @@ body {
   color: color.adjust($ui-primary-color, $saturation: -20%);
 }
 
+a {
+  &.status-card {
+    & &__description {
+      color: $ui-primary-color;
+    }
+
+    & &__host {
+      color: $ui-primary-color;
+    }
+
+    & &__title {
+      color: $ui-primary-color;
+    }
+
+    &:hover,
+    &:active,
+    &:focus {
+      & &__description {
+        color: $ui-primary-color;
+      }
+
+      & &__host {
+        color: color.adjust($ui-primary-color, $lightness: 5%);
+      }
+
+      & &__title {
+        color: color.adjust($ui-primary-color, $lightness: 5%);
+      }
+    }
+  }
+
+  &.table-action-link,
+  button.table-action-link {
+    color: color.adjust($default, $lightness: -15%, $saturation: -15%);
+
+    &:hover,
+    &:active,
+    &:focus {
+      color: color.adjust($default, $lightness: -5%, $saturation: -5%);
+    }
+  }
+}
+
 .account {
   &__display-name {
     & .display-name {
@@ -763,17 +806,6 @@ body {
 
   &__relative-time {
     color: color.adjust($ui-base-color, $lightness: -50%, $saturation: -20%);
-  }
-}
-
-a.table-action-link,
-button.table-action-link {
-  color: color.adjust($default, $lightness: -15%, $saturation: -15%);
-
-  &:hover,
-  &:active,
-  &:focus {
-    color: color.adjust($default, $lightness: -5%, $saturation: -5%);
   }
 }
 
