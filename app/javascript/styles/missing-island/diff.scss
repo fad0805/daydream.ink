@@ -733,6 +733,16 @@ body {
     &__translate-button {
       color: color.adjust($ui-base-color, $lightness: -40%, $saturation: -20%);
     }
+
+    & a {
+      &.unhandled-link {
+        color: color.adjust(
+          $ui-primary-color,
+          $lightness: 10%,
+          $saturation: -20%
+        );
+      }
+    }
   }
 
   &__display-name {
