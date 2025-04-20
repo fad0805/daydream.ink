@@ -603,6 +603,18 @@ a {
 }
 
 .hover-card {
+  & .account-fields {
+    color: color.adjust($ui-primary-color, $lightness: -5%);
+
+    & dl dt {
+      color: color.adjust($ui-base-color, $lightness: -50%, $saturation: -40%);
+    }
+  }
+
+  &__bio {
+    color: color.adjust($ui-primary-color, $lightness: -5%);
+  }
+
   & .display-name {
     &__account {
       color: color.adjust(
@@ -618,7 +630,7 @@ a {
   }
 
   &__number {
-    color: color.adjust($ui-base-color, $lightness: -40%, $saturation: -40%);
+    color: color.adjust($ui-base-color, $lightness: -50%, $saturation: -40%);
   }
 }
 
