@@ -216,6 +216,7 @@ a {
         a:active,
         a:focus {
           background: $ui-primary-color;
+          color: $white;
         }
       }
     }
