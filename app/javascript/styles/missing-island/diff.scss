@@ -1,7 +1,6 @@
 @use 'sass:math';
 @use 'sass:color';
 @use 'variables' as *;
-@use '../mastodon-light/diff' as *;
 
 html {
   scrollbar-color: $ui-base-color rgba($ui-base-color, 0.25);
@@ -309,6 +308,18 @@ a {
 
 .character-counter {
   color: color.adjust($ui-base-color, $lightness: -20%, $saturation: -40%);
+}
+
+.circular-progress {
+  color: lighten($ui-base-color, 26%);
+  animation: 1.4s linear 0s infinite normal none running simple-rotate;
+
+  circle {
+    stroke: currentColor;
+    stroke-dasharray: 80px, 200px;
+    stroke-dashoffset: 0;
+    animation: circular-progress 1.4s ease-in-out infinite;
+  }
 }
 
 .column {
