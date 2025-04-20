@@ -43,6 +43,32 @@ a {
 }
 
 .account {
+  &__action-bar {
+    border-top: 1px solid color.adjust($ui-base-color, $lightness: -30%);
+    border-bottom: 1px solid color.adjust($ui-base-color, $lightness: -30%);
+
+    &__tab {
+      border-inline-start: 1px solid
+        color.adjust($ui-base-color, $lightness: -30%);
+
+      &.active {
+        border-bottom: 4px solid $ui-primary-color;
+      }
+
+      & > span {
+        color: color.adjust(
+          $ui-base-color,
+          $lightness: -50%,
+          $saturation: -20%
+        );
+      }
+
+      & strong {
+        color: $ui-primary-color;
+      }
+    }
+  }
+
   &__display-name {
     & .display-name {
       color: color.adjust($ui-base-color, $lightness: -30%, $saturation: -40%);
@@ -53,13 +79,53 @@ a {
     }
   }
 
+  &__domain-pill {
+    background: $ui-base-color;
+    color: $ui-primary-color;
+  }
+
   &__header {
     background: $white;
+
+    &__bio &__fields {
+      & dt {
+        color: color.adjust($ui-primary-color, $saturation: -20%);
+      }
+
+      & dd {
+        color: color.adjust(
+          $ui-base-color,
+          $lightness: -30%,
+          $saturation: -20%
+        );
+      }
+    }
+
+    &__tabs {
+      &__name {
+        & h1 {
+          color: $ui-primary-color;
+
+          & small {
+            color: color.adjust(
+              $ui-base-color,
+              $lightness: -30%,
+              $saturation: -20%
+            );
+          }
+        }
+      }
+    }
+  }
+
+  &-role {
+    border: 1px solid color.adjust($ui-base-color, $lightness: -30%);
+    color: color.adjust($ui-base-color, $lightness: -30%, $saturation: -20%);
   }
 
   &__section-headline {
     & a {
-      color: color.adjust($ui-base-color, $lightness: -30%);
+      color: color.adjust($ui-base-color, $lightness: -30%, $saturation: -20%);
 
       &:hover,
       &:active,
@@ -306,6 +372,16 @@ a {
 
   &__actions .icon-button {
     color: color.adjust($ui-primary-color, $lightness: 10%);
+
+    &:hover,
+    &:active,
+    &:focus {
+      color: $ui-primary-color;
+    }
+
+    &.active {
+      background: $ui-primary-color;
+    }
   }
 
   & .autosuggest-textarea__textarea,
@@ -353,6 +429,12 @@ a {
       color: color.adjust($ui-base-color, $lightness: -20%, $saturation: -40%);
     }
   }
+}
+
+.content-warning {
+  background: $ui-base-color;
+  border: 1px solid color.adjust($ui-base-color, $lightness: -20%);
+  color: color.adjust($ui-primary-color, $saturation: -10%);
 }
 
 .dimension {
@@ -484,6 +566,34 @@ a {
   }
 }
 
+.hashtag-bar {
+  color: $ui-primary-color;
+
+  & a {
+    background: $ui-base-color;
+  }
+}
+
+.hover-card {
+  & .display-name {
+    &__account {
+      color: color.adjust(
+        $ui-primary-color,
+        $lightness: 20%,
+        $saturation: -40%
+      );
+    }
+
+    & bdi {
+      color: $ui-primary-color;
+    }
+  }
+
+  &__number {
+    color: color.adjust($ui-base-color, $lightness: -40%, $saturation: -40%);
+  }
+}
+
 .icon-button {
   color: color.adjust($ui-primary-color, $lightness: 10%, $saturation: -40%);
 
@@ -549,7 +659,7 @@ a {
 .notification {
   &__filter-bar {
     & button {
-      color: color.adjust($ui-base-color, $lightness: -30%, $saturation: -10%);
+      color: color.adjust($ui-base-color, $lightness: -30%, $saturation: -20%);
 
       &.active {
         color: $ui-primary-color;
@@ -850,6 +960,21 @@ a {
     &__icons {
       color: color.adjust($ui-base-color, $lightness: -40%, $saturation: -40%);
     }
+  }
+
+  &__line {
+    border-inline-start: 2px solid
+      color.adjust($ui-base-color, $lightness: -20%);
+
+    &--full {
+      &::before {
+        background: color.adjust($ui-base-color, $lightness: -20%);
+      }
+    }
+  }
+
+  &__prepend {
+    color: color.adjust($ui-base-color, $lightness: -40%, $saturation: -40%);
   }
 
   &__relative-time {
