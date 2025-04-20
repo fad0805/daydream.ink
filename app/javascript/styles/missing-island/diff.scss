@@ -7,6 +7,7 @@ html {
 }
 
 body {
+  background: color.adjust($ui-base-color, $lightness: 5%, $saturation: -20%);
   color: color.adjust($ui-primary-color, $saturation: -40%);
 }
 
@@ -73,7 +74,7 @@ a {
       color: color.adjust($ui-base-color, $lightness: -30%, $saturation: -40%);
 
       & strong {
-        color: $ui-primary-color;
+        color: color.adjust($ui-primary-color, $lightness: -10%);
       }
     }
   }
@@ -112,7 +113,7 @@ a {
       & a {
         color: color.adjust(
           $ui-base-color,
-          $lightness: -30%,
+          $lightness: -50%,
           $saturation: -20%
         );
       }
@@ -124,7 +125,7 @@ a {
       & dd {
         color: color.adjust(
           $ui-base-color,
-          $lightness: -30%,
+          $lightness: -50%,
           $saturation: -20%
         );
       }
@@ -133,12 +134,12 @@ a {
     &__tabs {
       &__name {
         & h1 {
-          color: $ui-primary-color;
+          color: color.adjust($ui-primary-color, $lightness: -10%);
 
           & small {
             color: color.adjust(
               $ui-base-color,
-              $lightness: -30%,
+              $lightness: -50%,
               $saturation: -20%
             );
           }
@@ -149,7 +150,7 @@ a {
 
   &-role {
     border: 1px solid color.adjust($ui-base-color, $lightness: -30%);
-    color: color.adjust($ui-base-color, $lightness: -30%, $saturation: -20%);
+    color: color.adjust($ui-primary-color, $lightness: -5%);
   }
 
   &__section-headline {
@@ -182,10 +183,10 @@ a {
     }
   }
 
-  & .account__display-name {
+  .account__display-name {
     color: color.adjust($default, $lightness: -20%, $saturation: -40%);
 
-    & .display-name strong {
+    .display-name strong {
       color: color.adjust($ui-primary-color, $saturation: -40%);
     }
   }
@@ -1043,7 +1044,7 @@ a {
 
     & .display-name {
       & strong {
-        color: $ui-primary-color;
+        color: color.adjust($ui-primary-color, $lightness: -10%);
       }
     }
   }
