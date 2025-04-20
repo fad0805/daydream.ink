@@ -86,11 +86,37 @@ a {
   &__header {
     background: $white;
 
+    &__account-note {
+      label {
+        color: $ui-primary-color;
+      }
+
+      textarea {
+        color: color.adjust($ui-primary-color, $lightness: 10%);
+
+        &::placeholder {
+          color: $dark-text-color;
+        }
+
+        &:focus {
+          background: $ui-base-color;
+        }
+      }
+    }
+
     &__bio &__content {
       color: color.adjust($ui-primary-color, $lightness: -5%);
     }
 
     &__bio &__fields {
+      & a {
+        color: color.adjust(
+          $ui-base-color,
+          $lightness: -30%,
+          $saturation: -20%
+        );
+      }
+
       & dt {
         color: color.adjust($ui-primary-color, $saturation: -20%);
       }
