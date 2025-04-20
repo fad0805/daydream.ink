@@ -820,7 +820,7 @@ a {
       }
     }
 
-    &__unread {
+    &--unread {
       &::before {
         border-inline-start: 4px solid $ui-primary-color;
       }
