@@ -211,8 +211,12 @@ a {
 
   & .content {
     &__heading {
-      &__tabs a:hover {
-        background: $ui-primary-color;
+      &__tabs {
+        a:hover,
+        a:active,
+        a:focus {
+          background: $ui-primary-color;
+        }
       }
     }
 
@@ -230,8 +234,8 @@ a {
     }
   }
 
-  & .content__heading__tabs {
-    & a {
+  .content__heading__tabs {
+    a {
       color: color.adjust(
         $ui-primary-color,
         $lightness: 20%,
@@ -244,24 +248,20 @@ a {
     }
   }
 
-  & .sidebar {
-    & ul {
-      & a {
-        color: color.adjust(
-          $ui-base-color,
-          $lightness: -40%,
-          $saturation: -40%
-        );
+  .sidebar {
+    ul {
+      a {
+        color: color.adjust($ui-primary-color, $saturation: -20%);
 
         &:hover,
         &:active,
         &:focus {
-          background: $ui-primary-color;
+          background: color.adjust($ui-primary-color, $saturation: -10%);
           color: $white;
         }
       }
 
-      & .selected {
+      .selected {
         background: $ui-base-color;
 
         & ul {
@@ -273,9 +273,15 @@ a {
         }
       }
 
-      & .simple-navigation-active-leaf {
-        & a {
+      .simple-navigation-active-leaf {
+        a {
           color: $ui-primary-color;
+
+          &:hover,
+          &:active,
+          &:focus {
+            color: $white;
+          }
         }
       }
     }
@@ -612,13 +618,21 @@ a {
   &_requests-unlocked {
     &_explanation {
       background: $ui-base-color;
-      color: color.adjust($ui-base-color, $lightness: -40%);
+      color: color.adjust(
+        $ui-primary-color,
+        $lightness: -20%,
+        $saturation: -20%
+      );
 
       & a {
         color: $ui-primary-color;
       }
     }
   }
+}
+
+.form-section {
+  background: color.adjust($ui-base-color, $lightness: 1%);
 }
 
 .hashtag-bar {
@@ -669,6 +683,11 @@ a {
   }
 }
 
+.input-copy {
+  background: $ui-base-color;
+  border: 1px solid color.adjust($ui-base-color, $lightness: -20%);
+}
+
 .language {
   &-dropdown {
     &__dropdown {
@@ -682,7 +701,7 @@ a {
           color: $primary-text-color;
 
           &__common-name {
-            color: color.adjust($ui-base-color, $lightness: -40%);
+            color: color.adjust($ui-primary-color, $saturation: -10%);
           }
 
           &.active {
@@ -716,6 +735,21 @@ a {
   & p,
   & p a {
     color: color.adjust($ui-primary-color, $lightness: -5%);
+  }
+}
+
+.more-from-author {
+  color: color.adjust($ui-primary-color, $lightness: -5%);
+  background: $white;
+
+  a {
+    color: color.adjust($ui-primary-color, $lightness: -5%);
+
+    &:hover,
+    &:active,
+    &:focus {
+      color: $ui-primary-color;
+    }
   }
 }
 
@@ -893,7 +927,7 @@ a {
 }
 
 .simple_form {
-  color: $ui-primary-color;
+  color: color.adjust($ui-primary-color, $saturation: -20%);
 
   & input[type='text'],
   & input[type='number'],
@@ -903,7 +937,7 @@ a {
   & input[type='datetime-local'],
   & textarea {
     background: $ui-base-color;
-    color: $ui-primary-color;
+    color: color.adjust($ui-primary-color, $lightness: -10%, $saturation: -20%);
   }
 
   select {
@@ -913,7 +947,7 @@ a {
       no-repeat right 8px center / auto 14px;
   }
 
-  & .recommended {
+  .recommended {
     border-color: $ui-highlight-color;
     color: $ui-highlight-color;
     background-color: rgba($ui-highlight-color, 0.1);
@@ -925,31 +959,31 @@ a {
     text-shadow: none;
   }
 
-  & .button.button-tertiary {
+  .button.button-tertiary {
     color: $highlight-text-color;
   }
 
-  & .block-button,
-  & .button,
-  & button {
+  .block-button,
+  .button,
+  button {
     background: $ui-primary-color !important;
     color: $white;
   }
 
-  & .hint,
-  & p.hint {
+  .hint,
+  p.hint {
     color: color.adjust($ui-primary-color, $lightness: 10%, $saturation: -40%);
   }
 
-  & .hint a {
+  .hint a {
     color: color.adjust($ui-base-color, $lightness: -35%, $saturation: -30%);
   }
 
-  & .lead {
-    color: color.adjust($ui-base-color, $lightness: -25%, $saturation: -40%);
+  .lead {
+    color: color.adjust($ui-primary-color, $lightness: 10%, $saturation: -40%);
   }
 
-  & label {
+  label {
     color: color.adjust($dark-green, $lightness: 10%) !important;
   }
 }
@@ -1497,7 +1531,11 @@ input.glitch-setting-text {
       }
 
       & strong {
-        color: $ui-primary-color;
+        color: color.adjust(
+          $ui-primary-color,
+          $lightness: -10%,
+          $saturation: -10%
+        );
       }
 
       &.active {
@@ -1506,7 +1544,7 @@ input.glitch-setting-text {
 
       &__additional,
       &__content {
-        color: color.adjust($ui-base-color, $lightness: -40%);
+        color: color.adjust($ui-primary-color, $saturation: -30%);
       }
     }
   }
