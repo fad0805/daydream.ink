@@ -86,6 +86,10 @@ a {
   &__header {
     background: $white;
 
+    &__bio &__content {
+      color: color.adjust($ui-primary-color, $lightness: -5%);
+    }
+
     &__bio &__fields {
       & dt {
         color: color.adjust($ui-primary-color, $saturation: -20%);
@@ -676,6 +680,12 @@ a {
   }
 }
 
+.navigation-bar {
+  & .icon-button {
+    color: color.adjust($ui-primary-color, $lightness: 10%);
+  }
+}
+
 .nothing-here {
   color: color.adjust($default, $lightness: -15%, $saturation: -15%) !important;
 }
@@ -817,6 +827,18 @@ a {
         $lightness: 30%,
         $saturation: -30%
       );
+    }
+  }
+}
+
+.reply-indicator {
+  &__content {
+    color: color.adjust($ui-base-color, $lightness: -40%, $saturation: -20%);
+  }
+
+  &__line {
+    &::before {
+      background: color.adjust($ui-base-color, $lightness: -20%);
     }
   }
 }
