@@ -92,7 +92,7 @@ a {
       }
 
       textarea {
-        color: color.adjust($ui-primary-color, $lightness: 10%);
+        color: $primary-text-color;
 
         &::placeholder {
           color: $dark-text-color;
@@ -154,7 +154,7 @@ a {
 
   &__section-headline {
     & a {
-      color: color.adjust($ui-base-color, $lightness: -30%, $saturation: -20%);
+      color: color.adjust($ui-base-color, $lightness: -50%, $saturation: -20%);
 
       &:hover,
       &:active,
@@ -731,7 +731,7 @@ a {
 .notification {
   &__filter-bar {
     & button {
-      color: color.adjust($ui-base-color, $lightness: -30%, $saturation: -20%);
+      color: color.adjust($ui-base-color, $lightness: -50%, $saturation: -20%);
 
       &.active {
         color: $ui-primary-color;
