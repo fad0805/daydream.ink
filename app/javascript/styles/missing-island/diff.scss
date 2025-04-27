@@ -720,6 +720,12 @@ a {
 .icon-button {
   color: color.adjust($ui-primary-color, $lightness: 10%, $saturation: -40%);
 
+  &:hover,
+  &:active,
+  &:focus {
+    color: $ui-highlight-color;
+  }
+
   &:disabled {
     color: color.adjust($ui-base-color, $lightness: -25%, $saturation: -20%);
   }
@@ -968,7 +974,7 @@ a {
 
 .reply-indicator {
   &__content {
-    color: color.adjust($ui-base-color, $lightness: -40%, $saturation: -20%);
+    color: color.adjust($ui-primary-color, $lightness: 20%, $saturation: -20%);
   }
 
   &__line {
