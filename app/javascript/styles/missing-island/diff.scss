@@ -974,7 +974,7 @@ a {
 
 .reply-indicator {
   &__content {
-    color: color.adjust($ui-primary-color, $lightness: 20%, $saturation: -20%);
+    color: color.adjust($ui-primary-color, $saturation: -20%);
   }
 
   &__line {
