@@ -444,6 +444,10 @@ a {
     &.active {
       color: $ui-primary-color;
     }
+
+    &__badge {
+      background: $ui-primary-color;
+    }
   }
 
   &-settings h3 {
