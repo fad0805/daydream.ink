@@ -174,7 +174,15 @@ a {
     }
 
     button {
-      color: color.adjust($ui-base-color, $lightness: -25%);
+      color: color.adjust($ui-base-color, $lightness: -25%, $saturation: -20%);
+
+      &.active {
+        color: $ui-primary-color;
+
+        &::before {
+          background: $ui-primary-color;
+        }
+      }
     }
   }
 }
@@ -580,6 +588,16 @@ a {
     color: $inverted-text-color;
     background: $ui-primary-color;
     border-color: $ui-primary-color;
+  }
+}
+
+.explore {
+  &__search-header {
+    .search {
+      &__icon {
+        color: $ui-base-color;
+      }
+    }
   }
 }
 
