@@ -1062,14 +1062,72 @@ a {
   }
 }
 
-.search__input {
-  background: $ui-base-color;
-  border: 1px solid var(--background-border-color);
-  color: color.adjust($ui-primary-color, $lightness: 15%, $saturation: -40%);
+.search {
+  &__input {
+    background: $ui-base-color;
+    border: 1px solid var(--background-border-color);
+    color: color.adjust($ui-primary-color, $lightness: 15%, $saturation: -40%);
 
-  @media screen and (max-width: $no-gap-breakpoint) {
-    border-top: 0;
-    border-bottom: 0;
+    @media screen and (max-width: $no-gap-breakpoint) {
+      border-top: 0;
+      border-bottom: 0;
+    }
+  }
+
+  &__popout {
+    h4 {
+      color: color.adjust(
+        $ui-primary-color,
+        $lightness: 20%,
+        $saturation: -40%
+      );
+    }
+
+    &__menu {
+      &__item {
+        color: color.adjust(
+          $ui-primary-color,
+          $lightness: 15%,
+          $saturation: -40%
+        );
+
+        mark {
+          color: color.adjust(
+            $ui-primary-color,
+            $lightness: 15%,
+            $saturation: -30%
+          );
+        }
+      }
+
+      &__message {
+        color: color.adjust(
+          $ui-primary-color,
+          $lightness: 15%,
+          $saturation: -40%
+        );
+      }
+    }
+  }
+
+  &-results {
+    &__section {
+      &__header {
+        color: color.adjust(
+          $ui-primary-color,
+          $lightness: 15%,
+          $saturation: -40%
+        );
+
+        button {
+          color: color.adjust(
+            $ui-primary-color,
+            $lightness: 15%,
+            $saturation: -30%
+          );
+        }
+      }
+    }
   }
 }
 
