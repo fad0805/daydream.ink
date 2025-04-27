@@ -1324,7 +1324,7 @@ input.glitch-setting-text {
 
 // Change the background colors of statuses
 .focusable:focus {
-  background: color.adjust($simple-background-color, $lightness: 4%);
+  background: $ui-base-color;
 }
 
 // Change the background colors of status__content__spoiler-link
