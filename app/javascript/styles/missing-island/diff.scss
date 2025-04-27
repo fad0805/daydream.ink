@@ -1,6 +1,7 @@
 @use 'sass:math';
 @use 'sass:color';
 @use 'variables' as *;
+@use 'css_variables' as *;
 
 html {
   scrollbar-color: $ui-base-color rgba($ui-base-color, 0.25);
@@ -85,7 +86,7 @@ a {
   }
 
   &__header {
-    background: $white;
+    background: $account-background-color;
 
     &__account-note {
       label {
@@ -154,7 +155,7 @@ a {
   }
 
   &__section-headline {
-    & a {
+    a {
       color: color.adjust($ui-base-color, $lightness: -50%, $saturation: -20%);
 
       &:hover,
@@ -170,6 +171,10 @@ a {
           background: $ui-primary-color;
         }
       }
+    }
+
+    button {
+      color: color.adjust($ui-base-color, $lightness: -25%);
     }
   }
 }
@@ -197,7 +202,7 @@ a {
 }
 
 .admin-wrapper {
-  & .announcements-list {
+  .announcements-list {
     &__item {
       &__meta {
         color: color.adjust($ui-primary-color, $lightness: -5%);
@@ -209,14 +214,14 @@ a {
     }
   }
 
-  & .content {
+  .content {
     &__heading {
       &__tabs {
         a:hover,
         a:active,
         a:focus {
           background: $ui-primary-color;
-          color: $white;
+          color: $simple-background-color;
         }
       }
     }
@@ -258,7 +263,7 @@ a {
         &:active,
         &:focus {
           background: color.adjust($ui-primary-color, $saturation: -10%);
-          color: $white;
+          color: $inverted-text-color;
         }
       }
 
@@ -281,8 +286,22 @@ a {
           &:hover,
           &:active,
           &:focus {
-            color: $white;
+            color: $inverted-text-color;
           }
+        }
+      }
+    }
+
+    &__toggle {
+      border-bottom: 1px solid var(--background-border-color);
+
+      &__icon {
+        color: color.adjust($ui-primary-color, $lightness: -5%);
+
+        &:hover,
+        &:active,
+        &:focus {
+          background: $simple-background-color;
         }
       }
     }
@@ -558,7 +577,7 @@ a {
   border: 1px solid color.adjust($ui-primary-color, $lightness: 10%);
 
   &.active {
-    color: $white;
+    color: $inverted-text-color;
     background: $ui-primary-color;
     border-color: $ui-primary-color;
   }
@@ -741,7 +760,7 @@ a {
 
 .more-from-author {
   color: color.adjust($ui-primary-color, $lightness: -5%);
-  background: $white;
+  background: $simple-background-color;
 
   a {
     color: color.adjust($ui-primary-color, $lightness: -5%);
@@ -777,7 +796,7 @@ a {
         }
 
         &::after {
-          border-color: transparent transparent $white;
+          border-color: transparent transparent $inverted-text-color;
         }
       }
     }
@@ -786,6 +805,12 @@ a {
   &-group {
     &__embedded-status {
       &__account {
+        color: color.adjust(
+          $ui-base-color,
+          $lightness: -40%,
+          $saturation: -40%
+        );
+
         & bdi {
           color: color.adjust(
             $ui-base-color,
@@ -801,6 +826,16 @@ a {
           $lightness: -40%,
           $saturation: -40%
         );
+      }
+
+      .reply-indicator {
+        &__attachments {
+          color: color.adjust(
+            $ui-base-color,
+            $lightness: -40%,
+            $saturation: -40%
+          );
+        }
       }
     }
 
@@ -832,6 +867,10 @@ a {
       &::before {
         border-inline-start: 4px solid $ui-primary-color;
       }
+    }
+
+    &__header {
+      color: color.adjust($ui-base-color, $lightness: -40%, $saturation: -40%);
     }
   }
 }
@@ -968,7 +1007,7 @@ a {
   .button,
   button {
     background: $ui-primary-color !important;
-    color: $white;
+    color: $inverted-text-color;
   }
 
   .hint,
@@ -1041,12 +1080,12 @@ a {
     &__actions {
       & button,
       a {
-        color: rgba($white, 0.8);
+        color: rgba($inverted-text-color, 0.8);
 
         &:hover,
         &:active,
         &:focus {
-          color: $white;
+          color: $inverted-text-color;
         }
       }
     }
@@ -1144,7 +1183,7 @@ input.glitch-setting-text {
 
 // Change default background colors of columns
 .interaction-modal {
-  background: $white;
+  background: $simple-background-color;
   border: 1px solid var(--background-border-color);
 }
 
@@ -1191,7 +1230,7 @@ input.glitch-setting-text {
 }
 
 .report-dialog-modal .dialog-option .poll__input {
-  color: $white;
+  color: $inverted-text-color;
 }
 
 .list-editor .search .search__input {
@@ -1205,7 +1244,7 @@ input.glitch-setting-text {
 
 // Change the background colors of statuses
 .focusable:focus {
-  background: color.adjust($white, $lightness: 4%);
+  background: color.adjust($simple-background-color, $lightness: 4%);
 }
 
 // Change the background colors of status__content__spoiler-link
@@ -1259,7 +1298,7 @@ input.glitch-setting-text {
 .picture-in-picture__header,
 .picture-in-picture__footer,
 .reactions-bar__item {
-  background: $white;
+  background: $simple-background-color;
   border: 1px solid var(--background-border-color);
 }
 
@@ -1270,7 +1309,7 @@ input.glitch-setting-text {
 }
 
 .reactions-bar__item.active {
-  background-color: mix($white, $ui-highlight-color, 80%);
+  background-color: mix($simple-background-color, $ui-highlight-color, 80%);
   border-color: mix(
     color.adjust($ui-base-color, $lightness: 8%),
     $ui-highlight-color,
@@ -1292,8 +1331,8 @@ input.glitch-setting-text {
 }
 
 .icon-with-badge__badge {
-  border-color: $white;
-  color: $white;
+  border-color: $inverted-text-color;
+  color: $inverted-text-color;
 }
 
 .report-modal__comment {
@@ -1305,12 +1344,12 @@ input.glitch-setting-text {
 }
 
 .column-settings__hashtags .column-select__option {
-  color: $white;
+  color: $inverted-text-color;
 }
 
 .dashboard__quick-access,
 .focal-point__preview strong {
-  color: $white;
+  color: $inverted-text-color;
 }
 
 .boost-modal__action-bar,
@@ -1332,16 +1371,16 @@ input.glitch-setting-text {
 }
 
 .display-case__case {
-  background: $white;
+  background: $simple-background-color;
 }
 
 .embed-modal .embed-modal__container .embed-modal__html {
-  background: $white;
+  background: $simple-background-color;
   border: 1px solid var(--background-border-color);
 
   &:focus {
     border-color: color.adjust($ui-base-color, $lightness: 12%);
-    background: $white;
+    background: $simple-background-color;
   }
 }
 
@@ -1369,7 +1408,7 @@ input.glitch-setting-text {
 .empty-column-indicator,
 .error-column {
   color: $primary-text-color;
-  background: $white;
+  background: $simple-background-color;
 }
 
 // Change the default colors used on some parts of the profile pages
@@ -1382,12 +1421,12 @@ input.glitch-setting-text {
 .page-header,
 .directory__tag > a,
 .directory__tag > div {
-  background: $white;
+  background: $simple-background-color;
   border: 1px solid var(--background-border-color);
 }
 
 .picture-in-picture-placeholder {
-  background: $white;
+  background: $simple-background-color;
   border-color: color.adjust($ui-base-color, $lightness: 8%);
   color: color.adjust($ui-base-color, $lightness: 8%);
 }
@@ -1474,7 +1513,7 @@ input.glitch-setting-text {
 }
 
 .account__section-headline a.active::after {
-  border-color: transparent transparent $white;
+  border-color: transparent transparent $inverted-text-color;
 }
 
 .hero-widget,
@@ -1558,7 +1597,7 @@ input.glitch-setting-text {
 .privacy-dropdown__option:focus .privacy-dropdown__option__content strong,
 .privacy-dropdown__option.active .privacy-dropdown__option__content,
 .privacy-dropdown__option.active .privacy-dropdown__option__content strong {
-  color: $white;
+  color: $inverted-text-color;
 }
 
 .compose-form .spoiler-input__input {
@@ -1579,11 +1618,11 @@ input.glitch-setting-text {
 }
 
 .inline-follow-suggestions__body__scrollable__card {
-  background: $white;
+  background: $simple-background-color;
 }
 
 .inline-follow-suggestions__body__scroll-button__icon {
-  color: $white;
+  color: $inverted-text-color;
 }
 
 a.sparkline {

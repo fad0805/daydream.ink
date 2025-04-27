@@ -1,5 +1,4 @@
 @use 'sass:color';
-@use '../mastodon-light/variables';
 
 $dark-green: #3d4734;
 $deep-green: #1f2d24;
@@ -23,7 +22,7 @@ $gold-star: #ca8f04; // Dark Goldenrod
 $red-bookmark: $warning-red;
 
 // Values from the classic Mastodon UI
-$classic-base-color: $dark-green;
+$classic-base-color: $deep-green;
 $classic-primary-color: $green;
 $classic-secondary-color: $background-green;
 $classic-highlight-color: $green;
@@ -81,7 +80,7 @@ $passive-text-color: $gold-star;
 $active-passive-text-color: $success-green;
 
 // For texts on inverted backgrounds
-$inverted-text-color: $black;
+$inverted-text-color: $white;
 $lighter-text-color: $classic-base-color;
 $light-text-color: $ui-primary-color;
 
@@ -104,81 +103,3 @@ $font-monospace: 'mastodon-font-monospace';
 // Newly added colors
 $account-background-color: $white;
 $emojis-requiring-inversion: 'chains';
-
-:root {
-  --dropdown-shadow: 0 20px 25px -5px #{rgba($base-shadow-color, 0.25)},
-    0 8px 10px -6px #{rgba($base-shadow-color, 0.25)};
-  --modal-background-variant-color: #{rgba($ui-base-color, 0.7)};
-  --surface-background-color: #{color.adjust($ui-base-color, $lightness: -4%)};
-  --surface-variant-background-color: #{color.adjust(
-      $ui-base-lighter-color,
-      $lightness: -5%
-    )};
-  --surface-variant-active-background-color: #{color.adjust(
-      $ui-primary-color,
-      $lightness: 4%
-    )};
-  --avatar-border-radius: 8px;
-}
-
-// Invert darkened and lightened colors
-@function darken($color, $amount) {
-  @return hsl(hue($color), saturation($color), lightness($color) + $amount);
-}
-
-@function lighten($color, $amount) {
-  @return hsl(hue($color), saturation($color), lightness($color) - $amount);
-}
-
-body {
-  --dropdown-border-color: #d9e1e8;
-  --dropdown-background-color: #fff;
-  --modal-border-color: #bad1ba;
-  --modal-background-color: var(--background-color-tint);
-  --background-border-color: #c7e0c3;
-  --background-color: #{$white};
-  --background-color-tint: rgba(239, 252, 227, 80%);
-  --background-filter: blur(10px);
-  --rich-text-text-color: hsla(114deg, 19%, 34%, 100%);
-  --rich-text-decorations-color: hsla(114deg, 30.8%, 79.6%, 100%);
-  --rich-text-container-color: hsla(114deg, 30.8%, 79.6%, 80%);
-}
-
-:root {
-  --dropdown-shadow: 0 20px 25px -5px #{rgba($base-shadow-color, 0.25)},
-    0 8px 10px -6px #{rgba($base-shadow-color, 0.25)};
-  --modal-background-variant-color: #{rgba($ui-base-color, 0.7)};
-  --surface-background-color: #{color.adjust($ui-base-color, $lightness: -4%)};
-  --surface-variant-background-color: #{color.adjust(
-      $ui-base-lighter-color,
-      $lightness: -5%
-    )};
-  --surface-variant-active-background-color: #{color.adjust(
-      $ui-primary-color,
-      $lightness: 4%
-    )};
-  --avatar-border-radius: 8px;
-}
-
-// Invert darkened and lightened colors
-@function darken($color, $amount) {
-  @return hsl(hue($color), saturation($color), lightness($color) + $amount);
-}
-
-@function lighten($color, $amount) {
-  @return hsl(hue($color), saturation($color), lightness($color) - $amount);
-}
-
-body {
-  --dropdown-border-color: #d9e1e8;
-  --dropdown-background-color: #fff;
-  --modal-border-color: #bad1ba;
-  --modal-background-color: var(--background-color-tint);
-  --background-border-color: #c7e0c3;
-  --background-color: #{$white};
-  --background-color-tint: rgba(239, 252, 227, 80%);
-  --background-filter: blur(10px);
-  --rich-text-text-color: hsla(114deg, 19%, 34%, 100%);
-  --rich-text-decorations-color: hsla(114deg, 30.8%, 79.6%, 100%);
-  --rich-text-container-color: hsla(114deg, 30.8%, 79.6%, 80%);
-}
