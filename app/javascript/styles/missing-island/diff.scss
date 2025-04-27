@@ -876,8 +876,12 @@ a {
             $saturation: -40%
           );
 
-          & bdi {
+          bdi {
             color: $ui-primary-color;
+          }
+
+          time {
+            color: color.adjust($ui-primary-color, $saturation: -40%);
           }
         }
       }
@@ -974,7 +978,7 @@ a {
 
 .reply-indicator {
   &__content {
-    color: color.adjust($ui-primary-color, $saturation: -20%);
+    color: color.adjust($ui-primary-color, $saturation: -40%);
   }
 
   &__line {
