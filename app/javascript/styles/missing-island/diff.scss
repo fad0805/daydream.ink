@@ -43,6 +43,18 @@ a {
   }
 }
 
+button {
+  &.table-action-link {
+    color: color.adjust($default, $lightness: -15%, $saturation: -15%);
+
+    &:hover,
+    &:active,
+    &:focus {
+      color: color.adjust($default, $lightness: -5%, $saturation: -5%);
+    }
+  }
+}
+
 .account {
   &__action-bar {
     border-top: 1px solid color.adjust($ui-base-color, $lightness: -30%);
@@ -412,19 +424,19 @@ a {
           text-shadow: 0 0 10px $ui-base-color;
         }
       }
-
-      &__wrapper {
-        &.active {
-          &::before {
-            background: $ui-primary-color;
-          }
-        }
-      }
     }
 
     &__collapsible,
     & &__back-button.compact {
       color: color.adjust($ui-primary-color, $lightness: 5%, $saturation: -40%);
+    }
+
+    &__wrapper {
+      &.active {
+        &::before {
+          background: $ui-primary-color;
+        }
+      }
     }
   }
 
@@ -475,6 +487,10 @@ a {
     &.active {
       background: $ui-primary-color;
     }
+
+    &.disabled {
+      color: color.adjust($ui-base-color, $lightness: -40%, $saturation: -20%);
+    }
   }
 
   & .autosuggest-textarea__textarea,
@@ -490,6 +506,30 @@ a {
     &,
     a {
       color: $ui-highlight-color;
+    }
+  }
+
+  &__poll {
+    &__select {
+      &__label {
+        color: color.adjust(
+          $ui-base-color,
+          $lightness: -40%,
+          $saturation: -40%
+        );
+      }
+
+      &__value {
+        color: color.adjust(
+          $ui-primary-color,
+          $lightness: 20%,
+          $saturation: -20%
+        );
+      }
+    }
+
+    .poll__input {
+      border: 1px solid color.adjust($ui-base-color, $lightness: -40%);
     }
   }
 }
@@ -566,7 +606,7 @@ a {
   }
 
   &__message {
-    color: color.adjust($ui-primary-color, $lightness: 20%, $saturation: -15%);
+    color: color.adjust($ui-primary-color, $saturation: -20%);
   }
 }
 
@@ -592,6 +632,55 @@ a {
     color: $inverted-text-color;
     background: $ui-primary-color;
     border-color: $ui-primary-color;
+  }
+}
+
+.emoji-mart {
+  &-anchor {
+    color: color.adjust($ui-base-color, $lightness: -40%, $saturation: -10%);
+
+    &-bar {
+      background-color: color.adjust(
+        $ui-base-color,
+        $lightness: -40%,
+        $saturation: -10%
+      );
+    }
+
+    &-selected {
+      color: color.adjust($ui-base-color, $lightness: -40%, $saturation: -10%);
+
+      &:hover,
+      &:active,
+      &:focus {
+        background: color.adjust(
+          $ui-base-color,
+          $lightness: -40%,
+          $saturation: -10%
+        );
+      }
+    }
+  }
+
+  &-no-results {
+    color: color.adjust($ui-primary-color, $lightness: -5%, $saturation: -30%);
+  }
+
+  &-search {
+    input {
+      background: $ui-base-color;
+      color: $ui-primary-color;
+    }
+
+    &-icon {
+      svg {
+        fill: color.adjust(
+          $ui-primary-color,
+          $lightness: 10%,
+          $saturation: -10%
+        );
+      }
+    }
   }
 }
 
@@ -1077,6 +1166,16 @@ a {
 }
 
 .search {
+  &__icon {
+    .icon {
+      color: color.adjust(
+        $ui-primary-color,
+        $lightness: 20%,
+        $saturation: -40%
+      );
+    }
+  }
+
   &__input {
     background: $ui-base-color;
     border: 1px solid var(--background-border-color);
@@ -1236,6 +1335,15 @@ a {
 
   &__relative-time {
     color: color.adjust($ui-base-color, $lightness: -50%, $saturation: -40%);
+  }
+}
+
+.switch-to-advanced {
+  background-color: $ui-base-color;
+  color: color.adjust($ui-primary-color, $lightness: -5%);
+
+  & &__toggle {
+    color: $ui-primary-color;
   }
 }
 
@@ -1696,7 +1804,6 @@ input.glitch-setting-text {
 
 .autosuggest-textarea__suggestions,
 .search__popout,
-.emoji-mart-search input,
 .language-dropdown__dropdown .emoji-mart-search input,
 .poll__option input[type='text'] {
   background: color.adjust($ui-base-color, $lightness: -10%);
@@ -1780,6 +1887,35 @@ a.sparkline {
 
     &.leading {
       background: $ui-highlight-color;
+    }
+  }
+
+  &__input {
+    border: 1px solid color.adjust($ui-base-color, $lightness: -20%);
+
+    &:hover,
+    &:focus {
+      border-color: $ui-primary-color;
+    }
+  }
+
+  &__option {
+    &.editable {
+      .poll__input {
+        &:hover,
+        &:focus {
+          border-color: $ui-primary-color;
+        }
+      }
+    }
+
+    input[type='text'] {
+      color: $ui-primary-color;
+      border: 1px solid color.adjust($ui-base-color, $lightness: -40%);
+
+      &:focus {
+        border-color: $ui-primary-color;
+      }
     }
   }
 }
