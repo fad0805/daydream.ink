@@ -436,8 +436,8 @@ button {
         &::before {
           background: radial-gradient(
             ellipse,
-            $ui-primary-color 0,
-            $ui-primary-color 60%
+            rgba($ui-primary-color, 0.23) 0,
+            rgba($ui-primary-color, 0) 60%
           );
         }
       }
