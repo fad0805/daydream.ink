@@ -401,6 +401,21 @@ button {
 
 .column {
   &-header {
+    &.active {
+      color: $ui-highlight-color;
+
+      &:hover,
+      &:active,
+      &:focus {
+        color: color.adjust($ui-highlight-color, $lightness: 10%);
+      }
+
+      & .column-header__icon {
+        color: $ui-highlight-color;
+        text-shadow: 0 0 10px $ui-base-color;
+      }
+    }
+
     &__button {
       color: $ui-primary-color;
 
@@ -408,21 +423,6 @@ button {
       &:active,
       &:focus {
         color: color.adjust($ui-primary-color, $lightness: 10%);
-      }
-
-      &.active {
-        color: $ui-highlight-color;
-
-        &:hover,
-        &:active,
-        &:focus {
-          color: color.adjust($ui-highlight-color, $lightness: 10%);
-        }
-
-        & .column-header__icon {
-          color: $ui-highlight-color;
-          text-shadow: 0 0 10px $ui-base-color;
-        }
       }
     }
 
