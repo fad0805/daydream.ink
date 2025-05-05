@@ -434,7 +434,11 @@ button {
     &__wrapper {
       &.active {
         &::before {
-          background: $ui-primary-color;
+          background: radial-gradient(
+            ellipse,
+            $ui-primary-color 0,
+            $ui-primary-color 60%
+          );
         }
       }
     }
