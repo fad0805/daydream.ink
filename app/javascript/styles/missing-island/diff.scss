@@ -989,7 +989,7 @@ button {
 
   &-ungrouped {
     &--direct {
-      background: rgba($ui-base-color, 0.05);
+      background: rgba($ui-primary-color, 0.05);
 
       .notification-ungrouped__header {
         color: color.adjust($ui-primary-color, $lightness: -5%);
