@@ -988,6 +988,14 @@ button {
   }
 
   &-ungrouped {
+    &--direct {
+      background: rgba($ui-base-color, 0.05);
+
+      .notification-ungrouped__header {
+        color: color.adjust($ui-primary-color, $lightness: -5%);
+      }
+    }
+
     &--unread {
       &::before {
         border-inline-start: 4px solid $ui-primary-color;
