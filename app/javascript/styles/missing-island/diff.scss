@@ -221,6 +221,18 @@ button {
   }
 }
 
+.actions-modal {
+  ul {
+    li {
+      &:not(:empty) {
+        a {
+          color: color.adjust($ui-primary-color, $saturation: -20%);
+        }
+      }
+    }
+  }
+}
+
 .admin-wrapper {
   .announcements-list {
     &__item {
@@ -1359,6 +1371,22 @@ button {
   }
 }
 
+.upload-progress {
+  color: $ui-primary-color;
+
+  .icon {
+    color: $ui-primary-color;
+  }
+
+  &__backdrop {
+    background: $ui-base-color;
+  }
+
+  &__tracker {
+    background: $ui-primary-color;
+  }
+}
+
 input.glitch-setting-text {
   color: color.adjust($ui-base-color, $lightness: -40%, $saturation: -40%);
   border-bottom: 2px solid
@@ -1446,10 +1474,6 @@ input.glitch-setting-text {
 .list-editor .search .search__input {
   border-top: 0;
   border-bottom: 0;
-}
-
-.upload-progress__backdrop {
-  background: $ui-base-color;
 }
 
 // Change the background colors of statuses
