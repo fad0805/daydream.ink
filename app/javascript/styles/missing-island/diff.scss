@@ -192,12 +192,12 @@ button {
 
   &__section-headline {
     a {
-      color: color.adjust($ui-base-color, $lightness: -50%, $saturation: -20%);
+      color: $primary-text-color;
 
       &:hover,
       &:active,
       &:focus {
-        color: color.adjust($ui-base-color, $lightness: -25%);
+        color: $secondary-text-color;
       }
 
       &.active {
