@@ -107,10 +107,10 @@ button {
   }
 
   &__display-name {
-    & .display-name {
+    .display-name {
       color: $secondary-text-color;
 
-      & strong {
+      strong {
         color: $primary-text-color;
       }
     }
@@ -1335,11 +1335,11 @@ button {
   }
 
   &__display-name {
-    & .display-name {
-      color: color.adjust($highlight-text-color, $saturation: -20%);
+    .display-name {
+      color: $secondary-text-color;
 
-      & strong {
-        color: color.adjust($secondary-text-color, $lightness: 10%);
+      strong {
+        color: $primary-text-color;
       }
     }
   }
