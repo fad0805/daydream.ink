@@ -9,7 +9,7 @@ html {
 
 body {
   background: color.adjust($ui-base-color, $lightness: 5%, $saturation: -20%);
-  color: color.adjust($ui-primary-color, $saturation: -40%);
+  color: $primary-text-color;
 }
 
 a {
@@ -108,10 +108,10 @@ button {
 
   &__display-name {
     & .display-name {
-      color: color.adjust($ui-base-color, $lightness: -30%, $saturation: -40%);
+      color: color.adjust($highlight-text-color, $saturation: -20%);
 
       & strong {
-        color: color.adjust($ui-primary-color, $lightness: -10%);
+        color: color.adjust($secondary-text-color, $lightness: 10%);
       }
     }
   }
@@ -481,16 +481,12 @@ button {
   }
 
   &-link {
-    color: color.adjust($ui-primary-color, $saturation: -40%);
+    color: $primary-text-color;
 
     &:hover,
     &:active,
     &:focus {
-      color: color.adjust(
-        $ui-primary-color,
-        $lightness: 15%,
-        $saturation: -40%
-      );
+      color: $ui-primary-color;
     }
 
     &.active {
@@ -508,7 +504,7 @@ button {
 
   &-subheading {
     background: $ui-base-color;
-    color: $ui-primary-color;
+    color: $secondary-text-color;
   }
 }
 
@@ -951,7 +947,7 @@ button {
 .notification {
   &__filter-bar {
     & button {
-      color: color.adjust($ui-base-color, $lightness: -50%, $saturation: -20%);
+      color: color.adjust($primary-text-color, $lightness: 10%);
 
       &.active {
         color: $ui-primary-color;
@@ -1359,11 +1355,11 @@ button {
   }
 
   &__display-name {
-    color: color.adjust($ui-base-color, $lightness: -40%, $saturation: -40%);
-
     & .display-name {
+      color: color.adjust($highlight-text-color, $saturation: -20%);
+
       & strong {
-        color: color.adjust($ui-primary-color, $lightness: -10%);
+        color: color.adjust($secondary-text-color, $lightness: 10%);
       }
     }
   }
@@ -1853,6 +1849,20 @@ input.glitch-setting-text {
 
 .prose {
   color: $primary-text-color;
+
+  b,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: $primary-text-color;
+  }
+
+  ul > li::before {
+    background-color: $ui-base-color;
+  }
 }
 
 .compose-form__actions .icon-button.active,
