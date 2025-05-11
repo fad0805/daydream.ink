@@ -966,36 +966,20 @@ button {
   &-group {
     &__embedded-status {
       &__account {
-        color: color.adjust(
-          $ui-base-color,
-          $lightness: -40%,
-          $saturation: -40%
-        );
+        color: $secondary-text-color;
 
         & bdi {
-          color: color.adjust(
-            $ui-base-color,
-            $lightness: -40%,
-            $saturation: -40%
-          );
+          color: $highlight-text-color;
         }
       }
 
       &__content {
-        color: color.adjust(
-          $ui-base-color,
-          $lightness: -40%,
-          $saturation: -40%
-        );
+        color: $secondary-text-color;
       }
 
       .reply-indicator {
         &__attachments {
-          color: color.adjust(
-            $ui-base-color,
-            $lightness: -40%,
-            $saturation: -40%
-          );
+          color: $secondary-text-color;
         }
       }
     }
@@ -1003,18 +987,14 @@ button {
     &__main {
       &__header {
         &__label {
-          color: color.adjust(
-            $ui-base-color,
-            $lightness: -40%,
-            $saturation: -40%
-          );
+          color: $secondary-text-color;
 
           bdi {
             color: $ui-primary-color;
           }
 
           time {
-            color: color.adjust($ui-primary-color, $saturation: -40%);
+            color: $secondary-text-color;
           }
         }
       }
@@ -1119,7 +1099,7 @@ button {
 
 .reply-indicator {
   &__content {
-    color: color.adjust($ui-primary-color, $saturation: -40%);
+    color: $primary-text-color;
   }
 
   &__line {
@@ -1366,7 +1346,7 @@ button {
 
   &__info {
     &__icons {
-      color: color.adjust($ui-base-color, $lightness: -40%, $saturation: -40%);
+      color: $secondary-text-color;
     }
   }
 
