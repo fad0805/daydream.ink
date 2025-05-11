@@ -417,6 +417,17 @@ button {
       border: 1px solid color.adjust($ui-primary-color, $lightness: 15%);
     }
   }
+
+  &.button-tertiary {
+    color: $ui-primary-color;
+
+    &:hover,
+    &:active,
+    &:focus {
+      background-color: $ui-primary-color;
+      color: $inverted-text-color;
+    }
+  }
 }
 
 .character-counter {
@@ -1116,6 +1127,21 @@ button {
     & h1 {
       color: color.adjust($ui-primary-color, $saturation: -30%);
     }
+  }
+}
+
+.server-banner {
+  h4,
+  &__description,
+  &__introduction,
+  &__number-label {
+    color: $primary-text-color;
+  }
+}
+
+.sign-in-banner {
+  p {
+    color: $primary-text-color;
   }
 }
 
