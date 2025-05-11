@@ -1856,12 +1856,13 @@ input.glitch-setting-text {
   h3,
   h4,
   h5,
-  h6 {
-    color: $primary-text-color;
+  h6,
+  strong {
+    color: $highlight-text-color;
   }
 
   ul > li::before {
-    background-color: $ui-base-color;
+    background-color: $ui-primary-color;
   }
 }
 
