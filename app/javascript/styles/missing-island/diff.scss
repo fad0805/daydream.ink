@@ -108,10 +108,10 @@ button {
 
   &__display-name {
     & .display-name {
-      color: color.adjust($highlight-text-color, $saturation: -20%);
+      color: $secondary-text-color;
 
       & strong {
-        color: color.adjust($secondary-text-color, $lightness: 10%);
+        color: $primary-text-color;
       }
     }
   }
