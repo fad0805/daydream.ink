@@ -55,6 +55,30 @@ button {
   }
 }
 
+.about {
+  &__header {
+    p {
+      color: $secondary-text-color;
+    }
+  }
+
+  &__mail {
+    color: $primary-text-color;
+  }
+
+  &__meta {
+    h4 {
+      color: $secondary-text-color;
+    }
+  }
+
+  &__section {
+    &__title {
+      color: $ui-primary-color;
+    }
+  }
+}
+
 .account {
   &__action-bar {
     border-top: 1px solid color.adjust($ui-base-color, $lightness: -30%);
@@ -836,6 +860,14 @@ button {
   }
 }
 
+.icon-with-badge {
+  &__badge {
+    background: $ui-primary-color;
+    border-color: $inverted-text-color;
+    color: $inverted-text-color;
+  }
+}
+
 .input-copy {
   background: $ui-base-color;
   border: 1px solid color.adjust($ui-base-color, $lightness: -20%);
@@ -1564,11 +1596,6 @@ input.glitch-setting-text {
   border-top: 0;
 }
 
-.icon-with-badge__badge {
-  border-color: $inverted-text-color;
-  color: $inverted-text-color;
-}
-
 .report-modal__comment {
   border-right-color: color.adjust($ui-base-color, $lightness: 8%);
 }
@@ -1822,6 +1849,10 @@ input.glitch-setting-text {
       }
     }
   }
+}
+
+.prose {
+  color: $primary-text-color;
 }
 
 .compose-form__actions .icon-button.active,
