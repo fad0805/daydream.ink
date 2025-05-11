@@ -420,6 +420,7 @@ button {
 
   &.button-tertiary {
     color: $ui-primary-color;
+    border-color: $ui-primary-color;
 
     &:hover,
     &:active,
@@ -1078,6 +1079,26 @@ button {
         }
       }
     }
+  }
+}
+
+.progress-tracker {
+  .active {
+    .circle {
+      border-color: $ui-primary-color;
+
+      &::before {
+        background: $ui-primary-color;
+      }
+    }
+  }
+
+  .circle {
+    border-color: $ui-button-secondary-border-color;
+  }
+
+  .label {
+    color: $primary-text-color;
   }
 }
 
