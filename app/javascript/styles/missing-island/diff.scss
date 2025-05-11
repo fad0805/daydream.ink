@@ -233,10 +233,10 @@ button {
   }
 
   .account__display-name {
-    color: color.adjust($default, $lightness: -20%, $saturation: -40%);
+    color: $secondary-text-color;
 
     .display-name strong {
-      color: color.adjust($ui-primary-color, $saturation: -40%);
+      color: $primary-text-color;
     }
   }
 
@@ -595,10 +595,10 @@ button {
 
 .detailed-status {
   &__display-name {
-    color: color.adjust($ui-base-color, $lightness: -40%, $saturation: -40%);
+    color: $secondary-text-color;
 
     & strong {
-      color: $ui-primary-color;
+      color: $primary-text-color;
     }
   }
 
@@ -836,15 +836,11 @@ button {
 
   & .display-name {
     &__account {
-      color: color.adjust(
-        $ui-primary-color,
-        $lightness: 20%,
-        $saturation: -40%
-      );
+      color: $secondary-text-color;
     }
 
-    & bdi {
-      color: $ui-primary-color;
+    bdi {
+      color: $primary-text-color;
     }
   }
 
