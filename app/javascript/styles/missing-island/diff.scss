@@ -419,6 +419,13 @@ button {
       color: $ui-primary-color;
       border-color: $ui-primary-color;
       opacity: 0.7;
+
+      &:hover,
+      &:active,
+      &:focus {
+        color: $ui-primary-color;
+        border-color: $ui-primary-color;
+      }
     }
   }
 
