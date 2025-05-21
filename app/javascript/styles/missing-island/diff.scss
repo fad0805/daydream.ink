@@ -822,7 +822,7 @@ button {
   color: $primary-text-color;
 
   & a {
-    background: $ui-button-background-color;
+    background: color.adjust($ui-button-background-color, $lightness: 30%);
   }
 }
 
