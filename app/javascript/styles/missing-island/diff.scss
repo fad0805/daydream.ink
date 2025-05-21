@@ -399,16 +399,15 @@ button {
   }
 
   &:disabled {
-    background: color.adjust(
-      $ui-primary-color,
-      $lightness: 10%,
-      $saturation: -10%
-    );
+    color: $ui-primary-color;
+    border-color: $ui-primary-color;
+    opacity: 0.7;
   }
 
   &.button-secondary {
     color: color.adjust($ui-primary-color, $lightness: 5%);
     border: 1px solid color.adjust($ui-primary-color, $lightness: 5%);
+    background: transparent;
 
     &:hover,
     &:active,
@@ -1991,6 +1990,10 @@ a.sparkline {
     }
   }
 
+  &__footer {
+    color: $primary-text-color;
+  }
+
   &__input {
     border: 1px solid color.adjust($ui-base-color, $lightness: -20%);
 
@@ -1998,6 +2001,10 @@ a.sparkline {
     &:focus {
       border-color: $ui-primary-color;
     }
+  }
+
+  &__link {
+    color: $primary-text-color;
   }
 
   &__option {
