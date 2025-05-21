@@ -399,8 +399,7 @@ button {
   }
 
   &:disabled {
-    color: $ui-primary-color;
-    border-color: $ui-primary-color;
+    background-color: $ui-button-background-color;
     opacity: 0.7;
   }
 
