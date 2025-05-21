@@ -2019,6 +2019,11 @@ a.sparkline {
     &:focus {
       border-color: $ui-primary-color;
     }
+
+    &.active {
+      background-color: $valid-value-color;
+      border-color: $valid-value-color;
+    }
   }
 
   &__link {
