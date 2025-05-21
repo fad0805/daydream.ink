@@ -814,10 +814,10 @@ button {
 }
 
 .hashtag-bar {
-  color: $ui-primary-color;
+  color: $primary-text-color;
 
   & a {
-    background: $ui-base-color;
+    background: $ui-button-background-color;
   }
 }
 
@@ -1434,6 +1434,18 @@ button {
 
   &__tracker {
     background: $ui-primary-color;
+  }
+}
+
+.timeline-hint {
+  a {
+    color: $ui-primary-color;
+
+    &:hover,
+    &:active,
+    &:focus {
+      color: color.adjust($ui-primary-color, $lightness: 10%);
+    }
   }
 }
 
