@@ -829,7 +829,11 @@ button {
   color: $primary-text-color;
 
   & a {
-    background: color.adjust($ui-button-background-color, $lightness: 50%);
+    background: color.adjust(
+      $ui-button-background-color,
+      $lightness: 30%,
+      $saturation: -10%
+    );
   }
 }
 
