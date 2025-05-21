@@ -415,6 +415,12 @@ button {
       color: color.adjust($ui-primary-color, $lightness: 15%);
       border: 1px solid color.adjust($ui-primary-color, $lightness: 15%);
     }
+
+    &:disabled {
+      color: $ui-primary-color;
+      border-color: $ui-primary-color;
+      opacity: 0.7;
+    }
   }
 
   &.button-tertiary {
