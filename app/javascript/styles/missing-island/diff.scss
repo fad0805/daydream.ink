@@ -691,6 +691,11 @@ button {
   color: color.adjust($ui-primary-color, $lightness: 10%);
   border: 1px solid color.adjust($ui-primary-color, $lightness: 10%);
 
+  &[disabled] {
+    color: color.adjust($default, $lightness: -20%);
+    border-color: color.adjust($default, $lightness: -20%);
+  }
+
   &.active {
     color: $inverted-text-color;
     background: $ui-primary-color;
