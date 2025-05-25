@@ -1197,6 +1197,10 @@ button {
 }
 
 .reply-indicator {
+  &__attachments {
+    color: $secondary-text-color;
+  }
+
   &__content {
     color: $primary-text-color;
   }
