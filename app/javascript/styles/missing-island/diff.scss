@@ -595,6 +595,13 @@ button {
       border: 1px solid color.adjust($ui-base-color, $lightness: -40%);
     }
   }
+
+  .spoiler-input {
+    &__input {
+      color: $primary-text-color;
+      background: $ui-base-color;
+    }
+  }
 }
 
 .dashboard {
@@ -1996,10 +2003,6 @@ input.glitch-setting-text {
 .privacy-dropdown__option.active .privacy-dropdown__option__content,
 .privacy-dropdown__option.active .privacy-dropdown__option__content strong {
   color: $inverted-text-color;
-}
-
-.compose-form .spoiler-input__input {
-  color: color.adjust($ui-highlight-color, $lightness: 8%);
 }
 
 .autosuggest-textarea__suggestions,
