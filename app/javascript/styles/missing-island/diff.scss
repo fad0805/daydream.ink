@@ -56,6 +56,10 @@ button {
 }
 
 .about {
+  &__footer {
+    color: $secondary-text-color;
+  }
+
   &__header {
     p {
       color: $secondary-text-color;
@@ -554,7 +558,7 @@ button {
 
   & .autosuggest-textarea__textarea,
   &__highlightable {
-    background: $ui-base-color;
+    background: $base-overlay-background;
     color: $primary-text-color;
   }
 
@@ -615,10 +619,10 @@ button {
   }
 
   &__meta {
-    color: color.adjust($ui-base-color, $lightness: -50%, $saturation: -40%);
+    color: $secondary-text-color;
 
     & .animated-number {
-      color: color.adjust($ui-base-color, $lightness: -20%, $saturation: -40%);
+      color: $secondary-text-color;
     }
   }
 }
@@ -691,6 +695,19 @@ button {
     color: $inverted-text-color;
     background: $ui-primary-color;
     border-color: $ui-primary-color;
+  }
+}
+
+.edit-indicator {
+  background: $ui-base-color;
+  border-bottom: 0.5px solid $base-border-color;
+
+  &__header {
+    color: $secondary-text-color;
+  }
+
+  &__content {
+    color: $primary-text-color;
   }
 }
 
@@ -1267,7 +1284,7 @@ button {
   }
 
   &__input {
-    background: $ui-base-color;
+    background: $base-overlay-background;
     border: 1px solid var(--background-border-color);
     color: color.adjust($ui-primary-color, $lightness: 15%, $saturation: -40%);
 
@@ -1718,6 +1735,10 @@ input.glitch-setting-text {
 .error-column {
   color: $primary-text-color;
   background: $simple-background-color;
+
+  &__message {
+    color: $primary-text-color;
+  }
 }
 
 // Change the default colors used on some parts of the profile pages
