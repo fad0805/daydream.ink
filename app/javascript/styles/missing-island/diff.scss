@@ -843,6 +843,12 @@ button {
   }
 }
 
+.form-footer {
+  a {
+    color: $secondary-text-color;
+  }
+}
+
 .form-section {
   background: color.adjust($ui-base-color, $lightness: 1%);
 }
@@ -906,6 +912,30 @@ button {
     background: $ui-primary-color;
     border-color: $inverted-text-color;
     color: $inverted-text-color;
+  }
+}
+
+.inline-follow-suggestions {
+  &__body {
+    &__scroll-button {
+      &__icon {
+        background: $ui-primary-color;
+      }
+    }
+
+    &__scrollable {
+      &__card {
+        .display-name {
+          &__account {
+            color: $primary-text-color;
+          }
+
+          &__html {
+            color: $secondary-text-color;
+          }
+        }
+      }
+    }
   }
 }
 
@@ -1171,6 +1201,16 @@ button {
     &::before {
       background: color.adjust($ui-base-color, $lightness: -20%);
     }
+  }
+}
+
+.rules-list {
+  li::before {
+    background: $ui-highlight-color;
+  }
+
+  &__hint {
+    color: primary-text-color;
   }
 }
 
@@ -1525,10 +1565,6 @@ input.glitch-setting-text {
 .interaction-modal {
   background: $simple-background-color;
   border: 1px solid var(--background-border-color);
-}
-
-.rules-list li::before {
-  background: $ui-highlight-color;
 }
 
 .directory__card__img {
