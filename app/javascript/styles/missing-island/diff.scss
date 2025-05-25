@@ -1167,6 +1167,10 @@ button {
   .label {
     color: $primary-text-color;
   }
+
+  .separator {
+    background: $ui-button-secondary-border-color;
+  }
 }
 
 .retention {
