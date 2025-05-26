@@ -720,6 +720,10 @@ button {
 
   &__content {
     color: $primary-text-color;
+
+    a {
+      color: $ui-primary-color;
+    }
   }
 }
 
