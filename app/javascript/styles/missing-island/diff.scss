@@ -1191,12 +1191,23 @@ button {
     border-color: $ui-button-secondary-border-color;
   }
 
+  .completed {
+    .circle {
+      background: $ui-primary-color;
+      border-color: $ui-primary-color;
+    }
+  }
+
   .label {
     color: $primary-text-color;
   }
 
   .separator {
     background: $ui-button-secondary-border-color;
+
+    &.completed {
+      background: $ui-primary-color;
+    }
   }
 }
 
@@ -1277,15 +1288,19 @@ button {
 .simple_form {
   color: color.adjust($ui-primary-color, $saturation: -20%);
 
-  & input[type='text'],
-  & input[type='number'],
-  & input[type='email'],
-  & input[type='password'],
-  & input[type='url'],
-  & input[type='datetime-local'],
-  & textarea {
+  input[type='text'],
+  input[type='number'],
+  input[type='email'],
+  input[type='password'],
+  input[type='url'],
+  input[type='datetime-local'],
+  textarea {
     background: $ui-base-color;
     color: color.adjust($ui-primary-color, $lightness: -10%, $saturation: -20%);
+  }
+
+  label {
+    color: $dark-green !important;
   }
 
   select {
@@ -1293,6 +1308,18 @@ button {
     background: color.adjust($ui-base-color)
       url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14.933 18.467' height='19.698' width='15.929'><path d='M3.467 14.967l-3.393-3.5H14.86l-3.392 3.5c-1.866 1.925-3.666 3.5-4 3.5-.335 0-2.135-1.575-4-3.5zm.266-11.234L7.467 0 11.2 3.733l3.733 3.734H0l3.733-3.734z' fill='#{hex-color(lighten($ui-base-color, 12%))}'/></svg>")
       no-repeat right 8px center / auto 14px;
+  }
+
+  .button.button-tertiary {
+    color: $inverted-text-color;
+  }
+
+  .input.boolean {
+    label {
+      a {
+        color: $highlight-text-color;
+      }
+    }
   }
 
   .recommended {
@@ -1331,8 +1358,10 @@ button {
     color: color.adjust($ui-primary-color, $saturation: -40%);
   }
 
-  label {
-    color: $dark-green !important;
+  .label_input {
+    &__append {
+      color: $primary-text-color;
+    }
   }
 }
 
