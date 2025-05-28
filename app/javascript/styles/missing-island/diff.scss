@@ -1087,6 +1087,10 @@ button {
     }
 
     &__main {
+      &__additional-content {
+        color: $secondary-text-color;
+      }
+
       &__header {
         &__label {
           color: $secondary-text-color;
