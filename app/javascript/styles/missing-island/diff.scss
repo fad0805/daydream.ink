@@ -1354,8 +1354,24 @@ button {
     color: color.adjust($ui-base-color, $lightness: -35%, $saturation: -30%);
   }
 
+  .korean-captcha {
+    .answer {
+      background: $ui-base-color;
+      border: 1px solid var(--background-border-color);
+      color: $primary-text-color;
+    }
+
+    .question {
+      color: $primary-text-color;
+    }
+  }
+
   .lead {
     color: color.adjust($ui-primary-color, $saturation: -40%);
+
+    a {
+      color: $ui-primary-color;
+    }
   }
 
   .label_input {
