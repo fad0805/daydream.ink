@@ -1050,6 +1050,14 @@ button {
   }
 
   &-group {
+    &--admin-sign-up {
+      .notification-group {
+        &__icon {
+          color: $ui-primary-color;
+        }
+      }
+    }
+
     &__embedded-status {
       &__account {
         color: $secondary-text-color;
@@ -1066,6 +1074,14 @@ button {
       .reply-indicator {
         &__attachments {
           color: $secondary-text-color;
+        }
+      }
+    }
+
+    &--follow {
+      .notification-group {
+        &__icon {
+          color: $ui-primary-color;
         }
       }
     }
