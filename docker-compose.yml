@@ -27,7 +27,7 @@ services:
 
   es:
     restart: always
-    image: elastic-nori:latest
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.4
     build: es-nori
     environment:
       - 'ES_JAVA_OPTS=-Xms512m -Xmx512m -Des.enforce.bootstrap.checks=true'
