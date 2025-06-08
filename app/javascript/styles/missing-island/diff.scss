@@ -877,19 +877,19 @@ button {
 }
 
 .hover-card {
-  & .account-fields {
-    color: color.adjust($ui-primary-color, $lightness: -5%);
+  .account-fields {
+    color: $primary-text-color;
 
-    & dl dt {
-      color: color.adjust($ui-base-color, $lightness: -50%, $saturation: -40%);
+    dl dt {
+      color: $primary-text-color;
     }
   }
 
   &__bio {
-    color: color.adjust($ui-primary-color, $lightness: -5%);
+    color: $primary-text-color;
   }
 
-  & .display-name {
+  .display-name {
     &__account {
       color: $secondary-text-color;
     }
@@ -899,8 +899,8 @@ button {
     }
   }
 
-  &__number {
-    color: color.adjust($ui-base-color, $lightness: -50%, $saturation: -40%);
+  &__numbers {
+    color: $primary-text-color;
   }
 }
 
@@ -1059,6 +1059,10 @@ button {
     }
 
     &__embedded-status {
+      p {
+        color: $primary-text-color;
+      }
+
       &__account {
         color: $secondary-text-color;
 
