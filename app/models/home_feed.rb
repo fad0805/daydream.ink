@@ -1,14 +1,21 @@
 # frozen_string_literal: true
 
 class HomeFeed < Feed
-  def initialize(account, force: false)
+  def initialize(account)
     @account = account
-    @force = force
     super(:home, account.id)
   end
 
   def regenerating?
     redis.exists?("account:#{@account.id}:regeneration")
+  end
+
+  def regeneration_in_progress!
+    redis.set("account:#{@account.id}:regeneration", true, nx: true, ex: 1.day.seconds)
+  end
+
+  def regeneration_finished!
+    redis.del("account:#{@account.id}:regeneration")
   end
 
   def get(limit, max_id = nil, since_id = nil, min_id = nil)
@@ -42,7 +49,7 @@ class HomeFeed < Feed
 
   def from_database(limit, max_id, since_id, min_id)
     # return if redis feed is not full
-    return [] if !@force && FeedManager.instance.timeline_size(@type, @id) * 2 < FeedManager::MAX_ITEMS
+    return [] if FeedManager.instance.timeline_size(@type, @id) * 2 < FeedManager::MAX_ITEMS
 
     tag_followings = TagFollow.where(account: @account).select(:tag_id)
     scope = Status.where(account: @account.following)

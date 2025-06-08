@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe HomeFeed do
-  subject { described_class.new(account, force: true) }
+  subject { described_class.new(account) }
 
   let(:account) { Fabricate(:account) }
   let(:followed) { Fabricate(:account) }
@@ -28,6 +28,7 @@ RSpec.describe HomeFeed do
 
     context 'when feed is generated' do
       before do
+        stub_const 'FeedManager::MAX_ITEMS', 7
         FeedManager.instance.populate_home(account)
       end
 
@@ -50,6 +51,7 @@ RSpec.describe HomeFeed do
 
     context 'when feed is only partial', :partial do
       before do
+        stub_const 'FeedManager::MAX_ITEMS', 5
         FeedManager.instance.populate_home(account)
       end
 
@@ -74,6 +76,7 @@ RSpec.describe HomeFeed do
 
     context 'when feed is being generated' do
       before do
+        stub_const 'FeedManager::MAX_ITEMS', 0
         redis.set("account:#{account.id}:regeneration", true)
       end
 
@@ -92,6 +95,44 @@ RSpec.describe HomeFeed do
         results = subject.get(3, nil, nil, 0)
         expect(results.map(&:id)).to eq [3, 2, 1]
       end
+    end
+  end
+
+  describe '#regenerating?' do
+    context 'when feed is being generated' do
+      before do
+        redis.set("account:#{account.id}:regeneration", true)
+      end
+
+      it 'returns `true`' do
+        expect(subject.regenerating?).to be true
+      end
+    end
+
+    context 'when feed is not being generated' do
+      it 'returns `false`' do
+        expect(subject.regenerating?).to be false
+      end
+    end
+  end
+
+  describe '#regeneration_in_progress!' do
+    it 'sets the corresponding key in redis' do
+      expect(redis.exists?("account:#{account.id}:regeneration")).to be false
+
+      subject.regeneration_in_progress!
+
+      expect(redis.exists?("account:#{account.id}:regeneration")).to be true
+    end
+  end
+
+  describe '#regeneration_finished!' do
+    it 'removes the corresponding key from redis' do
+      redis.set("account:#{account.id}:regeneration", true)
+
+      subject.regeneration_finished!
+
+      expect(redis.exists?("account:#{account.id}:regeneration")).to be false
     end
   end
 end
