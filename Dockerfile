@@ -13,7 +13,7 @@ ARG BASE_REGISTRY="docker.io"
 
 # Ruby image to use for base image, change with [--build-arg RUBY_VERSION="3.4.x"]
 # renovate: datasource=docker depName=docker.io/ruby
-ARG RUBY_VERSION="3.4.3"
+ARG RUBY_VERSION="3.4.4"
 # # Node.js version to use in base image, change with [--build-arg NODE_MAJOR_VERSION="20"]
 # renovate: datasource=node-version depName=node
 ARG NODE_MAJOR_VERSION="22"
@@ -306,7 +306,6 @@ COPY --from=bundler /usr/local/bundle/ /usr/local/bundle/
 RUN \
   ldconfig; \
   # Use Ruby on Rails to create Mastodon assets
-  ASSET_BUILD_TIME_COMPRESSION=false \
   SECRET_KEY_BASE_DUMMY=1 \
   bundle exec rails assets:precompile; \
   # Cleanup temporary files
