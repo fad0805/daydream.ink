@@ -786,6 +786,12 @@ button {
   }
 }
 
+.featured-carousel {
+  &__header {
+    color: $darker-text-color;
+  }
+}
+
 .filters {
   & .filter-subset a {
     color: color.adjust($default, $lightness: -15%, $saturation: -15%);
