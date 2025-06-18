@@ -1546,7 +1546,7 @@ button {
     color: $primary-text-color;
 
     &__translate-button {
-      color: color.adjust($ui-base-color, $lightness: -40%, $saturation: -40%);
+      color: $highlight-text-color;
     }
 
     & a {
@@ -1588,7 +1588,7 @@ button {
   }
 
   &__prepend {
-    color: color.adjust($ui-base-color, $lightness: -40%, $saturation: -40%);
+    color: $dark-text-color;
   }
 
   &__relative-time {
