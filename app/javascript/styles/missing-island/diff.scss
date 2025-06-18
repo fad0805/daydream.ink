@@ -110,6 +110,10 @@ button {
     }
   }
 
+  &__disclaimer {
+    color: $secondary-text-color;
+  }
+
   &__display-name {
     .display-name {
       color: $secondary-text-color;
@@ -169,6 +173,14 @@ button {
           $lightness: -50%,
           $saturation: -20%
         );
+      }
+    }
+
+    &__familiar-followers {
+      color: $darker-text-color;
+
+      a:any-link {
+        color: $primary-text-color;
       }
     }
 
