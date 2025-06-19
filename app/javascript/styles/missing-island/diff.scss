@@ -1076,6 +1076,15 @@ button {
       }
     }
 
+    &--direct,
+    &--annual-report {
+      background: rgba($ui-highlight-color, 0.05);
+
+      &:focus {
+        background: rgba($ui-highlight-color, 0.1);
+      }
+    }
+
     &__embedded-status {
       p {
         color: $primary-text-color;
