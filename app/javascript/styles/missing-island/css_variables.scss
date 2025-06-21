@@ -17,6 +17,9 @@
   --avatar-border-radius: 8px;
   --input-background-color: #{$ui-base-color};
   --on-input-color: #{$darker-text-color};
+  --nested-card-background: #{color.adjust($ui-base-color, $alpha: -0.05)};
+  --nested-card-border: 1px solid
+    #{color.adjust($ui-base-color, $alpha: -0.005)};
 }
 
 body {

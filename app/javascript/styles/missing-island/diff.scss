@@ -1600,6 +1600,10 @@ button {
     color: $dark-text-color;
   }
 
+  &__quote-icon {
+    color: $ui-primary-color;
+  }
+
   &__relative-time {
     color: color.adjust($ui-base-color, $lightness: -50%, $saturation: -40%);
   }
