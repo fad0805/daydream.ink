@@ -16,6 +16,7 @@ import postcssPresetEnv from 'postcss-preset-env';
 import { MastodonServiceWorkerLocales } from './config/vite/plugin-sw-locales';
 import { MastodonEmojiCompressed } from './config/vite/plugin-emoji-compressed';
 import { GlitchThemes } from './config/vite/plugin-glitch-themes';
+import { MastodonNameLookup } from './config/vite/plugin-name-lookup';
 
 const jsRoot = path.resolve(__dirname, 'app/javascript');
 
@@ -41,6 +42,13 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
       },
     },
     build: {
+      assetsInlineLimit(filePath, _content) {
+        const relativePath = path.relative(jsRoot, filePath);
+
+        if (relativePath.startsWith('fonts/')) {
+          return false;
+        }
+      },
       commonjsOptions: { transformMixedEsModules: true },
       chunkSizeWarningLimit: 1 * 1024 * 1024, // 1MB
       sourcemap: true,
@@ -125,6 +133,7 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
       // Old library types need to be converted
       optimizeLodashImports() as PluginOption,
       !!process.env.ANALYZE_BUNDLE_SIZE && (visualizer() as PluginOption),
+      MastodonNameLookup(),
     ],
   } satisfies UserConfig;
 };
