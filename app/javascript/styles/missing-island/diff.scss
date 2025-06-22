@@ -499,6 +499,16 @@ button {
       &:focus {
         color: color.adjust($ui-primary-color, $lightness: 10%);
       }
+
+      &.active {
+        color: $ui-highlight-color;
+
+        &:hover,
+        &:active,
+        &:focus {
+          color: color.adjust($ui-highlight-color, $lightness: 10%);
+        }
+      }
     }
 
     &__collapsible,
