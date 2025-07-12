@@ -654,6 +654,17 @@ button {
       color: $secondary-text-color;
     }
   }
+
+  &__wrapper-direct {
+    .detailed-status {
+      background: $ui-base-color;
+
+      &__action-bar {
+        background: $ui-base-color;
+        border-top-color: color.adjust($ui-base-color, $lightness: -20%);
+      }
+    }
+  }
 }
 
 .content-warning {
