@@ -1651,7 +1651,7 @@ button {
   &__navigation-bar {
     &__item {
       &.active {
-        color: color.adjust($ui-highlight-color, $lightness: 13%);
+        color: color.adjust($ui-highlight-color, $lightness: 5%);
       }
     }
   }
