@@ -1136,6 +1136,14 @@ button {
           color: $ui-primary-color;
         }
       }
+
+      &-request {
+        .notification-group {
+          &__icon {
+            color: $ui-primary-color;
+          }
+        }
+      }
     }
 
     &__main {
@@ -1636,6 +1644,16 @@ button {
 
   & &__toggle {
     color: $ui-primary-color;
+  }
+}
+
+.ui {
+  &__navigation-bar {
+    &__item {
+      &.active {
+        color: color.adjust($ui-highlight-color, $lightness: 13%);
+      }
+    }
   }
 }
 
