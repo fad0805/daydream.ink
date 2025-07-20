@@ -1633,6 +1633,17 @@ button {
     color: $dark-text-color;
   }
 
+  &__quote-author-button {
+    color: $ui-primary-color;
+
+    &:hover,
+    &:active,
+    &:focus {
+      color: color.adjust($ui-primary-color, $lightness: 10%);
+      border-color: color.adjust($ui-primary-color, $lightness: 10%);
+    }
+  }
+
   &__quote-icon {
     color: $ui-primary-color;
   }
