@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_06_27_132728) do
+ActiveRecord::Schema[8.0].define(version: 2025_07_21_055219) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -1250,6 +1250,17 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_27_132728) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "username_blocks", force: :cascade do |t|
+    t.string "username", null: false
+    t.string "normalized_username", null: false
+    t.boolean "exact", default: false, null: false
+    t.boolean "allow_with_approval", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index "lower((username)::text)", name: "index_username_blocks_on_username_lower_btree", unique: true
+    t.index ["normalized_username"], name: "index_username_blocks_on_normalized_username"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.datetime "created_at", precision: nil, null: false
@@ -1625,4 +1636,5 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_27_132728) do
               true AS local
              FROM site_uploads) t0;
   SQL
+  add_index "media_metrics", ["category", "local"], name: "index_media_metrics_on_category_and_local", unique: true
 end

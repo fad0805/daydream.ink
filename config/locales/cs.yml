@@ -1387,6 +1387,10 @@ cs:
     basic_information: Základní informace
     hint_html: "<strong>Nastavte si, co lidé uvidí na vašem veřejném profilu a vedle vašich příspěvků.</strong> Ostatní lidé vás budou spíše sledovat a komunikovat s vámi, když budete mít vyplněný profil a profilový obrázek."
     other: Další
+  emoji_styles:
+    auto: Auto
+    native: Výchozí
+    twemoji: Twemoji
   errors:
     '400': Žádost, kterou jste odeslali, byla neplatná nebo poškozená.
     '403': Nejste oprávněni tuto stránku zobrazit.
@@ -1954,6 +1958,7 @@ cs:
     edited_at_html: Upraven %{date}
     errors:
       in_reply_not_found: Příspěvek, na který se pokoušíte odpovědět, neexistuje.
+      quoted_status_not_found: Zdá se, že příspěvek, který se pokoušíte citovat neexistuje.
     over_character_limit: byl překročen limit %{max} znaků
     pin_errors:
       direct: Příspěvky viditelné pouze zmíněným uživatelům nelze připnout
