@@ -291,6 +291,10 @@ button {
   }
 
   .content {
+    & > p strong {
+      color: $highlight-text-color;
+    }
+
     &__heading {
       &__tabs {
         a:hover,
@@ -817,8 +821,24 @@ button {
   &__search-header {
     .search {
       &__icon {
-        color: $ui-base-color;
+        color: $highlight-text-color;
       }
+    }
+  }
+
+  &-suggestions-card {
+    &__link {
+      .display-name {
+        color: $primary-text-color;
+
+        &__account {
+          color: $secondary-text-color;
+        }
+      }
+    }
+
+    &__source {
+      color: $highlight-text-color;
     }
   }
 }
@@ -1467,6 +1487,8 @@ button {
 
 .search {
   &__icon {
+    color: $ui-primary-color;
+
     .icon {
       color: color.adjust(
         $ui-primary-color,
@@ -1789,7 +1811,7 @@ input.glitch-setting-text {
 
 // Change the background colors of statuses
 .focusable:focus {
-  background: $ui-base-color;
+  background: color.adjust($ui-base-color, $lightness: 3%);
 }
 
 // Change the background colors of status__content__spoiler-link
