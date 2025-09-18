@@ -237,3 +237,5 @@ gem 'stackprof'
 gem 'mail', '~> 2.8'
 
 gem 'vite_rails', '~> 3.0.19'
+
+gem 'mini_portile2', '~> 2.8'
