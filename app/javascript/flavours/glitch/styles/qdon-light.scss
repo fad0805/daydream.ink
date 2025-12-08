@@ -1,6 +1,9 @@
 @use '@/styles/fonts/qdon';
 
-@use 'qdon-light/variables';
-@use 'qdon-light/css_variables';
-@use 'application';
-@use 'qdon-light/diff';
+@use 'common';
+@use '@/styles/qdon/theme';
+@use '@/styles/qdon/diff-light';
+
+html {
+  color-scheme: light;
+}

@@ -1,7 +1,0 @@
-@use '../mastodon-light/diff';
-@use 'variables' as qdon;
-
-// Colourise mention
-a.u-url {
-  color: qdon.$mention-color;
-}
