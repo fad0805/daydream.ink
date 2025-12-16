@@ -5,27 +5,25 @@
 @use '../../mastodon/theme/light' as mastodon-light;
 @use '../../mastodon/theme/utils' as utils;
 
-// Apply qdon brand palette to all elements
 html {
   @include base.palette;
-}
 
-// Qdon themes follow OS dark/light preference
-html[data-user-theme='system'],
-html[data-user-theme='qdon'],
-html[data-user-theme='qdon-big'] {
-  color-scheme: dark light;
+  &:where([data-user-theme='system']),
+  &:where([data-user-theme='qdon']),
+  &:where([data-user-theme='qdon-big']) {
+    color-scheme: dark light;
 
-  @media (prefers-color-scheme: dark) {
-    @include mastodon-dark.tokens;
-    @include utils.invert-on-dark;
-    @include dark.tokens;
-  }
+    @media (prefers-color-scheme: dark) {
+      @include mastodon-dark.tokens;
+      @include utils.invert-on-dark;
+      @include dark.tokens;
+    }
 
-  @media (prefers-color-scheme: light) {
-    @include mastodon-light.tokens;
-    @include utils.invert-on-light;
-    @include light.tokens;
+    @media (prefers-color-scheme: light) {
+      @include mastodon-light.tokens;
+      @include utils.invert-on-light;
+      @include light.tokens;
+    }
   }
 }
 
@@ -37,7 +35,8 @@ html:where(
     [data-user-theme='qdon-dark'],
     [data-user-theme='qdon-light'],
     [data-user-theme='qdon-big'],
-    [data-user-theme='system']
+    [data-user-theme='qdon-big-dark'],
+    [data-user-theme='qdon-big-light']
   )
 ) {
   color-scheme: dark;
@@ -48,7 +47,8 @@ html:where(
 }
 
 // Dark theme (qdon-dark skin - fixed dark mode)
-html:where([data-user-theme='qdon-dark']) {
+html:where([data-user-theme='qdon-dark']),
+html:where([data-user-theme='qdon-big-dark']) {
   color-scheme: dark;
 
   @include mastodon-dark.tokens;
@@ -58,7 +58,8 @@ html:where([data-user-theme='qdon-dark']) {
 
 // Light theme (qdon-light skin - fixed light mode)
 .theme-light,
-html:where([data-user-theme='qdon-light']) {
+html:where([data-user-theme='qdon-light']),
+html:where([data-user-theme='qdon-big-light']) {
   color-scheme: light;
 
   @include mastodon-light.tokens;
