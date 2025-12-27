@@ -107,7 +107,7 @@ module Account::Interactions
     # When toggling a mute between hiding and allowing notifications, the mute will already exist, so the find_or_create_by! call will return the existing Mute without updating the hide_notifications attribute. Therefore, we check that hide_notifications? is what we want and set it if it isn't.
     domain_mute.update(hide_from_home: hide_from_home) if domain_mute.hide_from_home? != hide_from_home
 
-    domain_mute.save!
+    domain_mute
   end
 
   def unfollow!(other_account)
@@ -141,7 +141,11 @@ module Account::Interactions
   end
 
   def following?(other_account)
-    active_relationships.exists?(target_account: other_account)
+    other_id = other_account.is_a?(Account) ? other_account.id : other_account
+
+    preloaded_relation(:following, other_id) do
+      active_relationships.exists?(target_account: other_account)
+    end
   end
 
   def following_anyone?
@@ -157,15 +161,33 @@ module Account::Interactions
   end
 
   def blocking?(other_account)
-    block_relationships.exists?(target_account: other_account)
+    other_id = other_account.is_a?(Account) ? other_account.id : other_account
+
+    preloaded_relation(:blocking, other_id) do
+      block_relationships.exists?(target_account: other_account)
+    end
+  end
+
+  def blocked_by?(other_account)
+    other_id = other_account.is_a?(Account) ? other_account.id : other_account
+
+    preloaded_relation(:blocked_by, other_id) do
+      other_account.block_relationships.exists?(target_account: self)
+    end
   end
 
   def domain_blocking?(other_domain)
-    domain_blocks.exists?(domain: other_domain)
+    preloaded_relation(:domain_blocking_by_domain, other_domain) do
+      domain_blocks.exists?(domain: other_domain)
+    end
   end
 
   def muting?(other_account)
-    mute_relationships.exists?(target_account: other_account)
+    other_id = other_account.is_a?(Account) ? other_account.id : other_account
+
+    preloaded_relation(:muting, other_id) do
+      mute_relationships.exists?(target_account: other_account)
+    end
   end
 
   def muting_conversation?(conversation)
@@ -243,5 +265,11 @@ module Account::Interactions
 
   def normalized_domain(domain)
     TagManager.instance.normalize_domain(domain)
+  end
+
+  private
+
+  def preloaded_relation(type, key)
+    @preloaded_relations && @preloaded_relations[type] ? @preloaded_relations[type][key].present? : yield
   end
 end

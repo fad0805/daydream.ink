@@ -163,6 +163,40 @@ RSpec.describe Account::Interactions do
     end
   end
 
+  describe '#mute_domain!' do
+    subject { account.mute_domain!(domain, hide_from_home: hide_from_home) }
+
+    let(:domain) { 'example.com' }
+    let(:hide_from_home) { false }
+
+    it 'creates and returns AccountDomainMute' do
+      expect do
+        expect(subject).to be_a AccountDomainMute
+      end.to change { account.domain_mutes.count }.by 1
+    end
+
+    context 'with hide_from_home set to true' do
+      let(:hide_from_home) { true }
+
+      it 'creates AccountDomainMute with hide_from_home true' do
+        subject
+        expect(account.domain_mutes.find_by(domain: domain).hide_from_home).to be true
+      end
+    end
+
+    context 'when AccountDomainMute already exists' do
+      before do
+        account.mute_domain!(domain, hide_from_home: false)
+      end
+
+      let(:hide_from_home) { true }
+
+      it 'updates hide_from_home' do
+        expect { subject }.to change { account.domain_mutes.find_by(domain: domain).hide_from_home }.from(false).to(true)
+      end
+    end
+  end
+
   describe '#block_idna_domain!' do
     subject do
       [
@@ -276,6 +310,27 @@ RSpec.describe Account::Interactions do
     end
   end
 
+  describe '#unmute_domain!' do
+    subject { account.unmute_domain!(domain) }
+
+    let(:domain) { 'example.com' }
+
+    context 'when muting the domain' do
+      it 'returns destroyed AccountDomainMute' do
+        account_domain_mute = Fabricate(:account_domain_mute, domain: domain)
+        account.domain_mutes << account_domain_mute
+        expect(subject).to be_a AccountDomainMute
+        expect(subject).to be_destroyed
+      end
+    end
+
+    context 'when not muting the domain' do
+      it 'returns nil' do
+        expect(subject).to be_nil
+      end
+    end
+  end
+
   describe '#unblock_idna_domain!' do
     subject { account.unblock_domain!(punycode_domain) }
 
@@ -302,9 +357,24 @@ RSpec.describe Account::Interactions do
     subject { account.following?(target_account) }
 
     context 'when following target_account' do
-      it 'returns true' do
+      before do
         account.active_relationships.create(target_account: target_account)
-        expect(subject).to be true
+      end
+
+      it 'returns true' do
+        result = nil
+        expect { result = subject }.to execute_queries
+        expect(result).to be true
+      end
+
+      context 'when relations are preloaded' do
+        it 'does not query the database to get the result' do
+          account.preload_relations!([target_account.id])
+
+          result = nil
+          expect { result = subject }.to_not execute_queries
+          expect(result).to be true
+        end
       end
     end
 
@@ -336,13 +406,64 @@ RSpec.describe Account::Interactions do
     subject { account.blocking?(target_account) }
 
     context 'when blocking target_account' do
-      it 'returns true' do
+      before do
         account.block_relationships.create(target_account: target_account)
-        expect(subject).to be true
+      end
+
+      it 'returns true' do
+        result = nil
+        expect { result = subject }.to execute_queries
+
+        expect(result).to be true
+      end
+
+      context 'when relations are preloaded' do
+        it 'does not query the database to get the result' do
+          account.preload_relations!([target_account.id])
+
+          result = nil
+          expect { result = subject }.to_not execute_queries
+
+          expect(result).to be true
+        end
       end
     end
 
     context 'when not blocking target_account' do
+      it 'returns false' do
+        expect(subject).to be false
+      end
+    end
+  end
+
+  describe '#blocked_by?' do
+    subject { account.blocked_by?(target_account) }
+
+    context 'when blocked by target_account' do
+      before do
+        target_account.block_relationships.create(target_account: account)
+      end
+
+      it 'returns true' do
+        result = nil
+        expect { result = subject }.to execute_queries
+
+        expect(result).to be true
+      end
+
+      context 'when relations are preloaded' do
+        it 'does not query the database to get the result' do
+          account.preload_relations!([target_account.id])
+
+          result = nil
+          expect { result = subject }.to_not execute_queries
+
+          expect(result).to be true
+        end
+      end
+    end
+
+    context 'when not blocked by target_account' do
       it 'returns false' do
         expect(subject).to be false
       end
@@ -355,10 +476,25 @@ RSpec.describe Account::Interactions do
     let(:domain) { 'example.com' }
 
     context 'when blocking the domain' do
-      it 'returns true' do
+      before do
         account_domain_block = Fabricate(:account_domain_block, domain: domain)
         account.domain_blocks << account_domain_block
-        expect(subject).to be true
+      end
+
+      it 'returns true' do
+        result = nil
+        expect { result = subject }.to execute_queries
+        expect(result).to be true
+      end
+
+      context 'when relations are preloaded' do
+        it 'does not query the database to get the result' do
+          account.preload_relations!([], [domain])
+
+          result = nil
+          expect { result = subject }.to_not execute_queries
+          expect(result).to be true
+        end
       end
     end
 
@@ -373,10 +509,25 @@ RSpec.describe Account::Interactions do
     subject { account.muting?(target_account) }
 
     context 'when muting target_account' do
-      it 'returns true' do
+      before do
         mute = Fabricate(:mute, account: account, target_account: target_account)
         account.mute_relationships << mute
-        expect(subject).to be true
+      end
+
+      it 'returns true' do
+        result = nil
+        expect { result = subject }.to execute_queries
+        expect(result).to be true
+      end
+
+      context 'when relations are preloaded' do
+        it 'does not query the database to get the result' do
+          account.preload_relations!([target_account.id])
+
+          result = nil
+          expect { result = subject }.to_not execute_queries
+          expect(result).to be true
+        end
       end
     end
 
