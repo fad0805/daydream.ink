@@ -1,0 +1,35 @@
+@mixin palete {
+  --color-dark-green-00: #3d4734;
+  --color-dark-green-01: #1f2d24; // deep
+  --color-green-00: #bedbbb; // defaults
+  --color-green-01: #34842d;
+  --color-green-02: #2e7927; // hover
+  --color-green-03: #c4d9c0; // border
+  --color-green-04: #eef7e8; // background
+  --color-green-05: #d1e1cf; // base
+  --color-green-06: color.adjust(#3c754d, $lightness: 8%); // success
+  --color-grey-950: #181821;
+  --color-grey-800: #292938;
+  --color-grey-700: #444664;
+  --color-grey-600: #545778;
+  --color-grey-500: #696d91;
+  --color-grey-400: #8b8dac;
+  --color-grey-300: #b4b6cb;
+  --color-grey-200: #d8d9e3;
+  --color-grey-100: #f0f0f5;
+  --color-grey-50: #f0f1ff;
+  --color-red-600: #b7253d;
+  --color-red-500: #df405a;
+  --color-red-400: #ff5050; // warning
+  --color-yellow-400: #ffb900;
+  --color-yellow-600: #e17100;
+  --color-yellow-700: #bb4d00;
+
+  /*
+  $ui-button-focus-outline: solid 2px --color-green-01;
+  $action-button-focus-color: color.adjust(
+    --color-dark-green,
+    $lightness: 4%
+  );
+  */
+}

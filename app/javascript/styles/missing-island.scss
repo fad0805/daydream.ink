@@ -1,8 +1,11 @@
 @use 'fonts/qdon';
 
-@use 'missing-island/variables';
-@use 'missing-island/css_variables';
-@use 'mastodon-light';
+@use 'common';
+@use 'missing-island/theme';
 @use 'missing-island/diff';
 
-@use 'qdon-big-diff';
+@use 'qdon/diff-big';
+
+html {
+  color-scheme: light;
+}

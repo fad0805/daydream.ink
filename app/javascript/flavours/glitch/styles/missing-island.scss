@@ -1,5 +1,11 @@
 @use '@/styles/fonts/qdon';
-@use '@/styles/missing-island/variables';
-@use 'application';
+
+@use 'common';
+@use '@/styles/missing-island/theme';
 @use '@/styles/missing-island/diff';
-@use '@/styles/qdon-big-diff';
+
+@use '@/styles/qdon/diff-big';
+
+html {
+  color-scheme: light;
+}

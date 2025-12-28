@@ -1,0 +1,54 @@
+@use '@/styles/mastodon/theme/utils' as utils;
+
+@use 'base';
+@use 'dark';
+@use 'light';
+
+html {
+  @include base.palete;
+
+  &:where([data-user-theme='system']) {
+    color-scheme: dark light;
+
+    @media (prefers-color-scheme: dark) {
+      @include dark.tokens;
+      @include utils.invert-on-dark;
+
+      @media (prefers-contrast: more) {
+        @include dark.contrast-overrides;
+      }
+    }
+
+    @media (prefers-color-scheme: light) {
+      @include light.tokens;
+      @include utils.invert-on-light;
+
+      @media (prefers-contrast: more) {
+        @include light.contrast-overrides;
+      }
+    }
+  }
+}
+
+.theme-dark,
+html:where([data-user-theme='missing-island-dark']) {
+  color-scheme: dark;
+
+  @include dark.tokens;
+  @include utils.invert-on-dark;
+}
+
+html[data-user-theme='contrast'],
+html[data-user-theme='contrast'] .theme-light {
+  @include light.contrast-overrides;
+}
+
+.theme-light,
+html:where(
+  :not([data-user-theme='missing-island-dark'], [data-user-theme='system'])
+) {
+  color-scheme: light;
+
+  @include light.tokens;
+  @include utils.invert-on-light;
+}
