@@ -44,9 +44,7 @@ html[data-user-theme='contrast'] .theme-light {
 }
 
 .theme-light,
-html:where(
-  :not([data-user-theme='missing-island-dark'], [data-user-theme='system'])
-) {
+html:where([data-user-theme='missing-island-light']) {
   color-scheme: light;
 
   @include light.tokens;
