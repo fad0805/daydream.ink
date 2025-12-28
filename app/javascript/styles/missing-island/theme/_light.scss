@@ -23,7 +23,7 @@
   --color-text-on-success-base: var(--color-white);
   --color-text-disabled: var(--color-grey-300);
   --color-text-on-disabled: var(--color-grey-200);
-  --color-text-bookmark-highlight: var(--color-text-error);
+  --color-text-bookmark-highlight: var(--color-text-success);
   --color-text-favourite-highlight: var(--color-text-warning);
   --color-text-on-media: var(--color-white);
   --color-text-status-links: var(--color-text-brand);
@@ -183,15 +183,15 @@
 
   /* LEGACY TOKENS */
 
-  --rich-text-container-color: rgb(255 216 231 / 100%);
-  --rich-text-text-color: rgb(114 47 83 / 100%);
-  --rich-text-decorations-color: rgb(255 175 212 / 100%);
+  --rich-text-container-color: var(--color-green-05);
+  --rich-text-text-color: var(--color-dark-green-00);
+  --rich-text-decorations-color: var(--color-green-03);
 }
 
 @mixin contrast-overrides {
   /* TEXT TOKENS */
 
-  --color-text-primary: var(--color-black);
+  --color-text-primary: var(--color-dark-green-01);
   --color-text-secondary: var(--color-grey-800);
   --color-text-tertiary: var(--color-grey-700);
   --color-text-brand: var(--color-green-01);

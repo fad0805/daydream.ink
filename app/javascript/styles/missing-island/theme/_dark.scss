@@ -179,15 +179,15 @@
 
   /* LEGACY TOKENS */
 
-  --rich-text-container-color: rgb(87 24 60 / 100%);
-  --rich-text-text-color: rgb(255 175 212 / 100%);
-  --rich-text-decorations-color: rgb(128 58 95 / 100%);
+  --rich-text-container-color: var(--color-dark-green-01);
+  --rich-text-text-color: var(--color-green-05);
+  --rich-text-decorations-color: var(--color-green-02);
 }
 
 @mixin contrast-overrides {
   /* TEXT TOKENS */
 
-  --color-text-primary: var(--color-black);
+  --color-text-primary: var(--color-green-05);
   --color-text-secondary: var(--color-grey-800);
   --color-text-tertiary: var(--color-grey-700);
   --color-text-brand: var(--color-green-01);
