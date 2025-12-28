@@ -7,7 +7,7 @@
 html {
   @include base.palete;
 
-  &:where([data-user-theme='system']) {
+  &:where([data-user-theme='missing-island']) {
     color-scheme: dark light;
 
     @media (prefers-color-scheme: dark) {
@@ -31,7 +31,7 @@ html {
 }
 
 .theme-dark,
-html:where([data-user-theme='missing-island-dark']) {
+html:where([data-user-theme='missing-island']) {
   color-scheme: dark;
 
   @include dark.tokens;
@@ -44,7 +44,7 @@ html[data-user-theme='contrast'] .theme-light {
 }
 
 .theme-light,
-html:where([data-user-theme='missing-island-light']) {
+html:where([data-user-theme='missing-island']) {
   color-scheme: light;
 
   @include light.tokens;
