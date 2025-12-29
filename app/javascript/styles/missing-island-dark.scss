@@ -1,0 +1,11 @@
+@use 'fonts/qdon';
+
+@use 'common';
+@use 'missing-island/theme';
+@use 'missing-island/diff-dark';
+
+@use 'qdon/diff-big';
+
+html {
+  color-scheme: dark;
+}

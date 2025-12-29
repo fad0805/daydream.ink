@@ -1,0 +1,23 @@
+html {
+  scrollbar-width: thin;
+}
+
+.status__content__text,
+.e-content,
+.edit-indicator__content,
+.reply-indicator__content {
+  pre:has(> code) {
+    border: 1px solid var(--color-border-primary);
+    word-break: break-all;
+  }
+}
+
+// Colourise mention and hashtag with qdon brand colors
+// Colors change based on OS dark/light preference
+a.mention {
+  color: var(--color-green-01);
+}
+
+a.hashtag {
+  color: var(--color-green-02);
+}

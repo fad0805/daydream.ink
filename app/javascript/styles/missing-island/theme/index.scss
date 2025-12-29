@@ -30,9 +30,8 @@ html {
   }
 }
 
-/*
 .theme-dark,
-html:where([data-user-theme='missing-island']) {
+html:where([data-user-theme='missing-island-dark']) {
   color-scheme: dark;
 
   @include dark.tokens;
@@ -45,10 +44,9 @@ html[data-user-theme='contrast'] .theme-light {
 }
 
 .theme-light,
-html:where([data-user-theme='missing-island']) {
+html:where([data-user-theme='missing-island-light']) {
   color-scheme: light;
 
   @include light.tokens;
   @include utils.invert-on-light;
 }
-*/
