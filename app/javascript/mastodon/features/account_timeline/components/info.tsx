@@ -35,6 +35,14 @@ export const AccountInfo: FC<{ relationship?: Relationship }> = ({
           />
         </span>
       )}
+      {relationship.domain_muting && (
+        <span key='domain_muting' className='relationship-tag'>
+          <FormattedMessage
+            id='account.domain_muted'
+            defaultMessage='Domain muted'
+          />
+        </span>
+      )}
     </div>
   );
 };

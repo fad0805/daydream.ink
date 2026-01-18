@@ -17,6 +17,10 @@ import {
   initDomainBlockModal,
   unblockDomain,
 } from '@/mastodon/actions/domain_blocks';
+import {
+  initDomainMuteModal,
+  unmuteDomain,
+} from '@/mastodon/actions/domain_mutes';
 import { openModal } from '@/mastodon/actions/modal';
 import { initMuteModal } from '@/mastodon/actions/mutes';
 import { initReport } from '@/mastodon/actions/reports';
@@ -46,6 +50,14 @@ const messages = defineMessages({
   unblockDomain: {
     id: 'account.unblock_domain',
     defaultMessage: 'Unblock domain {domain}',
+  },
+  muteDomain: {
+    id: 'account.mute_domain',
+    defaultMessage: 'Mute domain {domain}',
+  },
+  unmuteDomain: {
+    id: 'account.unmute_domain',
+    defaultMessage: 'Unmute domain {domain}',
   },
   hideReblogs: {
     id: 'account.hide_reblogs',
@@ -325,6 +337,27 @@ export const AccountMenu: FC<{ accountId: string }> = ({ accountId }) => {
           }),
           action: () => {
             dispatch(initDomainBlockModal(account));
+          },
+          dangerous: true,
+        });
+      }
+
+      if (relationship?.domain_muting) {
+        arr.push({
+          text: intl.formatMessage(messages.unmuteDomain, {
+            domain: remoteDomain,
+          }),
+          action: () => {
+            dispatch(unmuteDomain(remoteDomain));
+          },
+        });
+      } else {
+        arr.push({
+          text: intl.formatMessage(messages.muteDomain, {
+            domain: remoteDomain,
+          }),
+          action: () => {
+            dispatch(initDomainMuteModal(account));
           },
           dangerous: true,
         });
