@@ -7,62 +7,33 @@
 
 html {
   @include base.palette;
+}
 
-  &:where([data-user-theme='system']),
-  &:where([data-user-theme='qdon']),
-  &:where([data-user-theme='qdon-big']) {
-    color-scheme: dark light;
+// Dark theme (default when no color-scheme is set)
+[data-color-scheme='dark'],
+html:not([data-color-scheme]) {
+  color-scheme: dark;
 
-    @media (prefers-color-scheme: dark) {
-      @include mastodon-dark.tokens;
-      @include utils.invert-on-dark;
-      @include dark.tokens;
-    }
+  @include mastodon-dark.tokens;
+  @include utils.invert-on-dark;
+  @include dark.tokens;
 
-    @media (prefers-color-scheme: light) {
-      @include mastodon-light.tokens;
-      @include utils.invert-on-light;
-      @include light.tokens;
-    }
+  &[data-contrast='high'],
+  [data-contrast='high'] & {
+    @include mastodon-dark.contrast-overrides;
   }
 }
 
-// Dark theme fallback (default when qdon stylesheet is loaded)
-.theme-dark,
-html:where(
-  :not(
-    [data-user-theme='qdon'],
-    [data-user-theme='qdon-dark'],
-    [data-user-theme='qdon-light'],
-    [data-user-theme='qdon-big'],
-    [data-user-theme='qdon-big-dark'],
-    [data-user-theme='qdon-big-light']
-  )
-) {
-  color-scheme: dark;
-
-  @include mastodon-dark.tokens;
-  @include utils.invert-on-dark;
-  @include dark.tokens;
-}
-
-// Dark theme (qdon-dark skin - fixed dark mode)
-html:where([data-user-theme='qdon-dark']),
-html:where([data-user-theme='qdon-big-dark']) {
-  color-scheme: dark;
-
-  @include mastodon-dark.tokens;
-  @include utils.invert-on-dark;
-  @include dark.tokens;
-}
-
-// Light theme (qdon-light skin - fixed light mode)
-.theme-light,
-html:where([data-user-theme='qdon-light']),
-html:where([data-user-theme='qdon-big-light']) {
+// Light theme
+[data-color-scheme='light'] {
   color-scheme: light;
 
   @include mastodon-light.tokens;
   @include utils.invert-on-light;
   @include light.tokens;
+
+  &[data-contrast='high'],
+  [data-contrast='high'] & {
+    @include mastodon-light.contrast-overrides;
+  }
 }

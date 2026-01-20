@@ -3,6 +3,7 @@
   --variant-emoji: '\01F3F3\FE0F\200D\01F308';
 }
 
+// Light theme (default for tangerine)
 :root {
   --color-accent: hsl(304deg, 100%, 60%);
   --color-accent-focus: hsl(304deg, 100%, 87%);
@@ -13,14 +14,13 @@
   --rich-text-decorations-color: hsla(212deg, 100%, 65%, 100%);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-secondary-bg: hsl(212deg, 100%, 15%);
-    --color-accent: hsl(304deg, 100%, 80%);
-    --color-accent-focus: hsl(304deg, 100%, 87%);
-    --color-accent-lines: hsla(304deg, 100%, 80%, 30%);
-    --color-accent-bg: hsl(212deg, 100%, 15%);
-  }
+// Dark theme overrides
+[data-color-scheme='dark'] {
+  --color-secondary-bg: hsl(212deg, 100%, 15%);
+  --color-accent: hsl(304deg, 100%, 80%);
+  --color-accent-focus: hsl(304deg, 100%, 87%);
+  --color-accent-lines: hsla(304deg, 100%, 80%, 30%);
+  --color-accent-bg: hsl(212deg, 100%, 15%);
 }
 
 // #f76902 -> #ff99e7 %s,%23f76902,%23ff99e7,g

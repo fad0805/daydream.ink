@@ -813,7 +813,7 @@ a.hashtag {
 // XP Black Edition (Dark Mode) Overrides
 // Dark chrome with light window content areas
 // ===========================================
-@media (prefers-color-scheme: dark) {
+[data-color-scheme='dark'] {
   // Dark mode title bars - dark gray gradient
   .column-header {
     background: linear-gradient(
@@ -964,7 +964,7 @@ a.hashtag {
   }
 
   // XP Black Edition dark mode
-  @media (prefers-color-scheme: dark) {
+  [data-color-scheme='dark'] & {
     background: linear-gradient(180deg, #3a3a3a 0%, #2a2a2a 50%, #1e1e1e 100%);
     border-top: 2px solid #0a0a0a;
 
