@@ -34,3 +34,31 @@ html:not([data-color-scheme]) {
     color: var(--color-dark-blue);
   }
 }
+
+// Qdon pink styling for compose form dropdown buttons
+[data-color-scheme='dark'],
+html:not([data-color-scheme]) {
+  .dropdown-button {
+    color: var(--color-pink);
+    border-color: var(--color-pink);
+
+    &.active {
+      background-color: var(--color-pink);
+      color: var(--color-qdon-grey);
+      border-color: var(--color-pink);
+    }
+  }
+}
+
+[data-color-scheme='light'] {
+  .dropdown-button {
+    color: var(--color-dark-pink);
+    border-color: var(--color-dark-pink);
+
+    &.active {
+      background-color: var(--color-dark-pink);
+      color: white;
+      border-color: var(--color-dark-pink);
+    }
+  }
+}
