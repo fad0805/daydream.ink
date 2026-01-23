@@ -54,7 +54,7 @@ class CustomEmoji < ApplicationRecord
   validates_attachment_size :image, less_than: LOCAL_LIMIT, if: :local?
   validates :shortcode, uniqueness: { scope: :domain }, format: { with: SHORTCODE_ONLY_RE }, length: { minimum: MINIMUM_SHORTCODE_SIZE, maximum: MAX_FEDERATED_SHORTCODE_SIZE }
   validates :shortcode, length: { maximum: MAX_SHORTCODE_SIZE }, if: :local?
-  validate :check_image_ratio if MAX_EMOJI_RATIO.present?
+  validate :check_image_ratio
 
   scope :local, -> { where(domain: nil) }
   scope :remote, -> { where.not(domain: nil) }
