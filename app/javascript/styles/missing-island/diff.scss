@@ -14,7 +14,8 @@ html {
 
 // Colourise mention and hashtag with qdon brand colors
 // Colors change based on OS dark/light preference
-@media (prefers-color-scheme: light) {
+[data-color-scheme='light'],
+html:not([data-color-scheme]) {
   a.mention {
     color: var(--color-green-01);
   }
@@ -24,7 +25,7 @@ html {
   }
 }
 
-@media (prefers-color-scheme: dark) {
+[data-color-scheme='dark'] {
   a.mention {
     color: var(--color-green-00);
   }

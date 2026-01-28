@@ -6,47 +6,28 @@
 
 html {
   @include base.palete;
-
-  &:where([data-user-theme='missing-island']) {
-    color-scheme: dark light;
-
-    @media (prefers-color-scheme: dark) {
-      @include dark.tokens;
-      @include utils.invert-on-dark;
-
-      @media (prefers-contrast: more) {
-        @include dark.contrast-overrides;
-      }
-    }
-
-    @media (prefers-color-scheme: light) {
-      @include light.tokens;
-      @include utils.invert-on-light;
-
-      @media (prefers-contrast: more) {
-        @include light.contrast-overrides;
-      }
-    }
-  }
 }
 
-.theme-dark,
-html:where([data-user-theme='missing-island-dark']) {
+[data-color-scheme='dark'] {
   color-scheme: dark;
 
   @include dark.tokens;
   @include utils.invert-on-dark;
+
+  & [data-contrast='high'],
+  [data-contrast='high'] & {
+    @include light.contrast-overrides;
+  }
 }
 
-html[data-user-theme='contrast'],
-html[data-user-theme='contrast'] .theme-light {
-  @include light.contrast-overrides;
-}
-
-.theme-light,
-html:where([data-user-theme='missing-island-light']) {
+[data-color-scheme='light'] {
   color-scheme: light;
 
   @include light.tokens;
   @include utils.invert-on-light;
+
+  & [data-contrast='high'],
+  [data-contrast='high'] & {
+    @include light.contrast-overrides;
+  }
 }
