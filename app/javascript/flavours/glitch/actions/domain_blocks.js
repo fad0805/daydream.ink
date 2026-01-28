@@ -74,8 +74,8 @@ export function unblockDomainFail(domain, error) {
 export const initDomainBlockModal = account => dispatch => dispatch(openModal({
   modalType: 'DOMAIN_BLOCK',
   modalProps: {
-    domain: account.get('acct').split('@')[1],
-    acct: account.get('acct'),
-    accountId: account.get('id'),
+    domain: (account.get?.('acct') ?? account.acct).split('@')[1],
+    acct: account.get?.('acct') ?? account.acct,
+    accountId: account.get?.('id') ?? account.id,
   },
 }));

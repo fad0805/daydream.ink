@@ -109,8 +109,8 @@ export function unmuteDomainFail(domain, error) {
 export const initDomainMuteModal = account => dispatch => dispatch(openModal({
   modalType: 'DOMAIN_MUTE',
   modalProps: {
-    domain: account.get('acct').split('@')[1],
-    acct: account.get('acct'),
-    accountId: account.get('id'),
+    domain: (account.get?.('acct') ?? account.acct).split('@')[1],
+    acct: account.get?.('acct') ?? account.acct,
+    accountId: account.get?.('id') ?? account.id,
   },
 }));

@@ -13,8 +13,9 @@ html {
 }
 
 // Colourise mention and hashtag with qdon brand colors
-// Colors change based on OS dark/light preference
-@media (prefers-color-scheme: dark) {
+// Colors change based on color-scheme attribute
+[data-color-scheme='dark'],
+html:not([data-color-scheme]) {
   a.mention {
     color: var(--color-pink);
   }
@@ -24,12 +25,40 @@ html {
   }
 }
 
-@media (prefers-color-scheme: light) {
+[data-color-scheme='light'] {
   a.mention {
     color: var(--color-dark-pink);
   }
 
   a.hashtag {
     color: var(--color-dark-blue);
+  }
+}
+
+// Qdon pink styling for compose form dropdown buttons
+[data-color-scheme='dark'],
+html:not([data-color-scheme]) {
+  .dropdown-button {
+    color: var(--color-pink);
+    border-color: var(--color-pink);
+
+    &.active {
+      background-color: var(--color-pink);
+      color: var(--color-qdon-grey);
+      border-color: var(--color-pink);
+    }
+  }
+}
+
+[data-color-scheme='light'] {
+  .dropdown-button {
+    color: var(--color-dark-pink);
+    border-color: var(--color-dark-pink);
+
+    &.active {
+      background-color: var(--color-dark-pink);
+      color: white;
+      border-color: var(--color-dark-pink);
+    }
   }
 }

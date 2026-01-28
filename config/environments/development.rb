@@ -89,7 +89,7 @@ Rails.application.configure do
 
   config.x.trusted_metrics = [IPAddr.new('127.0.0.1')]
   if ENV['TRUSTED_METRICS_IP'].present?
-    ENV['TRUSTED_METRICS_IP'].split do |item|
+    ENV['TRUSTED_METRICS_IP'].split.each do |item|
       config.x.trusted_metrics << IPAddr.new(item)
     end
   end
