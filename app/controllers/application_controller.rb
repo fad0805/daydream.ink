@@ -180,7 +180,7 @@ class ApplicationController < ActionController::Base
     current = current_user&.setting_color_scheme
     return current if current && current != 'auto'
 
-    return 'dark' if current_skin.include?('default') || current_skin.include?('contrast')
+    return 'dark' if current_skin.include?('dark') || current_skin.include?('default') || current_skin.include?('contrast')
     return 'light' if current_skin.include?('light')
 
     'auto'
