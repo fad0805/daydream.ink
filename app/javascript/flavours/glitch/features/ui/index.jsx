@@ -68,6 +68,8 @@ import {
   Lists,
   ListEdit,
   ListMembers,
+  Collections,
+  CollectionsEditor,
   Blocks,
   DomainBlocks,
   DomainMutes,
@@ -91,6 +93,7 @@ import { WrappedSwitch, WrappedRoute } from './util/react_router_helpers';
 // Dummy import, to make sure that <Status /> ends up in the application bundle.
 // Without this it ends up in ~8 very commonly used bundles.
 import '../../components/status';
+import { areCollectionsEnabled } from '../collections/utils';
 
 const messages = defineMessages({
   beforeUnload: { id: 'ui.beforeunload', defaultMessage: 'Your draft will be lost if you leave Mastodon.' },
@@ -239,6 +242,15 @@ class SwitchingColumnsArea extends PureComponent {
             <WrappedRoute path='/mutes' component={Mutes} content={children} />
             <WrappedRoute path='/domain_mutes' component={DomainMutes} content={children} />
             <WrappedRoute path='/lists' component={Lists} content={children} />
+            {areCollectionsEnabled() &&
+              <WrappedRoute path='/collections/new' component={CollectionsEditor} content={children} />
+            }
+            {areCollectionsEnabled() &&
+              <WrappedRoute path='/collections/:id/edit' component={CollectionsEditor} content={children} />
+            }
+            {areCollectionsEnabled() &&
+              <WrappedRoute path='/collections' component={Collections} content={children} />
+            }    
 
             <Route component={BundleColumnError} />
           </WrappedSwitch>
