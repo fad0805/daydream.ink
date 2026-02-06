@@ -21,7 +21,10 @@ import {
   initDomainBlockModal,
   unblockDomain,
 } from '@/flavours/glitch/actions/domain_blocks';
-import { initDomainMuteModal, unmuteDomain } from '@/flavours/glitch/actions/domain_mutes';
+import {
+  initDomainMuteModal,
+  unmuteDomain,
+} from '@/flavours/glitch/actions/domain_mutes';
 import { openModal } from '@/flavours/glitch/actions/modal';
 import { initMuteModal } from '@/flavours/glitch/actions/mutes';
 import { initReport } from '@/flavours/glitch/actions/reports';
