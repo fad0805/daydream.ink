@@ -145,7 +145,10 @@
   );
   --color-border-media: rgb(252 248 255 / 15%);
   --color-border-on-bg-secondary: var(--color-green-03);
-  --color-border-on-bg-brand-softer: var(--color-green-02);
+  --color-border-on-bg-brand-softer: #{utils.css-alpha(
+      var(--color-green-02),
+      20%
+    )};
   --color-border-on-bg-error-softer: #{utils.css-alpha(
       var(--color-text-error),
       50%
