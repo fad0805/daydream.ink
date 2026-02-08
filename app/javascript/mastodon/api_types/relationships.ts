@@ -3,14 +3,15 @@ export interface ApiRelationshipJSON {
   blocked_by: boolean;
   blocking: boolean;
   domain_blocking: boolean;
+  domain_muting: boolean;
   endorsed: boolean;
   followed_by: boolean;
   following: boolean;
   id: string;
   languages: string[] | null;
-  muting_notifications: boolean;
   muting: boolean;
-  domain_muting: boolean;
+  muting_notifications: boolean;
+  muting_expires_at: string | null;
   note: string;
   notifying: boolean;
   requested_by: boolean;

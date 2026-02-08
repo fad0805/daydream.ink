@@ -14,9 +14,11 @@ import {
   GroupBadge,
   MutedBadge,
 } from '@/flavours/glitch/components/badge';
+import { Icon } from '@/flavours/glitch/components/icon';
 import { useAccount } from '@/flavours/glitch/hooks/useAccount';
 import type { AccountRole } from '@/flavours/glitch/models/account';
 import { useAppDispatch, useAppSelector } from '@/flavours/glitch/store';
+import IconPinned from '@/images/icons/icon_pinned.svg?react';
 
 import { isRedesignEnabled } from '../common';
 
@@ -106,6 +108,7 @@ export const AccountBadges: FC<{ accountId: string }> = ({ accountId }) => {
         <MutedBadge
           key='muted-badge'
           className={classNames(className, classes.badgeMuted)}
+          expiresAt={relationship.muting_expires_at}
         />,
       );
     }
@@ -117,6 +120,16 @@ export const AccountBadges: FC<{ accountId: string }> = ({ accountId }) => {
 
   return <div className={'account__header__badges'}>{badges}</div>;
 };
+
+export const PinnedBadge: FC = () => (
+  <Badge
+    className={classes.badge}
+    icon={<Icon id='pinned' icon={IconPinned} />}
+    label={
+      <FormattedMessage id='account.timeline.pinned' defaultMessage='Pinned' />
+    }
+  />
+);
 
 function isAdminBadge(role: AccountRole) {
   const name = role.name.toLowerCase();
