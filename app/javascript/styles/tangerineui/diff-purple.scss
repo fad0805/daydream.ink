@@ -1,0 +1,9 @@
+@use 'diff';
+
+:root {
+  --version: 'v2.5.3';
+  --variant-name: 'Purple';
+  --variant-emoji: '\1FABB\00A0';
+  --variant: var(--variant-emoji) var(--variant-name);
+  --meta: 'Tangerine UI for Mastodon: ' var(--version) ' \00B7 ' var(--variant);
+}

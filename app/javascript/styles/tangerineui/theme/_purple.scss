@@ -1,0 +1,14 @@
+@use 'purple-light' as light;
+@use 'purple-dark' as dark;
+
+[data-color-scheme='dark'] {
+  color-scheme: dark;
+
+  @include dark.tokens;
+}
+
+[data-color-scheme='light'] {
+  color-scheme: light;
+
+  @include light.tokens;
+}

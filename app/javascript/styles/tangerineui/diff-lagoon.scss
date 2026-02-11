@@ -1,0 +1,9 @@
+@use 'diff';
+
+:root {
+  --version: 'v2.5.2';
+  --variant-name: 'Lagoon';
+  --variant-emoji: '\1F420\00A0';
+  --variant: var(--variant-emoji) var(--variant-name);
+  --meta: 'Tangerine UI for Mastodon: ' var(--version) ' \00B7 ' var(--variant);
+}
