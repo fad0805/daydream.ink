@@ -1,0 +1,27 @@
+@mixin tokens {
+  --color-bg: #111;
+  --gradient-bg: linear-gradient(90deg, var(--color-bg), var(--color-bg));
+  --color-fg: #d6d2e0;
+  --color-fg-muted: #6e5e67;
+  --color-secondary-bg: #1f1118;
+  --color-secondary-separator: #2e2328;
+  --color-content-bg: #030303;
+  --color-content-fg: var(--color-fg);
+  --color-content-fg-bold: #fff;
+  --color-content-fg-muted: #737373;
+  --color-content-secondary-bg: var(--color-secondary-bg);
+  --color-content-secondary-separator: rgba(89, 62, 78, 40%);
+  --color-content-bg-focus: color-mix(
+    in srgb,
+    var(--color-accent),
+    var(--color-content-bg) 90%
+  );
+  --color-accent: #d05c8a;
+  --color-accent-focus: #ad2862;
+  --color-accent-lines: rgba(249, 122, 194, 30%);
+  --color-accent-bg: #3c1f2f;
+  --color-accent-fg: #fff;
+  --color-lines: #343434;
+  --color-lines-translucent: rgba(255, 255, 255, 15%);
+  --color-confirm-fg: var(--color-confirm);
+}

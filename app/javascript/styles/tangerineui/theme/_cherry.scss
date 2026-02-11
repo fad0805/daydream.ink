@@ -1,0 +1,14 @@
+@use 'cherry-light' as light;
+@use 'cherry-dark' as dark;
+
+[data-color-scheme='dark'] {
+  color-scheme: dark;
+
+  @include dark.tokens;
+}
+
+[data-color-scheme='light'] {
+  color-scheme: light;
+
+  @include light.tokens;
+}
