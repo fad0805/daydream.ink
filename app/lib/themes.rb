@@ -68,8 +68,7 @@ class Themes
   end
 
   def skins_for(name)
-    skins = @flavours[name]['skins']
-    skins.include?('qdon') && skins.include?('qdon-light') ? ['system'] + skins : skins
+    @flavours[name]['skins']
   end
 
   def flavours_and_skins
