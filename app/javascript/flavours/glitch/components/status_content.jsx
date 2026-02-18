@@ -178,8 +178,8 @@ class StatusContent extends PureComponent {
           {children}
         </HandledLink>
       );
-    } else if (element.classList.contains('quote-inline')) {
-      return undefined; // to show inline quote as is if not shown as quote
+    } else if (element.classList.contains('quote-inline') && this.props.status.get('quote')) {
+      return null;
     }
     return undefined;
   }
