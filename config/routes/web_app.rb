@@ -27,6 +27,7 @@
   /notifications_v2/(*any)
   /notifications/(*any)
   /pinned
+  /profile/(*any)
   /public
   /public/local
   /public/remote

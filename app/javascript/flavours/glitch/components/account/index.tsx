@@ -74,6 +74,7 @@ interface AccountProps {
   defaultAction?: 'block' | 'mute';
   withBio?: boolean;
   withMenu?: boolean;
+  extraAccountInfo?: React.ReactNode;
   children?: React.ReactNode;
 }
 
@@ -85,6 +86,7 @@ export const Account: React.FC<AccountProps> = ({
   defaultAction,
   withBio,
   withMenu = true,
+  extraAccountInfo,
   children,
 }) => {
   const intl = useIntl();
@@ -298,7 +300,7 @@ export const Account: React.FC<AccountProps> = ({
       >
         <div className='account__info-wrapper'>
           <Permalink
-            className='account__display-name'
+            className='account__display-name focusable'
             title={account?.acct}
             href={account?.url}
             to={`/@${account?.acct}`}
@@ -349,6 +351,8 @@ export const Account: React.FC<AccountProps> = ({
                 />
               </div>
             ))}
+
+          {extraAccountInfo}
         </div>
 
         {!minimal && (
