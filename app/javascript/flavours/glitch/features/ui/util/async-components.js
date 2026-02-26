@@ -1,4 +1,4 @@
-import { isClientFeatureEnabled } from '@/flavours/glitch/utils/environment';
+import { isServerFeatureEnabled } from '@/flavours/glitch/utils/environment';
 
 export function EmojiPicker () {
   return import('../../emoji/emoji_picker');
@@ -73,7 +73,7 @@ export function PinnedStatuses () {
 }
 
 export function AccountTimeline () {
-  if (isClientFeatureEnabled('profile_redesign')) {
+  if (isServerFeatureEnabled('profile_redesign')) {
     return import('../../account_timeline/v2');
   }
   return import('../../account_timeline');
@@ -85,6 +85,11 @@ export function AccountGallery () {
 
 export function AccountFeatured() {
   return import('../../account_featured');
+}
+
+export function AccountAbout() {
+  return import('../../account_about')
+    .then((module) => ({ default: module.AccountAbout }));
 }
 
 export function Followers () {
