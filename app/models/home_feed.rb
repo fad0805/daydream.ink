@@ -58,25 +58,40 @@ class HomeFeed < Feed
   protected
 
   def from_database(limit, max_id, since_id, min_id)
-    # return if redis feed is not full
-    return [] if FeedManager.instance.timeline_size(@type, @id) * 2 < FeedManager::MAX_ITEMS
+    tag_following_ids = TagFollow.where(account: @account).pluck(:tag_id)
+    following_ids     = @account.active_relationships.pluck(:target_account_id)
+    all_account_ids   = following_ids + [@account.id]
 
-    tag_following_ids = TagFollow.where(account: @account).pluck(:tag_id).to_set
-    scope = Status.where(account: @account.following)
-    scope = scope.left_outer_joins(:mentions, :tags)
-    scope = scope.where(visibility: %i(public unlisted private)).or(scope.where(mentions: { account_id: @account.id })).group(Status.arel_table[:id])
-    scope = scope.or(Status.where(account: @account))
-    scope = scope.or(Status.where(tags: { id: tag_following_ids.to_a }).where(visibility: :public))
+    scope = Status.where(account_id: all_account_ids, visibility: %i(public unlisted private))
+      .or(Status.where(account_id: @account.id))
+
+    if following_ids.any?
+      mention_exists = Mention.where(Mention.arel_table[:status_id].eq(Status.arel_table[:id]))
+        .where(account_id: @account.id)
+      scope = scope.or(Status.where(account_id: following_ids).where(mention_exists.arel.exists))
+    end
+
+    if tag_following_ids.any?
+      statuses_tags = Arel::Table.new(:statuses_tags)
+      tag_exists = statuses_tags.where(statuses_tags[:status_id].eq(Status.arel_table[:id]))
+        .where(statuses_tags[:tag_id].in(tag_following_ids))
+        .project(Arel.sql('1'))
+      scope = scope.or(Status.where(visibility: :public).where(tag_exists.exists))
+    end
+
     statuses = scope
-               .includes(:tags)
-               .to_a_paginated_by_id(limit, min_id: min_id, max_id: max_id, since_id: since_id)
-               .reject do |status|
-                 if status.tags.any? { |tag| tag_following_ids.include?(tag.id) }
-                   FeedManager.instance.filter?(:tags, status, @account)
-                 else
-                   FeedManager.instance.filter?(:home, status, @account)
-                 end
-               end
+      .includes(:tags)
+      .to_a_paginated_by_id(limit, min_id: min_id, max_id: max_id, since_id: since_id)
+
+    tag_set = tag_following_ids.to_set
+    statuses.reject! do |status|
+      if status.tags.any? { |tag| tag_set.include?(tag.id) }
+        FeedManager.instance.filter?(:tags, status, @account)
+      else
+        FeedManager.instance.filter?(:home, status, @account)
+      end
+    end
+
     statuses.sort_by { |status| -status.id }
   end
 
