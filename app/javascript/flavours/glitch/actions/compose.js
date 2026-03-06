@@ -251,6 +251,19 @@ export function submitCompose(overridePrivacy = null, successCallback = undefine
     }
 
     const visibility = overridePrivacy || getState().getIn(['compose', 'privacy']);
+    const rawPoll = getState().getIn(['compose', 'poll'], null);
+    const poll = rawPoll ? (() => {
+      const options = rawPoll.get('options');
+      const sanitizedOptions = options
+        ? options.map(o => (o && typeof o === 'string' ? o.trim() : String(o).trim())).filter(Boolean).toArray()
+        : [];
+      return {
+        options: sanitizedOptions,
+        expires_in: rawPoll.get('expires_in'),
+        multiple: rawPoll.get('multiple'),
+        hide_totals: rawPoll.get('hide_totals'),
+      };
+    })() : null;
     api().request({
       url: statusId === null ? '/api/v1/statuses' : `/api/v1/statuses/${statusId}`,
       method: statusId === null ? 'post' : 'put',
@@ -264,7 +277,7 @@ export function submitCompose(overridePrivacy = null, successCallback = undefine
         media_attributes,
         sensitive: getState().getIn(['compose', 'sensitive']) || (spoiler_text.length > 0 && media.size !== 0),
         visibility: visibility,
-        poll: getState().getIn(['compose', 'poll'], null),
+        poll,
         language: getState().getIn(['compose', 'language']),
         quoted_status_id: getState().getIn(['compose', 'quoted_status_id']),
         quote_approval_policy: visibility === 'private' || visibility === 'direct' ? 'nobody' : getState().getIn(['compose', 'quote_policy']),
