@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 
 import {
   changeCompose,
+  changeScheduledAt,
   submitCompose,
   clearComposeSuggestions,
   fetchComposeSuggestions,
@@ -81,6 +82,7 @@ const mapStateToProps = state => ({
   sideArm: sideArmPrivacy(state),
   media: state.getIn(['compose', 'media_attachments']),
   maxChars: state.getIn(['server', 'server', 'configuration', 'statuses', 'max_characters'], 500),
+  scheduledAt: state.getIn(['compose', 'scheduled_at']),
 });
 
 const mapDispatchToProps = (dispatch, props) => ({
@@ -135,6 +137,10 @@ const mapDispatchToProps = (dispatch, props) => ({
 
   onPickEmoji (position, data, needsSpace) {
     dispatch(insertEmojiCompose(position, data, needsSpace));
+  },
+
+  onScheduleChange (scheduledAt) {
+    dispatch(changeScheduledAt(scheduledAt));
   },
 
 });

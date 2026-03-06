@@ -27,6 +27,7 @@ import { LanguageDropdown } from './language_dropdown';
 import { NavigationBar } from './navigation_bar';
 import { PollForm } from "./poll_form";
 import { ReplyIndicator } from './reply_indicator';
+import { ScheduleButton } from './schedule_button';
 import { UploadForm } from './upload_form';
 import { Warning } from './warning';
 import { ComposeQuotedStatus } from './quoted_post';
@@ -38,6 +39,7 @@ const messages = defineMessages({
   placeholder: { id: 'compose_form.placeholder', defaultMessage: 'What is on your mind?' },
   spoiler_placeholder: { id: 'compose_form.spoiler_placeholder', defaultMessage: 'Content warning (optional)' },
   publish: { id: 'compose_form.publish', defaultMessage: 'Post' },
+  schedule: { id: 'compose_form.schedule_submit', defaultMessage: 'Schedule' },
   saveChanges: { id: 'compose_form.save_changes', defaultMessage: 'Update' },
   reply: { id: 'compose_form.reply', defaultMessage: 'Reply' },
 });
@@ -75,6 +77,8 @@ class ComposeForm extends ImmutablePureComponent {
     lang: PropTypes.string,
     maxChars: PropTypes.number,
     redirectOnSuccess: PropTypes.bool,
+    scheduledAt: PropTypes.string,
+    onScheduleChange: PropTypes.func,
   };
 
   static defaultProps = {
@@ -265,6 +269,12 @@ class ComposeForm extends ImmutablePureComponent {
           <div className='compose-form__dropdowns'>
             <VisibilityButton disabled={this.props.isEditing} />
             <LanguageDropdown />
+            <ScheduleButton
+              scheduledAt={this.props.scheduledAt}
+              onScheduleChange={this.props.onScheduleChange}
+              disabled={this.props.isEditing}
+              isEditing={this.props.isEditing}
+            />
           </div>
 
           {this.props.spoiler && (
@@ -334,9 +344,11 @@ class ComposeForm extends ImmutablePureComponent {
                   loading={isSubmitting}
                 >
                   {intl.formatMessage(
-                    this.props.isEditing ?
-                      messages.saveChanges :
-                      (this.props.isInReply ? messages.reply : messages.publish)
+                    this.props.isEditing
+                      ? messages.saveChanges
+                      : (this.props.scheduledAt
+                        ? messages.schedule
+                        : (this.props.isInReply ? messages.reply : messages.publish))
                   )}
                 </Button>
               </div>

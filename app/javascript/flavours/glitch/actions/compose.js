@@ -85,6 +85,7 @@ export const COMPOSE_CHANGE_MEDIA_ORDER       = 'COMPOSE_CHANGE_MEDIA_ORDER';
 
 export const COMPOSE_SET_STATUS = 'COMPOSE_SET_STATUS';
 export const COMPOSE_FOCUS = 'COMPOSE_FOCUS';
+export const COMPOSE_SCHEDULED_AT_CHANGE = 'COMPOSE_SCHEDULED_AT_CHANGE';
 
 const messages = defineMessages({
   uploadErrorLimit: { id: 'upload_error.limit', defaultMessage: 'File upload limit exceeded.' },
@@ -94,6 +95,7 @@ const messages = defineMessages({
   published: { id: 'compose.published.body', defaultMessage: 'Post published.' },
   saved: { id: 'compose.saved.body', defaultMessage: 'Post saved.' },
   blankPostError: { id: 'compose.error.blank_post', defaultMessage: 'Post can\'t be blank.' },
+  scheduledFor: { id: 'compose.scheduled_for', defaultMessage: 'Scheduled for {time}' },
 });
 
 export const ensureComposeIsVisible = (getState) => {
@@ -281,21 +283,37 @@ export function submitCompose(overridePrivacy = null, successCallback = undefine
         language: getState().getIn(['compose', 'language']),
         quoted_status_id: getState().getIn(['compose', 'quoted_status_id']),
         quote_approval_policy: visibility === 'private' || visibility === 'direct' ? 'nobody' : getState().getIn(['compose', 'quote_policy']),
+        scheduled_at: statusId === null ? getState().getIn(['compose', 'scheduled_at']) : undefined,
       },
       headers: {
         'Idempotency-Key': getState().getIn(['compose', 'idempotencyKey']),
       },
     }).then(function (response) {
+      const isScheduled = response.data && response.data.scheduled_at;
+
       if ((browserHistory.location.pathname === '/publish' || browserHistory.location.pathname === '/statuses/new')
           && window.history.state
           && !getState().getIn(['compose', 'advanced_options', 'threaded_mode'])) {
         browserHistory.goBack();
       }
 
-      dispatch(insertIntoTagHistory(response.data.tags, status));
+      if (!isScheduled) {
+        dispatch(insertIntoTagHistory(response.data.tags, status));
+      }
       dispatch(submitComposeSuccess({ ...response.data }));
       if (typeof successCallback === 'function') {
         successCallback(response.data);
+      }
+
+      if (isScheduled) {
+        const scheduledDate = new Date(response.data.scheduled_at);
+        const timeStr = scheduledDate.toLocaleString(undefined, { dateStyle: 'short', timeStyle: 'short' });
+        dispatch(showAlert({
+          message: messages.scheduledFor,
+          values: { time: timeStr },
+          dismissAfter: 5000,
+        }));
+        return;
       }
 
       // To make the app more responsive, immediately push the status
@@ -356,6 +374,13 @@ export function submitComposeFail(error) {
   return {
     type: COMPOSE_SUBMIT_FAIL,
     error: error,
+  };
+}
+
+export function changeScheduledAt(scheduledAt) {
+  return {
+    type: COMPOSE_SCHEDULED_AT_CHANGE,
+    scheduledAt: scheduledAt || null,
   };
 }
 

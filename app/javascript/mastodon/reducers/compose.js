@@ -52,6 +52,7 @@ import {
   COMPOSE_CHANGE_MEDIA_ORDER,
   COMPOSE_SET_STATUS,
   COMPOSE_FOCUS,
+  COMPOSE_SCHEDULED_AT_CHANGE,
 } from '../actions/compose';
 import { REDRAFT } from '../actions/statuses';
 import { STORE_HYDRATE } from '../actions/store';
@@ -96,6 +97,8 @@ const initialState = ImmutableMap({
   quote_policy: 'public',
   default_quote_policy: 'public', // Set in hydration.
   fetching_link: null,
+
+  scheduled_at: null,
 });
 
 const initialPoll = ImmutableMap({
@@ -132,6 +135,7 @@ function clearAll(state) {
     map.set('idempotencyKey', uuid());
     map.set('quoted_status_id', null);
     map.set('quote_policy', state.get('default_quote_policy'));
+    map.set('scheduled_at', null);
   });
 }
 
@@ -606,6 +610,8 @@ export const composeReducer = (state = initialState, action) => {
     return state.set('language', action.language);
   case COMPOSE_FOCUS:
     return state.set('focusDate', new Date()).update('text', text => text.length > 0 ? text : action.defaultText);
+  case COMPOSE_SCHEDULED_AT_CHANGE:
+    return state.set('scheduled_at', action.scheduledAt);
   case COMPOSE_CHANGE_MEDIA_ORDER:
     return state.update('media_attachments', list => {
       const indexA = list.findIndex(x => x.get('id') === action.a);
