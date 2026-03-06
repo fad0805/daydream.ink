@@ -1,5 +1,7 @@
 import { isServerFeatureEnabled } from '@/flavours/glitch/utils/environment';
 
+import ScheduledTimelineComponent from '../../scheduled_timeline';
+
 export function EmojiPicker () {
   return import('../../emoji/emoji_picker');
 }
@@ -137,6 +139,10 @@ export function FollowedTags () {
 
 export function BookmarkedStatuses () {
   return import('../../bookmarked_statuses');
+}
+
+export function ScheduledTimeline () {
+  return Promise.resolve({ default: ScheduledTimelineComponent });
 }
 
 export function Blocks () {

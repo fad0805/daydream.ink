@@ -12,6 +12,7 @@ import { tagHistory } from 'mastodon/settings';
 import { showAlert, showAlertForError } from './alerts';
 import { useEmoji } from './emojis';
 import { importFetchedAccounts, importFetchedStatus } from './importer';
+import { addScheduledStatus } from './scheduled_statuses';
 import { openModal } from './modal';
 import { updateTimeline } from './timelines';
 
@@ -214,11 +215,16 @@ export function submitCompose(successCallback) {
 
     dispatch(submitComposeRequest());
 
+    const scheduledAtCompose = getState().getIn(['compose', 'scheduled_at']);
+    const isRedraftingScheduled = !!(statusId && scheduledAtCompose);
+    const editingScheduledId = isRedraftingScheduled ? statusId : null;
+    const effectiveStatusId = isRedraftingScheduled ? null : statusId;
+
     // If we're editing a post with media attachments, those have not
     // necessarily been changed on the server. Do it now in the same
     // API call.
     let media_attributes;
-    if (statusId !== null) {
+    if (effectiveStatusId !== null) {
       media_attributes = media.map(item => {
         let focus;
 
@@ -235,7 +241,7 @@ export function submitCompose(successCallback) {
     }
 
     const visibility = getState().getIn(['compose', 'privacy']);
-    const scheduledAt = statusId === null ? getState().getIn(['compose', 'scheduled_at']) : null;
+    const scheduledAt = effectiveStatusId === null ? getState().getIn(['compose', 'scheduled_at']) : null;
     const requestData = {
       status,
       spoiler_text,
@@ -252,9 +258,10 @@ export function submitCompose(successCallback) {
     if (scheduledAt) {
       requestData.scheduled_at = scheduledAt;
     }
-    api().request({
-      url: statusId === null ? '/api/v1/statuses' : `/api/v1/statuses/${statusId}`,
-      method: statusId === null ? 'post' : 'put',
+
+    const doSubmit = () => api().request({
+      url: effectiveStatusId === null ? '/api/v1/statuses' : `/api/v1/statuses/${effectiveStatusId}`,
+      method: effectiveStatusId === null ? 'post' : 'put',
       data: requestData,
       headers: {
         'Idempotency-Key': getState().getIn(['compose', 'idempotencyKey']),
@@ -275,6 +282,7 @@ export function submitCompose(successCallback) {
       }
 
       if (isScheduled) {
+        dispatch(addScheduledStatus(response.data));
         const scheduledDate = new Date(response.data.scheduled_at);
         const timeStr = scheduledDate.toLocaleString(undefined, { dateStyle: 'short', timeStyle: 'short' });
         dispatch(showAlert({
@@ -295,15 +303,15 @@ export function submitCompose(successCallback) {
         }
       };
 
-      if (statusId) {
+      if (effectiveStatusId) {
         dispatch(importFetchedStatus({ ...response.data }));
       }
 
-      if (statusId === null && response.data.visibility !== 'direct') {
+      if (effectiveStatusId === null && response.data.visibility !== 'direct') {
         insertIfOnline('home');
       }
 
-      if (statusId === null && response.data.in_reply_to_id === null && response.data.visibility === 'public') {
+      if (effectiveStatusId === null && response.data.in_reply_to_id === null && response.data.visibility === 'public') {
         insertIfOnline('community');
         if (!response.data.local_only) {
           insertIfOnline('public');
@@ -312,7 +320,7 @@ export function submitCompose(successCallback) {
       }
 
       dispatch(showAlert({
-        message: statusId === null ? messages.published : messages.saved,
+        message: effectiveStatusId === null ? messages.published : messages.saved,
         action: messages.open,
         dismissAfter: 10000,
         onClick: () => browserHistory.push(`/@${response.data.account.username}/${response.data.id}`),
@@ -320,6 +328,17 @@ export function submitCompose(successCallback) {
     }).catch(function (error) {
       dispatch(submitComposeFail(error));
     });
+
+    if (isRedraftingScheduled) {
+      api().delete(`/api/v1/scheduled_statuses/${editingScheduledId}`).then(() => {
+        dispatch({ type: 'SCHEDULED_STATUS_DELETE_SUCCESS', id: editingScheduledId });
+        doSubmit();
+      }).catch((err) => {
+        dispatch(submitComposeFail(err));
+      });
+    } else {
+      doSubmit();
+    }
   };
 }
 

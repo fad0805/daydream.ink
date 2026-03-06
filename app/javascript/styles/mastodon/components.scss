@@ -5640,6 +5640,37 @@ a.status-card {
   }
 }
 
+.scheduled-status-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  margin-bottom: 6px;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--color-text-secondary);
+
+  .status__info__time,
+  .status__visibility,
+  .status__language {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .status__info__time .icon,
+  .status__visibility .icon,
+  .status__language .icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .scheduled-status-card__visibility-quote {
+    font-size: 13px;
+    color: var(--color-text-tertiary);
+  }
+}
+
 .modal-root__container .privacy-dropdown {
   flex-grow: 0;
 }

@@ -63,6 +63,7 @@ import {
   FollowRequests,
   FavouritedStatuses,
   BookmarkedStatuses,
+  ScheduledTimeline,
   FollowedTags,
   LinkTimeline,
   ListTimeline,
@@ -243,6 +244,7 @@ class SwitchingColumnsArea extends PureComponent {
             <WrappedRoute path='/favourites' component={FavouritedStatuses} content={children} />
 
             <WrappedRoute path='/bookmarks' component={BookmarkedStatuses} content={children} />
+            <WrappedRoute path={['/scheduled', '/timelines/scheduled']} component={ScheduledTimeline} content={children} />
             <WrappedRoute path='/pinned' component={PinnedStatuses} content={children} />
 
             {isClientFeatureEnabled('profile_editing') && <WrappedRoute key="edit" path='/profile/edit' component={AccountEdit} content={children} />}

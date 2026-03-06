@@ -13,6 +13,7 @@ import { recoverHashtags } from 'flavours/glitch/utils/hashtag';
 import { showAlert, showAlertForError } from './alerts';
 import { useEmoji } from './emojis';
 import { importFetchedAccounts, importFetchedStatus } from './importer';
+import { addScheduledStatus, SCHEDULED_STATUS_DELETE_SUCCESS } from './scheduled_statuses';
 import { openModal } from './modal';
 import { updateTimeline } from './timelines';
 
@@ -232,11 +233,16 @@ export function submitCompose(overridePrivacy = null, successCallback = undefine
 
     dispatch(submitComposeRequest());
 
+    const scheduledAt = getState().getIn(['compose', 'scheduled_at']);
+    const isRedraftingScheduled = !!(statusId && scheduledAt);
+    const editingScheduledId = isRedraftingScheduled ? statusId : null;
+    const effectiveStatusId = isRedraftingScheduled ? null : statusId;
+
     // If we're editing a post with media attachments, those have not
     // necessarily been changed on the server. Do it now in the same
     // API call.
     let media_attributes;
-    if (statusId !== null) {
+    if (effectiveStatusId !== null) {
       media_attributes = media.map(item => {
         let focus;
 
@@ -266,9 +272,10 @@ export function submitCompose(overridePrivacy = null, successCallback = undefine
         hide_totals: rawPoll.get('hide_totals'),
       };
     })() : null;
-    api().request({
-      url: statusId === null ? '/api/v1/statuses' : `/api/v1/statuses/${statusId}`,
-      method: statusId === null ? 'post' : 'put',
+
+    const doSubmit = () => api().request({
+      url: effectiveStatusId === null ? '/api/v1/statuses' : `/api/v1/statuses/${effectiveStatusId}`,
+      method: effectiveStatusId === null ? 'post' : 'put',
       data: {
         status,
         spoiler_text,
@@ -283,7 +290,7 @@ export function submitCompose(overridePrivacy = null, successCallback = undefine
         language: getState().getIn(['compose', 'language']),
         quoted_status_id: getState().getIn(['compose', 'quoted_status_id']),
         quote_approval_policy: visibility === 'private' || visibility === 'direct' ? 'nobody' : getState().getIn(['compose', 'quote_policy']),
-        scheduled_at: statusId === null ? getState().getIn(['compose', 'scheduled_at']) : undefined,
+        scheduled_at: effectiveStatusId === null ? getState().getIn(['compose', 'scheduled_at']) : undefined,
       },
       headers: {
         'Idempotency-Key': getState().getIn(['compose', 'idempotencyKey']),
@@ -306,6 +313,7 @@ export function submitCompose(overridePrivacy = null, successCallback = undefine
       }
 
       if (isScheduled) {
+        dispatch(addScheduledStatus(response.data));
         const scheduledDate = new Date(response.data.scheduled_at);
         const timeStr = scheduledDate.toLocaleString(undefined, { dateStyle: 'short', timeStyle: 'short' });
         dispatch(showAlert({
@@ -326,26 +334,26 @@ export function submitCompose(overridePrivacy = null, successCallback = undefine
         }
       };
 
-      if (statusId) {
+      if (effectiveStatusId) {
         dispatch(importFetchedStatus({ ...response.data }));
       }
 
-      if (statusId === null) {
+      if (effectiveStatusId === null) {
         insertIfOnline('home');
       }
 
-      if (statusId === null && response.data.in_reply_to_id === null && response.data.visibility === 'public') {
+      if (effectiveStatusId === null && response.data.in_reply_to_id === null && response.data.visibility === 'public') {
         insertIfOnline('community');
         if (!response.data.local_only) {
           insertIfOnline('public');
         }
-      } else if (statusId === null && response.data.visibility === 'direct') {
+      } else if (effectiveStatusId === null && response.data.visibility === 'direct') {
         insertIfOnline('direct');
       }
 
       if (getState().getIn(['local_settings', 'show_published_toast'])) {
         dispatch(showAlert({
-          message: statusId === null ? messages.published : messages.saved,
+          message: effectiveStatusId === null ? messages.published : messages.saved,
           action: messages.open,
           dismissAfter: 10000,
           onClick: () => browserHistory.push(`/@${response.data.account.username}/${response.data.id}`),
@@ -354,6 +362,17 @@ export function submitCompose(overridePrivacy = null, successCallback = undefine
     }).catch(function (error) {
       dispatch(submitComposeFail(error));
     });
+
+    if (isRedraftingScheduled) {
+      api().delete(`/api/v1/scheduled_statuses/${editingScheduledId}`).then(() => {
+        dispatch({ type: SCHEDULED_STATUS_DELETE_SUCCESS, id: editingScheduledId });
+        doSubmit();
+      }).catch((err) => {
+        dispatch(submitComposeFail(err));
+      });
+    } else {
+      doSubmit();
+    }
   };
 }
 

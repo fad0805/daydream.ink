@@ -58,6 +58,7 @@ class ComposeForm extends ImmutablePureComponent {
     isSubmitting: PropTypes.bool,
     isChangingUpload: PropTypes.bool,
     isEditing: PropTypes.bool,
+    isEditingScheduled: PropTypes.bool,
     isUploading: PropTypes.bool,
     onChange: PropTypes.func.isRequired,
     onSubmit: PropTypes.func.isRequired,
@@ -272,8 +273,8 @@ class ComposeForm extends ImmutablePureComponent {
             <ScheduleButton
               scheduledAt={this.props.scheduledAt}
               onScheduleChange={this.props.onScheduleChange}
-              disabled={this.props.isEditing}
-              isEditing={this.props.isEditing}
+              disabled={this.props.isEditing && !this.props.isEditingScheduled}
+              isEditing={this.props.isEditing && !this.props.isEditingScheduled}
             />
           </div>
 

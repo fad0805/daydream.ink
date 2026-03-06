@@ -16,6 +16,7 @@ const messages = defineMessages({
     id: 'compose_form.schedule_min_warning',
     defaultMessage: 'Must be at least 5 minutes from now',
   },
+  reschedule: { id: 'scheduled_status.reschedule', defaultMessage: 'Change time' },
 });
 
 const MIN_OFFSET_MINUTES = 5;
@@ -44,7 +45,7 @@ function fromDatetimeLocal(value) {
   return Number.isNaN(date.getTime()) ? null : date.toISOString();
 }
 
-export function ScheduleButton({ scheduledAt, onScheduleChange, disabled, isEditing }) {
+export function ScheduleButton({ scheduledAt, onScheduleChange, disabled, isEditing, iconOnly }) {
   const intl = useIntl();
   const [open, setOpen] = useState(false);
   const [placement, setPlacement] = useState('bottom');
@@ -125,33 +126,46 @@ export function ScheduleButton({ scheduledAt, onScheduleChange, disabled, isEdit
     setOpen(!open);
   };
 
+  const triggerButton = iconOnly ? (
+    <button
+      type='button'
+      className={classNames('icon-button', 'schedule-button__scheduled', { active: open })}
+      onClick={handleToggleOpen}
+      disabled={disabled}
+      title={intl.formatMessage(messages.reschedule)}
+      aria-label={intl.formatMessage(messages.reschedule)}
+    >
+      <Icon id='schedule' icon={CalendarTodayIcon} />
+    </button>
+  ) : scheduledAt ? (
+    <button
+      type='button'
+      className={classNames('dropdown-button', 'schedule-button__scheduled', { active: open })}
+      onClick={handleToggleOpen}
+      disabled={disabled}
+      title={scheduledLabel}
+    >
+      <Icon id='schedule' icon={CalendarTodayIcon} />
+      <span className='dropdown-button__label' title={scheduledLabel}>
+        {scheduledLabel}
+      </span>
+    </button>
+  ) : (
+    <button
+      type='button'
+      className={classNames('dropdown-button', { active: open })}
+      onClick={handleToggleOpen}
+      disabled={disabled}
+      title={intl.formatMessage(messages.schedule)}
+    >
+      <Icon id='schedule' icon={CalendarTodayIcon} />
+      <span className='dropdown-button__label'>{intl.formatMessage(messages.immediate)}</span>
+    </button>
+  );
+
   return (
     <div className='schedule-button' ref={triggerRef}>
-      {scheduledAt ? (
-        <button
-          type='button'
-          className={classNames('dropdown-button', 'schedule-button__scheduled', { active: open })}
-          onClick={handleToggleOpen}
-          disabled={disabled}
-          title={scheduledLabel}
-        >
-          <Icon id='schedule' icon={CalendarTodayIcon} />
-          <span className='dropdown-button__label' title={scheduledLabel}>
-            {scheduledLabel}
-          </span>
-        </button>
-      ) : (
-        <button
-          type='button'
-          className={classNames('dropdown-button', { active: open })}
-          onClick={handleToggleOpen}
-          disabled={disabled}
-          title={intl.formatMessage(messages.schedule)}
-        >
-          <Icon id='schedule' icon={CalendarTodayIcon} />
-          <span className='dropdown-button__label'>{intl.formatMessage(messages.immediate)}</span>
-        </button>
-      )}
+      {triggerButton}
       <Overlay
         show={open}
         placement={placement}
@@ -189,13 +203,15 @@ export function ScheduleButton({ scheduledAt, onScheduleChange, disabled, isEdit
                 </span>
               )}
               <div className='schedule-button__dropdown-actions'>
-                <button
-                  type='button'
-                  className='schedule-button__clear'
-                  onClick={handleClear}
-                >
-                  {intl.formatMessage(messages.clear_schedule)}
-                </button>
+                {!iconOnly && (
+                  <button
+                    type='button'
+                    className='schedule-button__clear'
+                    onClick={handleClear}
+                  >
+                    {intl.formatMessage(messages.clear_schedule)}
+                  </button>
+                )}
                 <button
                   type='button'
                   className='schedule-button__confirm'
@@ -218,4 +234,5 @@ ScheduleButton.propTypes = {
   onScheduleChange: PropTypes.func.isRequired,
   disabled: PropTypes.bool,
   isEditing: PropTypes.bool,
+  iconOnly: PropTypes.bool,
 };

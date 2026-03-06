@@ -68,6 +68,7 @@ const mapStateToProps = state => ({
   preselectOnReply: state.getIn(['local_settings', 'preselect_on_reply']),
   isSubmitting: state.getIn(['compose', 'is_submitting']),
   isEditing: state.getIn(['compose', 'id']) !== null,
+  isEditingScheduled: !!(state.getIn(['compose', 'id']) && state.getIn(['compose', 'scheduled_at']) && !state.getIn(['statuses', state.getIn(['compose', 'id'])])),
   isChangingUpload: state.getIn(['compose', 'is_changing_upload']),
   isUploading: state.getIn(['compose', 'is_uploading']),
   anyMedia: state.getIn(['compose', 'media_attachments']).size > 0,

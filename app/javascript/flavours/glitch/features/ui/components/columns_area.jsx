@@ -15,6 +15,7 @@ import {
   DirectTimeline,
   FavouritedStatuses,
   BookmarkedStatuses,
+  ScheduledTimeline,
   ListTimeline,
   Directory,
 } from '../util/async-components';
@@ -38,6 +39,7 @@ const componentMap = {
   'DIRECT': DirectTimeline,
   'FAVOURITES': FavouritedStatuses,
   'BOOKMARKS': BookmarkedStatuses,
+  'SCHEDULED': ScheduledTimeline,
   'LIST': ListTimeline,
   'DIRECTORY': Directory,
 };

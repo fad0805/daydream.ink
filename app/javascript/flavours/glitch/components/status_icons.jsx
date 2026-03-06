@@ -36,6 +36,8 @@ LanguageIcon.propTypes = {
   language: PropTypes.string.isRequired,
 };
 
+export { LanguageIcon };
+
 class StatusIcons extends PureComponent {
 
   static propTypes = {
