@@ -54,7 +54,7 @@ class MoveWorker
         rescue ActiveRecord::RecordInvalid
           nil
         end
-    end
+      end
 
     # Finally, handle the common case of accounts not following the new account
     source_local_followers
@@ -73,7 +73,7 @@ class MoveWorker
             ['relationships', @target_account.id, follow.account_id],
           ]
         end)
-    end
+      end
 
     num_moved
   end
