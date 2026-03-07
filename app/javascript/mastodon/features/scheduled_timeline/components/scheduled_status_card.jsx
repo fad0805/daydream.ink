@@ -31,9 +31,9 @@ const messages = defineMessages({
   quoteLimited: { id: 'privacy.quote.limited', defaultMessage: '{visibility}, quotes limited' },
   quoteDisabled: { id: 'privacy.quote.disabled', defaultMessage: '{visibility}, quotes disabled' },
   visibilityPublic: { id: 'privacy.public.short', defaultMessage: 'Public' },
-  visibilityUnlisted: { id: 'privacy.unlisted.short', defaultMessage: 'Unlisted' },
-  visibilityPrivate: { id: 'privacy.private.short', defaultMessage: 'Followers only' },
-  visibilityDirect: { id: 'privacy.direct.short', defaultMessage: 'Mentioned people only' },
+  visibilityUnlisted: { id: 'privacy.unlisted.short', defaultMessage: 'Quiet public' },
+  visibilityPrivate: { id: 'privacy.private.short', defaultMessage: 'Followers' },
+  visibilityDirect: { id: 'privacy.direct.short', defaultMessage: 'Specific people' },
 });
 
 function escapeHtml(text) {

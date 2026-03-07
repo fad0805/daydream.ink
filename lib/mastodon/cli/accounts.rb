@@ -430,13 +430,13 @@ module Mastodon::CLI
 
       remote_accs_to_unfollow =
         Account
-        .remote
-        .where(id: Follow.select(:target_account_id))
-        .where.not(
-          id: Follow.where(
-            account_id: User.confirmed.where('current_sign_in_at > ?', options[:days].days.ago).select(:account_id)
-          ).select(:target_account_id)
-        )
+          .remote
+          .where(id: Follow.select(:target_account_id))
+          .where.not(
+            id: Follow.where(
+              account_id: User.confirmed.where('current_sign_in_at > ?', options[:days].days.ago).select(:account_id)
+            ).select(:target_account_id)
+          )
 
       processed, = parallelize_with_progress(remote_accs_to_unfollow) do |account|
         say("Unfollowing #{account.acct} #{dry_run}", :green) if options[:verbose]
