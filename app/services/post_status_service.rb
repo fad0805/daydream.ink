@@ -286,6 +286,25 @@ class PostStatusService < BaseService
       options_hash[:scheduled_at]    = nil
       options_hash[:idempotency]     = nil
       options_hash[:with_rate_limit] = false
+      options_hash[:poll]            = scheduled_poll_params(options_hash[:poll]) if options_hash[:poll].present?
     end
+  end
+
+  def scheduled_poll_params(poll)
+    return nil if poll.blank?
+
+    raw = poll.respond_to?(:to_unsafe_h) ? poll.to_unsafe_h : poll.to_h
+    raw = raw.with_indifferent_access if raw.is_a?(Hash)
+    raw ||= {}
+    {
+      options: sanitize_poll_options(raw[:options]),
+      expires_in: raw[:expires_in].presence&.to_i,
+      multiple: ActiveModel::Type::Boolean.new.cast(raw[:multiple]),
+      hide_totals: ActiveModel::Type::Boolean.new.cast(raw[:hide_totals]),
+    }.compact
+  end
+
+  def sanitize_poll_options(options)
+    Array(options).map { |o| o.to_s.strip }.compact_blank
   end
 end

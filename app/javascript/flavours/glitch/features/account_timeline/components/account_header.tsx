@@ -122,7 +122,7 @@ export const AccountHeader: React.FC<{
             isRedesign && redesignClasses.header,
           )}
         >
-          {me !== account.id && relationship && !isRedesign && (
+          {me !== account.id && relationship && (
             <AccountInfo relationship={relationship} />
           )}
 
@@ -210,15 +210,14 @@ export const AccountHeader: React.FC<{
                     <AccountNote accountId={accountId} />
                   ))}
 
-                {(!isRedesign || layout === 'single-column') && (
-                  <>
-                    <AccountBio
-                      accountId={accountId}
-                      className='account__header__content'
-                    />
-                    <AccountHeaderFields accountId={accountId} />
-                  </>
-                )}
+                <AccountBio
+                  accountId={accountId}
+                  className={classNames(
+                    'account__header__content',
+                    isRedesign && redesignClasses.bio,
+                  )}
+                />
+                <AccountHeaderFields accountId={accountId} />
               </div>
             </div>
           )}

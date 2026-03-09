@@ -12,6 +12,7 @@ import { tagHistory } from 'mastodon/settings';
 import { showAlert, showAlertForError } from './alerts';
 import { useEmoji } from './emojis';
 import { importFetchedAccounts, importFetchedStatus } from './importer';
+import { addScheduledStatus } from './scheduled_statuses';
 import { openModal } from './modal';
 import { updateTimeline } from './timelines';
 
@@ -80,6 +81,7 @@ export const COMPOSE_CHANGE_MEDIA_ORDER       = 'COMPOSE_CHANGE_MEDIA_ORDER';
 
 export const COMPOSE_SET_STATUS = 'COMPOSE_SET_STATUS';
 export const COMPOSE_FOCUS = 'COMPOSE_FOCUS';
+export const COMPOSE_SCHEDULED_AT_CHANGE = 'COMPOSE_SCHEDULED_AT_CHANGE';
 
 const messages = defineMessages({
   uploadErrorLimit: { id: 'upload_error.limit', defaultMessage: 'File upload limit exceeded.' },
@@ -89,6 +91,7 @@ const messages = defineMessages({
   published: { id: 'compose.published.body', defaultMessage: 'Post published.' },
   saved: { id: 'compose.saved.body', defaultMessage: 'Post saved.' },
   blankPostError: { id: 'compose.error.blank_post', defaultMessage: 'Post can\'t be blank.' },
+  scheduledFor: { id: 'compose.scheduled_for', defaultMessage: 'Scheduled for {time}' },
 });
 
 export const ensureComposeIsVisible = (getState) => {
@@ -212,11 +215,16 @@ export function submitCompose(successCallback) {
 
     dispatch(submitComposeRequest());
 
+    const scheduledAtCompose = getState().getIn(['compose', 'scheduled_at']);
+    const isRedraftingScheduled = !!(statusId && scheduledAtCompose);
+    const editingScheduledId = isRedraftingScheduled ? statusId : null;
+    const effectiveStatusId = isRedraftingScheduled ? null : statusId;
+
     // If we're editing a post with media attachments, those have not
     // necessarily been changed on the server. Do it now in the same
     // API call.
     let media_attributes;
-    if (statusId !== null) {
+    if (effectiveStatusId !== null) {
       media_attributes = media.map(item => {
         let focus;
 
@@ -233,34 +241,56 @@ export function submitCompose(successCallback) {
     }
 
     const visibility = getState().getIn(['compose', 'privacy']);
-    api().request({
-      url: statusId === null ? '/api/v1/statuses' : `/api/v1/statuses/${statusId}`,
-      method: statusId === null ? 'post' : 'put',
-      data: {
-        status,
-        spoiler_text,
-        in_reply_to_id: getState().getIn(['compose', 'in_reply_to'], null),
-        media_ids: media.map(item => item.get('id')),
-        media_attributes,
-        sensitive: getState().getIn(['compose', 'sensitive']),
-        visibility: visibility,
-        poll: getState().getIn(['compose', 'poll'], null),
-        language: getState().getIn(['compose', 'language']),
-        quoted_status_id: getState().getIn(['compose', 'quoted_status_id']),
-        quote_approval_policy: visibility === 'private' || visibility === 'direct' ? 'nobody' : getState().getIn(['compose', 'quote_policy']),
-      },
+    const scheduledAt = effectiveStatusId === null ? getState().getIn(['compose', 'scheduled_at']) : null;
+    const requestData = {
+      status,
+      spoiler_text,
+      in_reply_to_id: getState().getIn(['compose', 'in_reply_to'], null),
+      media_ids: media.map(item => item.get('id')),
+      media_attributes,
+      sensitive: getState().getIn(['compose', 'sensitive']),
+      visibility: visibility,
+      poll: getState().getIn(['compose', 'poll'], null),
+      language: getState().getIn(['compose', 'language']),
+      quoted_status_id: getState().getIn(['compose', 'quoted_status_id']),
+      quote_approval_policy: visibility === 'private' || visibility === 'direct' ? 'nobody' : getState().getIn(['compose', 'quote_policy']),
+    };
+    if (scheduledAt) {
+      requestData.scheduled_at = scheduledAt;
+    }
+
+    const doSubmit = () => api().request({
+      url: effectiveStatusId === null ? '/api/v1/statuses' : `/api/v1/statuses/${effectiveStatusId}`,
+      method: effectiveStatusId === null ? 'post' : 'put',
+      data: requestData,
       headers: {
         'Idempotency-Key': getState().getIn(['compose', 'idempotencyKey']),
       },
     }).then(function (response) {
+      const isScheduled = response.data && response.data.scheduled_at;
+
       if ((browserHistory.location.pathname === '/publish' || browserHistory.location.pathname === '/statuses/new') && window.history.state) {
         browserHistory.goBack();
       }
 
-      dispatch(insertIntoTagHistory(response.data.tags, status));
+      if (!isScheduled) {
+        dispatch(insertIntoTagHistory(response.data.tags, status));
+      }
       dispatch(submitComposeSuccess({ ...response.data }));
       if (typeof successCallback === 'function') {
         successCallback(response.data);
+      }
+
+      if (isScheduled) {
+        dispatch(addScheduledStatus(response.data));
+        const scheduledDate = new Date(response.data.scheduled_at);
+        const timeStr = scheduledDate.toLocaleString(undefined, { dateStyle: 'short', timeStyle: 'short' });
+        dispatch(showAlert({
+          message: messages.scheduledFor,
+          values: { time: timeStr },
+          dismissAfter: 5000,
+        }));
+        return;
       }
 
       // To make the app more responsive, immediately push the status
@@ -273,15 +303,15 @@ export function submitCompose(successCallback) {
         }
       };
 
-      if (statusId) {
+      if (effectiveStatusId) {
         dispatch(importFetchedStatus({ ...response.data }));
       }
 
-      if (statusId === null && response.data.visibility !== 'direct') {
+      if (effectiveStatusId === null && response.data.visibility !== 'direct') {
         insertIfOnline('home');
       }
 
-      if (statusId === null && response.data.in_reply_to_id === null && response.data.visibility === 'public') {
+      if (effectiveStatusId === null && response.data.in_reply_to_id === null && response.data.visibility === 'public') {
         insertIfOnline('community');
         if (!response.data.local_only) {
           insertIfOnline('public');
@@ -290,7 +320,7 @@ export function submitCompose(successCallback) {
       }
 
       dispatch(showAlert({
-        message: statusId === null ? messages.published : messages.saved,
+        message: effectiveStatusId === null ? messages.published : messages.saved,
         action: messages.open,
         dismissAfter: 10000,
         onClick: () => browserHistory.push(`/@${response.data.account.username}/${response.data.id}`),
@@ -298,6 +328,17 @@ export function submitCompose(successCallback) {
     }).catch(function (error) {
       dispatch(submitComposeFail(error));
     });
+
+    if (isRedraftingScheduled) {
+      api().delete(`/api/v1/scheduled_statuses/${editingScheduledId}`).then(() => {
+        dispatch({ type: 'SCHEDULED_STATUS_DELETE_SUCCESS', id: editingScheduledId });
+        doSubmit();
+      }).catch((err) => {
+        dispatch(submitComposeFail(err));
+      });
+    } else {
+      doSubmit();
+    }
   };
 }
 
@@ -318,6 +359,13 @@ export function submitComposeFail(error) {
   return {
     type: COMPOSE_SUBMIT_FAIL,
     error: error,
+  };
+}
+
+export function changeScheduledAt(scheduledAt) {
+  return {
+    type: COMPOSE_SCHEDULED_AT_CHANGE,
+    scheduledAt: scheduledAt || null,
   };
 }
 
