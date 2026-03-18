@@ -8,6 +8,7 @@ import {
   setComposeQuotePolicy,
   pasteLinkCompose,
   cancelPasteLinkCompose,
+  setDragUploadEnabled,
 } from '@/mastodon/actions/compose_typed';
 import { timelineDelete } from 'mastodon/actions/timelines_typed';
 
@@ -76,6 +77,7 @@ const initialState = ImmutableMap({
   is_submitting: false,
   is_changing_upload: false,
   is_uploading: false,
+  isDragDisabled: false,
   should_redirect_to_compose_page: false,
   progress: 0,
   isUploadingThumbnail: false,
@@ -136,6 +138,7 @@ function clearAll(state) {
     map.set('quoted_status_id', null);
     map.set('quote_policy', state.get('default_quote_policy'));
     map.set('scheduled_at', null);
+    map.set('isDragDisabled', false);
   });
 }
 
@@ -363,6 +366,8 @@ export const composeReducer = (state = initialState, action) => {
     return action.meta.requestId === state.get('fetching_link') ? state.set('fetching_link', null) : state;
   } else if (cancelPasteLinkCompose.match(action)) {
     return state.set('fetching_link', null);
+  } else if (setDragUploadEnabled.match(action)) {
+    return state.set('isDragDisabled', !action.payload);
   }
 
   switch(action.type) {
