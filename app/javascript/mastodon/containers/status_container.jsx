@@ -81,7 +81,7 @@ const mapDispatchToProps = (dispatch, { contextType }) => ({
   onReblog (status, e) {
     dispatch(toggleReblog(status.get('id'), e.shiftKey));
   },
-  
+
   onQuote (status) {
     dispatch(quoteComposeById(status.get('id')));
   },
@@ -243,10 +243,11 @@ const mapDispatchToProps = (dispatch, { contextType }) => ({
     dispatch(deployPictureInPicture({statusId: status.get('id'), accountId: status.getIn(['account', 'id']), playerType: type, props: mediaProps}));
   },
 
-  onInteractionModal (status) {
+  onInteractionModal (status, intent) {
     dispatch(openModal({
       modalType: 'INTERACTION',
       modalProps: {
+        intent,
         accountId: status.getIn(['account', 'id']),
         url: status.get('uri'),
       },
