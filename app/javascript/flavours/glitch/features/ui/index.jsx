@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
-import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
+import { defineMessages, FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 import { Redirect, Route, withRouter } from 'react-router-dom';
@@ -19,6 +19,7 @@ import { synchronouslySubmitMarkers, submitMarkers, fetchMarkers } from 'flavour
 import { fetchNotifications } from 'flavours/glitch/actions/notification_groups';
 import { INTRODUCTION_VERSION } from 'flavours/glitch/actions/onboarding';
 import { AlertsController } from 'flavours/glitch/components/alerts_controller';
+import { injectIntl } from '@/flavours/glitch/components/intl';
 import { Hotkeys } from 'flavours/glitch/components/hotkeys';
 import { HoverCardController } from 'flavours/glitch/components/hover_card_controller';
 import { Permalink } from 'flavours/glitch/components/permalink';
@@ -28,7 +29,6 @@ import { layoutFromWindow } from 'flavours/glitch/is_mobile';
 import { selectUnreadNotificationGroupsCount } from 'flavours/glitch/selectors/notifications';
 import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
 import { checkAnnualReport } from '@/flavours/glitch/reducers/slices/annual_report';
-import { isClientFeatureEnabled } from '@/flavours/glitch/utils/environment';
 
 import { uploadCompose, resetCompose, changeComposeSpoilerness } from '../../actions/compose';
 import { clearHeight } from '../../actions/height_cache';
@@ -193,20 +193,6 @@ class SwitchingColumnsArea extends PureComponent {
       rootRedirect = '/about';
     }
 
-    const profileRedesignRoutes = [];
-    if (isClientFeatureEnabled('profile_editing')) {
-      profileRedesignRoutes.push(
-        <WrappedRoute key="edit" path='/profile/edit' component={AccountEdit} content={children} />,
-        <WrappedRoute key="featured_tags" path='/profile/featured_tags' component={AccountEditFeaturedTags} content={children} />
-      )
-    } else {
-      // If profile editing is not enabled, redirect to the home timeline as the current editing pages are outside React Router.
-      profileRedesignRoutes.push(
-        <Redirect key="edit-redirect" from='/profile/edit' to='/' exact />,
-        <Redirect key="featured-tags-redirect" from='/profile/featured_tags' to='/' exact />,
-      );
-    }
-
     return (
       <ColumnsContextProvider multiColumn={!singleColumn}>
         <ColumnsArea ref={this.setRef} singleColumn={singleColumn}>
@@ -254,10 +240,18 @@ class SwitchingColumnsArea extends PureComponent {
             <WrappedRoute path='/search' component={Search} content={children} />
             <WrappedRoute path={['/publish', '/statuses/new']} component={Compose} content={children} />
 
-            {...profileRedesignRoutes}
+            <WrappedRoute path='/profile/edit' component={AccountEdit} content={children} />
+            <WrappedRoute path='/profile/featured_tags' component={AccountEditFeaturedTags} content={children} />
 
             <WrappedRoute path={['/@:acct', '/accounts/:id']} exact component={AccountTimeline} content={children} />
             <WrappedRoute path={['/@:acct/featured', '/accounts/:id/featured']} component={AccountFeatured} content={children} />
+            {areCollectionsEnabled() &&
+              [
+                <WrappedRoute path={['/@:acct/collections']} component={Collections} content={children} key='collections-list' />,
+                <WrappedRoute path={['/collections/new', '/collections/:id/edit']} component={CollectionsEditor} content={children} key='collections-editor' />,
+                <WrappedRoute path='/collections/:id' component={CollectionDetail} content={children} key='collections-detail' />,
+              ]
+            }
             <WrappedRoute path='/@:acct/tagged/:tagged?' exact component={AccountTimeline} content={children} />
             <WrappedRoute path={['/@:acct/with_replies', '/accounts/:id/with_replies']} component={AccountTimeline} content={children} componentParams={{ withReplies: true }} />
             <WrappedRoute path={['/accounts/:id/followers', '/users/:acct/followers', '/@:acct/followers']} component={Followers} content={children} />
@@ -282,13 +276,6 @@ class SwitchingColumnsArea extends PureComponent {
             <WrappedRoute path='/mutes' component={Mutes} content={children} />
             <WrappedRoute path='/domain_mutes' component={DomainMutes} content={children} />
             <WrappedRoute path='/lists' component={Lists} content={children} />
-            {areCollectionsEnabled() &&
-              [
-                <WrappedRoute path={['/collections/new', '/collections/:id/edit']} component={CollectionsEditor} content={children} key='collections-editor' />,
-                <WrappedRoute path='/collections/:id' component={CollectionDetail} content={children} key='collections-detail' />,
-                <WrappedRoute path='/collections' component={Collections} content={children} key='collections-list' />
-              ]
-            }
             <Route component={BundleColumnError} />
           </WrappedSwitch>
         </ColumnsArea>

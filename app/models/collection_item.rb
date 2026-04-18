@@ -27,6 +27,7 @@ class CollectionItem < ApplicationRecord
 
   delegate :local?, :remote?, to: :collection
 
+  validates :account_id, uniqueness: { scope: :collection_id }
   validates :position, numericality: { only_integer: true, greater_than: 0 }
   validates :activity_uri, presence: true, if: :local_item_with_remote_account?
   validates :approval_uri, presence: true, unless: -> { local? || account&.local? || !accepted? }
@@ -47,6 +48,10 @@ class CollectionItem < ApplicationRecord
     update!(state: :revoked)
   end
 
+  def with_local_account?
+    account&.local?
+  end
+
   def local_item_with_remote_account?
     local? && account&.remote?
   end
@@ -62,7 +67,7 @@ class CollectionItem < ApplicationRecord
   private
 
   def set_position
-    return if position_changed?
+    return if position.present? && position_changed?
 
     self.position = self.class.where(collection_id:).maximum(:position).to_i + 1
   end
