@@ -106,9 +106,9 @@
 
   /* RICH TEXT TOKENS (LEGACY) */
 
-  --rich-text-container-color: rgb(255 216 231 / 100%);
-  --rich-text-text-color: rgb(114 47 83 / 100%);
-  --rich-text-decorations-color: rgb(255 175 212 / 100%);
+  --rich-text-container-color: var(--color-green-01);
+  --rich-text-text-color: var(--color-green-09);
+  --rich-text-decorations-color: var(--color-green-03);
 }
 
 @mixin contrast-overrides {

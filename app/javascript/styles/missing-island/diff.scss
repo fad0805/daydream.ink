@@ -11,26 +11,3 @@ html {
     word-break: break-all;
   }
 }
-
-// Colourise mention and hashtag with qdon brand colors
-// Colors change based on OS dark/light preference
-[data-color-scheme='light'],
-html:not([data-color-scheme]) {
-  a.mention {
-    color: var(--color-green-01);
-  }
-
-  a.hashtag {
-    color: var(--color-green-02);
-  }
-}
-
-[data-color-scheme='dark'] {
-  a.mention {
-    color: var(--color-green-00);
-  }
-
-  a.hashtag {
-    color: var(--color-green-05);
-  }
-}
