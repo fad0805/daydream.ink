@@ -20,7 +20,7 @@ const messages = defineMessages({
 const Mutes: React.FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
   const intl = useIntl();
   const [domains, setDomains] = useState<ApiDomainMuteJSON[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [next, setNext] = useState<string | undefined>();
   const hasMore = !!next;
   const columnRef = useRef<ColumnRef>(null);
@@ -39,7 +39,7 @@ const Mutes: React.FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
       .catch(() => {
         setLoading(false);
       });
-  }, [setLoading, setDomains, setNext]);
+  }, []);
 
   const handleLoadMore = useCallback(() => {
     setLoading(true);
@@ -63,10 +63,14 @@ const Mutes: React.FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
     columnRef.current?.scrollTop();
   }, []);
 
+  const handleUnmute = useCallback((domain: string) => {
+    setDomains((prev) => prev.filter((d) => d.domain !== domain));
+  }, []);
+
   const emptyMessage = (
     <FormattedMessage
       id='empty_column.domain_mutes'
-      defaultMessage='There are no blocked domains yet.'
+      defaultMessage='There are no muted domains yet.'
     />
   );
 
@@ -100,6 +104,7 @@ const Mutes: React.FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
             key={domain.domain}
             domain={domain.domain}
             hide_from_home={domain.hide_from_home}
+            onUnmute={handleUnmute}
           />
         ))}
       </ScrollableList>
