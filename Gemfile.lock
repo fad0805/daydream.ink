@@ -1023,7 +1023,6 @@ DEPENDENCIES
   mario-redis-lock (~> 1.2)
   memory_profiler
   mime-types (~> 3.7.0)
-  mini_portile2 (~> 2.8)
   mutex_m
   net-http (~> 0.9.0)
   net-ldap (~> 0.18)
