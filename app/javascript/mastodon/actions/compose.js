@@ -12,9 +12,10 @@ import { emojiMartSearch } from '@/mastodon/features/emoji/picker';
 import { showAlert, showAlertForError } from './alerts';
 import { useEmoji } from './emojis';
 import { importFetchedAccounts, importFetchedStatus } from './importer';
-import { addScheduledStatus } from './scheduled_statuses';
+import { addScheduledStatus, SCHEDULED_STATUS_DELETE_SUCCESS } from './scheduled_statuses';
 import { openModal } from './modal';
 import { updateTimeline } from './timelines';
+import { insertStatusIntoAccountTimelines } from './timelines_typed';
 
 /** @type {AbortController | undefined} */
 let fetchComposeSuggestionsAccountsController;
@@ -192,13 +193,13 @@ export function directCompose(account) {
 
 export function submitCompose(successCallback) {
   return function (dispatch, getState) {
-    const status   = getState().getIn(['compose', 'text'], '');
-    const media    = getState().getIn(['compose', 'media_attachments']);
-    const statusId = getState().getIn(['compose', 'id'], null);
-    const hasQuote = !!getState().getIn(['compose', 'quoted_status_id']);
+    const statusText   = getState().getIn(['compose', 'text'], '');
+    const media        = getState().getIn(['compose', 'media_attachments']);
+    const statusId     = getState().getIn(['compose', 'id'], null);
+    const hasQuote     = !!getState().getIn(['compose', 'quoted_status_id']);
     const spoiler_text = getState().getIn(['compose', 'spoiler']) ? getState().getIn(['compose', 'spoiler_text'], '') : '';
 
-    const fulltext = `${spoiler_text ?? ''}${countableText(status ?? '')}`;
+    const fulltext = `${spoiler_text ?? ''}${countableText(statusText ?? '')}`;
     const hasText = fulltext.trim().length > 0;
 
     if (!(hasText || media.size !== 0 || (hasQuote && spoiler_text?.length))) {
@@ -238,28 +239,24 @@ export function submitCompose(successCallback) {
     }
 
     const visibility = getState().getIn(['compose', 'privacy']);
-    const scheduledAt = effectiveStatusId === null ? getState().getIn(['compose', 'scheduled_at']) : null;
-    const requestData = {
-      status,
-      spoiler_text,
-      in_reply_to_id: getState().getIn(['compose', 'in_reply_to'], null),
-      media_ids: media.map(item => item.get('id')),
-      media_attributes,
-      sensitive: getState().getIn(['compose', 'sensitive']),
-      visibility: visibility,
-      poll: getState().getIn(['compose', 'poll'], null),
-      language: getState().getIn(['compose', 'language']),
-      quoted_status_id: getState().getIn(['compose', 'quoted_status_id']),
-      quote_approval_policy: visibility === 'private' || visibility === 'direct' ? 'nobody' : getState().getIn(['compose', 'quote_policy']),
-    };
-    if (scheduledAt) {
-      requestData.scheduled_at = scheduledAt;
-    }
 
     const doSubmit = () => api().request({
       url: effectiveStatusId === null ? '/api/v1/statuses' : `/api/v1/statuses/${effectiveStatusId}`,
       method: effectiveStatusId === null ? 'post' : 'put',
-      data: requestData,
+      data: {
+        status: statusText,
+        spoiler_text,
+        in_reply_to_id: getState().getIn(['compose', 'in_reply_to'], null),
+        media_ids: media.map(item => item.get('id')),
+        media_attributes,
+        sensitive: getState().getIn(['compose', 'sensitive']),
+        visibility: visibility,
+        poll: getState().getIn(['compose', 'poll'], null),
+        language: getState().getIn(['compose', 'language']),
+        quoted_status_id: getState().getIn(['compose', 'quoted_status_id']),
+        quote_approval_policy: visibility === 'private' || visibility === 'direct' ? 'nobody' : getState().getIn(['compose', 'quote_policy']),
+        scheduled_at: effectiveStatusId === null ? getState().getIn(['compose', 'scheduled_at']) : undefined,
+      },
       headers: {
         'Idempotency-Key': getState().getIn(['compose', 'idempotencyKey']),
       },
@@ -271,7 +268,7 @@ export function submitCompose(successCallback) {
       }
 
       if (!isScheduled) {
-        dispatch(insertIntoTagHistory(response.data.tags, status));
+        dispatch(insertIntoTagHistory(response.data.tags, statusText));
       }
       dispatch(submitComposeSuccess({ ...response.data }));
       if (typeof successCallback === 'function') {
@@ -316,6 +313,8 @@ export function submitCompose(successCallback) {
         insertIfOnline(`account:${response.data.account.id}`);
       }
 
+      dispatch(insertStatusIntoAccountTimelines({ ...response.data }))
+
       dispatch(showAlert({
         message: effectiveStatusId === null ? messages.published : messages.saved,
         action: messages.open,
@@ -331,7 +330,7 @@ export function submitCompose(successCallback) {
 
     if (isRedraftingScheduled) {
       api().delete(`/api/v1/scheduled_statuses/${editingScheduledId}`).then(() => {
-        dispatch({ type: 'SCHEDULED_STATUS_DELETE_SUCCESS', id: editingScheduledId });
+        dispatch({ type: SCHEDULED_STATUS_DELETE_SUCCESS, id: editingScheduledId });
         doSubmit();
       }).catch((err) => {
         dispatch(submitComposeFail(err));
@@ -620,7 +619,7 @@ const fetchComposeSuggestionsTags = throttle((dispatch, token) => {
 }, 200, { leading: true, trailing: true });
 
 export function fetchComposeSuggestions(token) {
-  return (dispatch, getState) => {
+  return (dispatch) => {
     switch (token[0]) {
     case ':':
       void fetchComposeSuggestionsEmojis(dispatch, token);

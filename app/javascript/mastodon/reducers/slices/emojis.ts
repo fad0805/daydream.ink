@@ -3,9 +3,9 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import type { Locale } from 'emojibase';
 
-import type { ApiCustomEmojiJSON } from '@/mastodon/api_types/custom_emoji';
-import { toSupportedLocale } from '@/mastodon/features/emoji/locale';
-import { createAsyncThunk } from '@/mastodon/store/typed_functions';
+import type { ApiCustomEmojiJSON } from '@/flavours/glitch/api_types/custom_emoji';
+import { toSupportedLocale } from '@/flavours/glitch/features/emoji/locale';
+import { createAsyncThunk } from '@/flavours/glitch/store/typed_functions';
 
 interface EmojisState {
   custom: Record<string, Pick<ApiCustomEmojiJSON, 'url' | 'static_url'>>;
@@ -14,14 +14,16 @@ interface EmojisState {
   localesLoaded: Locale[];
 }
 
+const initialState: EmojisState = {
+  custom: {},
+  customCategories: {},
+  customLoaded: false,
+  localesLoaded: [],
+};
+
 const emojisSlice = createSlice({
   name: 'emojis',
-  initialState: {
-    custom: {},
-    customCategories: {},
-    customLoaded: false,
-    localesLoaded: [],
-  } as EmojisState,
+  initialState,
   reducers: {
     loadLocale(state, action: PayloadAction<string>) {
       const locale = toSupportedLocale(action.payload);
@@ -46,8 +48,9 @@ const emojisSlice = createSlice({
 
           if (category) {
             state.customCategories[category] ??= [];
-            if (!state.customCategories[category].includes(shortcode)) {
-              state.customCategories[category].push(shortcode);
+            const categoryList = state.customCategories[category];
+            if (!categoryList.includes(shortcode)) {
+              categoryList.push(shortcode);
             }
           }
 
@@ -65,7 +68,7 @@ export const loadCustomEmojis = createAsyncThunk(
   `${emojisSlice.name}/loadCustomEmojis`,
   async () => {
     const { loadAllCustomEmoji } =
-      await import('@/mastodon/features/emoji/database');
+      await import('@/flavours/glitch/features/emoji/database');
     return loadAllCustomEmoji();
   },
 );

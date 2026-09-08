@@ -307,7 +307,13 @@ const ComboboxWithRef = <Item extends ComboboxItem, GroupKey extends string>(
   // Reset scroll & highlight when menu items change
   useEffect(() => {
     if (flatItems.length) {
-      resetHighlight();
+      const timer = setTimeout(() => {
+        resetHighlight();
+      }, 0);
+
+      return () => {
+        clearTimeout(timer);
+      };
     }
   }, [flatItems, resetHighlight]);
 
