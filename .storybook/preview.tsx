@@ -122,7 +122,7 @@ const preview: Preview = {
             locale,
           },
         },
-        state as Record<string, unknown>,
+        state,
         stateFnState,
         argsState,
       );
@@ -170,7 +170,7 @@ const preview: Preview = {
     (Story, { globals }) => {
       const theme = globals.theme;
       useEffect(() => {
-        document.body.setAttribute('data-color-scheme', theme);
+        document.documentElement.dataset.colorScheme = theme;
       }, [theme]);
       return <Story />;
     },
@@ -203,6 +203,14 @@ const preview: Preview = {
           <Story />
         </IdentityContext.Provider>
       );
+    },
+    (Story, { parameters }) => {
+      useEffect(() => {
+        document.documentElement.dataset.redesign = parameters.redesign
+          ? 'true'
+          : 'false';
+      }, [parameters.redesign]);
+      return <Story />;
     },
   ],
   loaders: [
