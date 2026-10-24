@@ -24,6 +24,11 @@ services:
       test: ['CMD', 'redis-cli', 'ping']
     volumes:
       - ./redis:/data
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
 
   es:
     restart: always
@@ -59,6 +64,11 @@ services:
         hard: 65536
     ports:
       - '127.0.0.1:9200:9200'
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
 
   web:
     # You can uncomment the following line if you want to not use the prebuilt image, for example if you have local code changes
@@ -81,6 +91,11 @@ services:
       - es
     volumes:
       - ./public/system:/mastodon/public/system
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
 
   streaming:
     # You can uncomment the following lines if you want to not use the prebuilt image, for example if you have local code changes
@@ -102,6 +117,11 @@ services:
     depends_on:
       - db
       - redis
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
 
   sidekiq:
     # You can uncomment the following line if you want to not use the prebuilt image, for example if you have local code changes
@@ -121,6 +141,11 @@ services:
       - ./public/system:/mastodon/public/system
     healthcheck:
       test: ['CMD-SHELL', "ps aux | grep '[s]idekiq\ 8' || false"]
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
 
   ## Uncomment to enable federation with tor instances along with adding the following ENV variables
   ## http_hidden_proxy=http://privoxy:8118
