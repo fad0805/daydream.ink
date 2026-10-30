@@ -102,7 +102,7 @@ services:
     # build:
     #   dockerfile: ./streaming/Dockerfile
     #   context: .
-    image: ghcr.io/glitch-soc/mastodon-streaming:v4.7.3
+    image: ghcr.io/glitch-soc/mastodon-streaming:v4.7.4
     restart: always
     env_file: .env.production
     command: node ./streaming/index.js
