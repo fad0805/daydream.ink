@@ -1,6 +1,5 @@
-@use '../../mastodon/tokens/theme/base';
-
-@mixin palete {
+// Missing Island color palette
+@mixin palette {
   // Green
   --color-dark-green-00: #3d4734;
   --color-dark-green-01: #1f2d24; // deep
@@ -51,12 +50,4 @@
   --color-yellow-400: #ffb900;
   --color-yellow-600: #e17100;
   --color-yellow-700: #bb4d00;
-
-  /*
-  $ui-button-focus-outline: solid 2px --color-green-01;
-  $action-button-focus-color: color.adjust(
-    --color-dark-green,
-    $lightness: 4%
-  );
-  */
 }

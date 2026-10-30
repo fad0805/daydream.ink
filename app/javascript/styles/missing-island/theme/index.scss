@@ -5,7 +5,7 @@
 @use 'light';
 
 html {
-  @include base.palete;
+  @include base.palette;
 }
 
 [data-color-scheme='dark'] {
